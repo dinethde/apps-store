@@ -1,2 +1,3 @@
-# apps-store
-Apps store to go through all the enterprise allications
+# Apps Store
+
+An open source app catalog to discover, manage and launch internal web applications of an enterprise from a single dashboard
