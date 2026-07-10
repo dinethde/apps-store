@@ -1,30 +1,34 @@
 import json
+import re
 
 input_file = "./cleaned-design-tokens.json"
-output_file = "./test.css"
+output_file = "./design-tokens.css"
 
 with open(input_file, "r") as f:
     data = json.load(f)
 
 
-def resolve_reference(ref_str, source):
-    path_parts = ref_str.strip("{}").split(".")
-    current = source
-    for part in path_parts:
-        current = current[part]
-    return current["value"]
+def resolve_reference(ref_str, palette):
+    match = re.match(r"\{color pallete\.(\w+)\.(\w+)\}", ref_str)
+    if match:
+        palette_name, shade = match.groups()
+        value = palette[palette_name][shade]
+        if isinstance(value, dict):
+            return value["value"]
+        return value
+    return ref_str
 
 
 def build_color_palette(source):
-    color_palette_data = source["color pallete"]
+    palette_data = source["color pallete"]
     resolved = {}
 
-    for palette_name, shades in color_palette_data.items():
+    for palette_name, shades in palette_data.items():
         shade_map = {}
         for shade_name, shade_entry in shades.items():
             raw = shade_entry["value"]
             if raw.startswith("{"):
-                shade_map[shade_name] = resolve_reference(raw, source)
+                shade_map[shade_name] = resolve_reference(raw, palette_data)
             else:
                 shade_map[shade_name] = raw
         resolved[palette_name] = shade_map
@@ -32,42 +36,95 @@ def build_color_palette(source):
     return resolved
 
 
-def build_bg_tokens(bg_variables, pallete):
-    main = {}
-    for categorries, items in bg_variables.items():
-        groups = {}
-        print(categorries)
-        for groups, sub_category in items.items():
-            print(groups)
-            sub_categories = {}
-            for stg, value in sub_category.items():
-                print(stg)
-                values = {}
-                for c, g in value.items():
-                    raw = g["value"]
+def generate_color_palette_vars(palette):
+    lines = []
+    for palette_name, shades in palette.items():
+        for shade_name, value in shades.items():
+            css_var = f"--color-{palette_name}-{shade_name}"
+            lines.append(f"  {css_var}: {value};")
+    return "\n".join(lines)
 
+
+def generate_semantic_color_vars(color_variables, palette):
+    lines = []
+
+    def flatten_colors(obj, prefix=""):
+        for key, value in obj.items():
+            if isinstance(value, dict):
+                if "type" in value and value["type"] == "color":
+                    raw = value["value"]
                     if raw.startswith("{"):
-                        path = raw.strip("{}").split(".")
-                        # print(palette[path[1][path[2]]])
-                        # print(path[1], path[2])
-                        # print(palette[path[1]][path[2]])
-                        values[c] = palette[path[1]][path[2]]
-
+                        resolved = resolve_reference(raw, palette)
                     else:
-                        values[c] = raw
+                        resolved = raw
+                    lines.append(f"  {prefix}-{key}: {resolved};")
+                else:
+                    flatten_colors(value, f"{prefix}-{key}")
 
-                print(values)
+    bg = color_variables.get("bg", {})
+    flatten_colors(bg, "--color")
+
+    text = color_variables.get("text", {})
+    flatten_colors(text, "--color-text")
+
+    return "\n".join(lines)
 
 
-def build_variables(variables, pallete):
-    for v, i in variables.items():
-        if v == "bg":
-            build_bg_tokens(i, pallete)
+def generate_font_family_vars(color_variables, palette):
+    font_config = color_variables.get("font", {})
+    lines = []
+    for key, value in font_config.items():
+        if isinstance(value, dict) and "value" in value:
+            lines.append(f"  --font-{key}: {value['value']};")
+    return "\n".join(lines)
+
+
+def generate_typography_classes(fonts):
+    classes = []
+
+    for name, token in fonts.items():
+        if token.get("type") != "custom-fontStyle":
+            continue
+        v = token["value"]
+
+        font_size = v.get("fontSize", 16)
+        line_height = v.get("lineHeight", font_size)
+        font_weight = v.get("fontWeight", 400)
+        letter_spacing = v.get("letterSpacing", 0)
+        font_family = v.get("fontFamily", "Inter")
+
+        cls = f""".{name} {{
+  font-size: {font_size}px;
+  line-height: {line_height}px;
+  font-weight: {font_weight};
+  letter-spacing: {letter_spacing}px;
+  font-family: {font_family}, sans-serif;
+}}"""
+        classes.append(cls)
+
+    return "\n\n".join(classes)
 
 
 palette = build_color_palette(data)
-# print(palette)
 
-color_variables = data["color variables"]
-resolved_variables = build_variables(color_variables, palette)
-print(resolved_variables)
+color_palette_css = generate_color_palette_vars(palette)
+semantic_color_css = generate_semantic_color_vars(
+    data["color variables"], palette)
+font_family_css = generate_font_family_vars(data["color variables"], palette)
+typography_css = generate_typography_classes(data["font"])
+
+css = f"""@import "tailwindcss";
+
+@theme {{
+{color_palette_css}
+{semantic_color_css}
+{font_family_css}
+}}
+
+{typography_css}
+"""
+
+with open(output_file, "w") as f:
+    f.write(css)
+
+print(f"Generated {output_file}")
