@@ -81,10 +81,10 @@ function RootComponent() {
               </SidebarMenuItem>
             </SidebarHeader>
 
-            <SidebarContent>
-              <SidebarGroup>
-                <hr className="border-1 border-border-territory-light-active" />
-              </SidebarGroup>
+            <SidebarContent className="flex flex-col justify-between w-h-full">
+              {/* <SidebarGroup> */}
+              {/*   <hr className="border-1 border-border-territory-light-active" /> */}
+              {/* </SidebarGroup> */}
 
               <SidebarGroup className="text-primary-p2-active">
                 <SidebarMenu>
@@ -117,12 +117,18 @@ function RootComponent() {
                   </SidebarMenuItem>
                 </SidebarMenu>
               </SidebarGroup>
-            </SidebarContent>
 
-            <SidebarFooter>
-              <SidebarMenu className="text-primary-p2-active">
+              <SidebarGroup>
+                <SidebarMenu className="text-primary-p2-active">
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>
+                      <a href="/home" className='sidebar-link'>
+                        <SquareLibrary />
+                        <p className='p-m-medium'>Admin</p>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
 
-                <SidebarGroup>
                   <SidebarMenuItem>
                     <SidebarMenuButton>
                       <SquareLibrary />
@@ -136,36 +142,68 @@ function RootComponent() {
                       <p className='p-m-medium'>Help & Support</p>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                </SidebarGroup>
+                </SidebarMenu>
+              </SidebarGroup>
 
-                <SidebarGroup>
-                  <SidebarMenuItem>
-                    <hr className="border-1 border-border-territory-light-active" />
-                  </SidebarMenuItem>
-                </SidebarGroup>
 
-                <SidebarGroup>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton>
-                      <div className="flex gap-2 items-center justify-content ">
-                        <Avatar>
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
+            </SidebarContent>
 
-                        <div className="w-full">
-                          <p className="p-m-medium">Dineth</p>
-                          <p className="p-s-medium">dinethdsilva@gmail.com</p>
-                        </div>
+            <SidebarFooter>
+              {/* <SidebarGroup> */}
+              {/*   <SidebarMenu className="text-primary-p2-active"> */}
+              {/*     <SidebarMenuItem> */}
+              {/*       <SidebarMenuButton> */}
+              {/*         <a href="/home" className='sidebar-link'> */}
+              {/*           <SquareLibrary /> */}
+              {/*           <p className='p-m-medium'>Admin</p> */}
+              {/*         </a> */}
+              {/*       </SidebarMenuButton> */}
+              {/*     </SidebarMenuItem> */}
+              {/**/}
+              {/*     <SidebarMenuItem> */}
+              {/*       <SidebarMenuButton> */}
+              {/*         <SquareLibrary /> */}
+              {/*         <p className='p-m-medium'>Collapse</p> */}
+              {/*       </SidebarMenuButton> */}
+              {/*     </SidebarMenuItem> */}
+              {/**/}
+              {/*     <SidebarMenuItem> */}
+              {/*       <SidebarMenuButton> */}
+              {/*         <SquareLibrary /> */}
+              {/*         <p className='p-m-medium'>Help & Support</p> */}
+              {/*       </SidebarMenuButton> */}
+              {/*     </SidebarMenuItem> */}
+              {/*   </SidebarMenu> */}
+              {/* </SidebarGroup> */}
+              {/**/}
 
-                        <button>
-                          <ChevronsUpDown />
-                        </button>
+              {/* <SidebarGroup> */}
+              {/*   <SidebarMenuItem> */}
+              {/*     <hr className="border-1 border-border-territory-light-active" /> */}
+              {/*   </SidebarMenuItem> */}
+              {/* </SidebarGroup> */}
+
+              <SidebarGroup>
+                <SidebarMenuItem>
+                  <SidebarMenuButton className="sidebar-menu-button">
+                    <div className="flex gap-2 items-center justify-content ">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+
+                      <div className="w-full group-data-[collapsible=icon]:hidden">
+                        <p className="p-m-medium">Dineth</p>
+                        <p className="p-s-medium">dinethdsilva@gmail.com</p>
                       </div>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarGroup>
-              </SidebarMenu>
+
+                      <button className="group-data-[collapsible=icon]:hidden">
+                        <ChevronsUpDown />
+                      </button>
+                    </div>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarGroup>
             </SidebarFooter>
           </Sidebar>
         </SidebarProvider>
