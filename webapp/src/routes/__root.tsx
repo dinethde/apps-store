@@ -70,14 +70,17 @@ function RootComponent() {
         <SidebarProvider>
           <Sidebar className='bg-transparent border-none' collapsible="icon">
             <SidebarHeader>
-              <SidebarMenuItem>
-                <SidebarMenuButton className="!px-0 !h-auto w-full group-data-[collapsible=icon]:!w-full group-data-[collapsible=icon]:!size-auto group-data-[collapsible=icon]:justify-center">
-                  <div className="group-data-[collapsible=icon]:mx-auto">
-                    <Logo className="!w-7 !h-7 group-data-[collapsible=icon]:!w-8" />
-                  </div>
-                  <p className="h4 w-full whitespace-nowrap group-data-[collapsible=icon]:hidden">App Name</p>
-                  <CustomTrigger className="group-data-[collapsible=icon]:hidden" />
-                </SidebarMenuButton>
+              <SidebarMenuItem className="flex gap-2">
+                {/* <SidebarMenuButton className="!px-0 !h-auto w-full group-data-[collapsible=icon]:!w-full group-data-[collapsible=icon]:!size-auto group-data-[collapsible=icon]:justify-center"> */}
+                <div className="">
+                  <Logo className="!w-7 !h-7 group-data-[collapsible=icon]:!w-8" />
+                </div>
+                {/* <p className="text-white">text</p> */}
+                {/* <Logo className="!w-7 !h-7 group-data-[collapsible=icon]:!w-8" /> */}
+
+                {/* <p className="h4 w-full whitespace-nowrap group-data-[collapsible=icon]:hidden">App Name</p> */}
+                {/* <CustomTrigger className="group-data-[collapsible=icon]:hidden" /> */}
+                {/* </SidebarMenuButton> */}
               </SidebarMenuItem>
             </SidebarHeader>
 
@@ -88,7 +91,7 @@ function RootComponent() {
 
               <SidebarGroup className="text-primary-p2-active">
                 <SidebarMenu>
-                  <SidebarMenuItem>
+                  <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton >
                       <a href="/home" className='sidebar-link'>
                         <SquareLibrary />
@@ -97,7 +100,7 @@ function RootComponent() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
-                  <SidebarMenuItem>
+                  <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton>
                       <a href="/home" className='sidebar-link'>
                         <SquareLibrary />
@@ -107,7 +110,7 @@ function RootComponent() {
                   </SidebarMenuItem>
 
 
-                  <SidebarMenuItem>
+                  <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton>
                       <a href="/home" className='sidebar-link'>
                         <SquareLibrary />
@@ -120,7 +123,7 @@ function RootComponent() {
 
               <SidebarGroup>
                 <SidebarMenu className="text-primary-p2-active">
-                  <SidebarMenuItem>
+                  <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton>
                       <a href="/home" className='sidebar-link'>
                         <SquareLibrary />
@@ -129,14 +132,16 @@ function RootComponent() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
-                  <SidebarMenuItem>
+                  <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton>
                       <SquareLibrary />
                       <p className='p-m-medium'>Collapse</p>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
-                  <SidebarMenuItem>
+                  <CustomTrigger className="group-data-[collapsible=icon]:hidden" />
+
+                  <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton>
                       <SquareLibrary />
                       <p className='p-m-medium'>Help & Support</p>
@@ -144,45 +149,9 @@ function RootComponent() {
                   </SidebarMenuItem>
                 </SidebarMenu>
               </SidebarGroup>
-
-
             </SidebarContent>
 
             <SidebarFooter>
-              {/* <SidebarGroup> */}
-              {/*   <SidebarMenu className="text-primary-p2-active"> */}
-              {/*     <SidebarMenuItem> */}
-              {/*       <SidebarMenuButton> */}
-              {/*         <a href="/home" className='sidebar-link'> */}
-              {/*           <SquareLibrary /> */}
-              {/*           <p className='p-m-medium'>Admin</p> */}
-              {/*         </a> */}
-              {/*       </SidebarMenuButton> */}
-              {/*     </SidebarMenuItem> */}
-              {/**/}
-              {/*     <SidebarMenuItem> */}
-              {/*       <SidebarMenuButton> */}
-              {/*         <SquareLibrary /> */}
-              {/*         <p className='p-m-medium'>Collapse</p> */}
-              {/*       </SidebarMenuButton> */}
-              {/*     </SidebarMenuItem> */}
-              {/**/}
-              {/*     <SidebarMenuItem> */}
-              {/*       <SidebarMenuButton> */}
-              {/*         <SquareLibrary /> */}
-              {/*         <p className='p-m-medium'>Help & Support</p> */}
-              {/*       </SidebarMenuButton> */}
-              {/*     </SidebarMenuItem> */}
-              {/*   </SidebarMenu> */}
-              {/* </SidebarGroup> */}
-              {/**/}
-
-              {/* <SidebarGroup> */}
-              {/*   <SidebarMenuItem> */}
-              {/*     <hr className="border-1 border-border-territory-light-active" /> */}
-              {/*   </SidebarMenuItem> */}
-              {/* </SidebarGroup> */}
-
               <SidebarGroup>
                 <SidebarMenuItem>
                   <SidebarMenuButton className="sidebar-menu-button">
