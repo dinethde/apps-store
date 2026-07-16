@@ -68,9 +68,9 @@ function RootComponent() {
     <div className='w-full h-full h-screen bg-surface-secondary-main-active flex flex-row'>
       <div className='flex flex-row gap-4 justify-start items-center'>
         <SidebarProvider>
-          <Sidebar className='bg-transparent border-none' collapsible="icon">
+          <Sidebar className='bg-transparent border-none py-1' collapsible="icon">
             <SidebarHeader>
-              <SidebarMenuItem className="flex gap-2">
+              <SidebarMenuItem className="flex gap-2 items-center">
                 <div className="">
                   <Logo className="!w-7 !h-7 group-data-[collapsible=icon]:!w-8" />
                 </div>
@@ -136,7 +136,13 @@ function RootComponent() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
-                  <CustomTrigger className="" />
+
+                  <SidebarMenuItem className="sidebar-menu-item bg-transparent">
+                    <SidebarMenuButton>
+                      <CustomTrigger className="bg-transparent shadow-none p-0" />
+                      <p className="p-m-medium">Expnad</p>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
 
                   <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton>
@@ -194,8 +200,8 @@ export function CustomTrigger({ className = '' }: { className?: string }) {
   }
 
   return (
-    <div className={cn('px-2 py-1 bg-surface-primary-light-active rounded-sm shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)]', className)} onClick={handleClick}>
-      <ArrowLeftToLine className='' />
+    <div className={cn('px-2 py-1 h-fit w-fit bg-surface-primary-light-active rounded-sm shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)]', className)} onClick={handleClick}>
+      <ArrowLeftToLine className='w-4 h-4' />
     </div>
   )
 }
