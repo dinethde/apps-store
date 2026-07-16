@@ -127,16 +127,16 @@ function RootComponent() {
                         <p className='p-m-medium'>Admin</p>
                       </a>
                     </SidebarMenuButton>
+
+                    <SidebarMenuItem className="sidebar-menu-item">
+                      <SidebarMenuButton>
+                        <SquareLibrary />
+                        <p className='p-m-medium'>Collapse</p>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+
+
                   </SidebarMenuItem>
-
-                  <SidebarMenuItem className="sidebar-menu-item">
-                    <SidebarMenuButton>
-                      <SquareLibrary />
-                      <p className='p-m-medium'>Collapse</p>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-
-
                   <SidebarMenuItem className="sidebar-menu-item bg-transparent">
                     <SidebarMenuButton>
                       <CustomTrigger className="bg-transparent shadow-none p-0" />
@@ -201,7 +201,7 @@ export function CustomTrigger({ className = '' }: { className?: string }) {
 
   return (
     <div className={cn('px-2 py-1 h-fit w-fit bg-surface-primary-light-active rounded-sm shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)]', className)} onClick={handleClick}>
-      <ArrowLeftToLine className='w-4 h-4' />
+      <ArrowLeftToLine className='w-4 h-4 group-data-[state=collapsed]:rotate-180' />
     </div>
   )
 }
