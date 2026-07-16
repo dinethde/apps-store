@@ -71,24 +71,21 @@ function RootComponent() {
           <Sidebar className='bg-transparent border-none' collapsible="icon">
             <SidebarHeader>
               <SidebarMenuItem className="flex gap-2">
-                {/* <SidebarMenuButton className="!px-0 !h-auto w-full group-data-[collapsible=icon]:!w-full group-data-[collapsible=icon]:!size-auto group-data-[collapsible=icon]:justify-center"> */}
                 <div className="">
                   <Logo className="!w-7 !h-7 group-data-[collapsible=icon]:!w-8" />
                 </div>
-                {/* <p className="text-white">text</p> */}
-                {/* <Logo className="!w-7 !h-7 group-data-[collapsible=icon]:!w-8" /> */}
 
-                {/* <p className="h4 w-full whitespace-nowrap group-data-[collapsible=icon]:hidden">App Name</p> */}
-                {/* <CustomTrigger className="group-data-[collapsible=icon]:hidden" /> */}
-                {/* </SidebarMenuButton> */}
+                <p className="h4 w-full whitespace-nowrap group-data-[collapsible=icon]:hidden">App Name</p>
+
+                <CustomTrigger className="group-data-[collapsible=icon]:hidden" />
               </SidebarMenuItem>
             </SidebarHeader>
 
-            <SidebarContent className="flex flex-col justify-between w-h-full">
-              {/* <SidebarGroup> */}
-              {/*   <hr className="border-1 border-border-territory-light-active" /> */}
-              {/* </SidebarGroup> */}
+            <SidebarGroup className="sidebar-group">
+              <hr className="border-1 border-border-territory-light-active w-full" />
+            </SidebarGroup>
 
+            <SidebarContent className="flex flex-col justify-between h-full group-data-[state=expanded]:px-1">
               <SidebarGroup className="text-primary-p2-active">
                 <SidebarMenu>
                   <SidebarMenuItem className="sidebar-menu-item">
@@ -139,38 +136,40 @@ function RootComponent() {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
-                  <CustomTrigger className="group-data-[collapsible=icon]:hidden" />
+                  <CustomTrigger className="" />
 
                   <SidebarMenuItem className="sidebar-menu-item">
                     <SidebarMenuButton>
                       <SquareLibrary />
-                      <p className='p-m-medium'>Help & Support</p>
+                      <p className='p-m-medium whitespace-nowrap'>Help & Support</p>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
               </SidebarGroup>
             </SidebarContent>
 
+            <SidebarGroup className="sidebar-group">
+              <hr className="border-1 border-border-territory-light-active w-full" />
+            </SidebarGroup>
+
             <SidebarFooter>
               <SidebarGroup>
                 <SidebarMenuItem>
-                  <SidebarMenuButton className="sidebar-menu-button">
-                    <div className="flex gap-2 items-center justify-content ">
-                      <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
+                  <div className="flex gap-2 items-center justify-content ">
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
 
-                      <div className="w-full group-data-[collapsible=icon]:hidden">
-                        <p className="p-m-medium">Dineth</p>
-                        <p className="p-s-medium">dinethdsilva@gmail.com</p>
-                      </div>
-
-                      <button className="group-data-[collapsible=icon]:hidden">
-                        <ChevronsUpDown />
-                      </button>
+                    <div className="w-full group-data-[collapsible=icon]:hidden">
+                      <p className="p-m-medium">Dineth</p>
+                      <p className="p-s-medium">dinethdsilva@gmail.com</p>
                     </div>
-                  </SidebarMenuButton>
+
+                    <button className="group-data-[collapsible=icon]:hidden">
+                      <ChevronsUpDown />
+                    </button>
+                  </div>
                 </SidebarMenuItem>
               </SidebarGroup>
             </SidebarFooter>
