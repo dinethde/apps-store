@@ -85,7 +85,7 @@ function RootComponent() {
               <hr className="border-1 border-border-territory-light-active w-full" />
             </SidebarGroup>
 
-            <SidebarContent className="flex flex-col justify-between h-full group-data-[state=expanded]:px-1">
+            <SidebarContent className="flex flex-col justify-between h-full">
               <SidebarGroup className="text-primary-p2-active">
                 <SidebarMenu>
                   <SidebarMenuItem className="sidebar-menu-item">
@@ -120,27 +120,10 @@ function RootComponent() {
 
               <SidebarGroup>
                 <SidebarMenu className="text-primary-p2-active">
-                  <SidebarMenuItem className="sidebar-menu-item">
-                    <SidebarMenuButton>
-                      <a href="/home" className='sidebar-link'>
-                        <SquareLibrary />
-                        <p className='p-m-medium'>Admin</p>
-                      </a>
-                    </SidebarMenuButton>
-
-                    <SidebarMenuItem className="sidebar-menu-item">
-                      <SidebarMenuButton>
-                        <SquareLibrary />
-                        <p className='p-m-medium'>Collapse</p>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-
-
-                  </SidebarMenuItem>
-                  <SidebarMenuItem className="sidebar-menu-item bg-transparent">
+                  <SidebarMenuItem className="sidebar-menu-item bg-transparent cursor-pointer">
                     <SidebarMenuButton>
                       <CustomTrigger className="bg-transparent shadow-none p-0" />
-                      <p className="p-m-medium">Expnad</p>
+                      <p className="p-m-medium">Collapsed</p>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
 
