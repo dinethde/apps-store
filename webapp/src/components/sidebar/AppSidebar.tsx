@@ -32,7 +32,7 @@ export default function AppSidebar() {
               <SidebarMenu>
                 <SidebarMenuItem className="sidebar-menu-item">
                   <SidebarMenuButton >
-                    <a href="/home" className='sidebar-link'>
+                    <a href="/" className='sidebar-link'>
                       <SquareLibrary />
                       <p className='p-m-medium'>Store</p>
                     </a>
@@ -41,7 +41,7 @@ export default function AppSidebar() {
 
                 <SidebarMenuItem className="sidebar-menu-item">
                   <SidebarMenuButton>
-                    <a href="/home" className='sidebar-link'>
+                    <a href="/" className='sidebar-link'>
                       <SquareLibrary />
                       <p className='p-m-medium'>Personal</p>
                     </a>
@@ -51,7 +51,7 @@ export default function AppSidebar() {
 
                 <SidebarMenuItem className="sidebar-menu-item">
                   <SidebarMenuButton>
-                    <a href="/home" className='sidebar-link'>
+                    <a href="/" className='sidebar-link'>
                       <SquareLibrary />
                       <p className='p-m-medium'>Admin</p>
                     </a>
