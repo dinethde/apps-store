@@ -66,7 +66,7 @@ function RootComponent() {
         <AppSidebar />
       </div>
 
-      <div className="py-2 w-full">
+      <div className="py-2 pr-2 w-full">
         <div className='w-full bg-surface-primary-main-active rounded-[20px] overflow-hidden h-full'>
           <div className='flex justify-between items-center bg-surface-primary-light-active p-4'>
             <div className='flex flex-col gap-1'>
