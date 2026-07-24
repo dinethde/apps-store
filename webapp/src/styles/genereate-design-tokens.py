@@ -19,6 +19,14 @@ def resolve_reference(ref_str, palette):
     return ref_str
 
 
+def resolve_reference_to_var(ref_str):
+    match = re.match(r"\{color pallete\.(\w+)\.(\w+)\}", ref_str)
+    if match:
+        palette_name, shade = match.groups()
+        return f"var(--color-{palette_name}-{shade})"
+    return ref_str
+
+
 def build_color_palette(source):
     palette_data = source["color pallete"]
     resolved = {}
@@ -54,7 +62,7 @@ def generate_semantic_color_vars(color_variables, palette):
                 if "type" in value and value["type"] == "color":
                     raw = value["value"]
                     if raw.startswith("{"):
-                        resolved = resolve_reference(raw, palette)
+                        resolved = resolve_reference_to_var(raw)
                     else:
                         resolved = raw
                     lines.append(f"  {prefix}-{key}: {resolved};")
