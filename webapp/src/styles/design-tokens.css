@@ -5,7 +5,7 @@
   --color-neutral-100: #f0f2f6ff;
   --color-neutral-200: #e0e5ebff;
   --color-neutral-300: #c7d1dbff;
-  --color-neutral-400: #a3b2c2ff;
+  --color-neutral-400: #A2B2C3;
   --color-neutral-500: #839aafff;
   --color-neutral-600: #637e9cff;
   --color-neutral-700: #50657cff;
@@ -113,7 +113,7 @@
   --color-primary-p1-hover: var(--color-neutral-1000);
   --color-primary-p1-clicked: var(--color-neutral-1000);
   --color-primary-p1-dissabled: var(--color-neutral-1000);
-  --color-primary-p2-active: #28333eff;
+  --color-primary-p2-active: var(--color-neutral-800);
   --color-primary-p2-hover: var(--color-neutral-800);
   --color-primary-p2-clicked: var(--color-neutral-800);
   --color-primary-p2-dissabled: var(--color-neutral-800);
