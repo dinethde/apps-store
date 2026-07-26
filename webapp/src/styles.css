@@ -26,5 +26,13 @@
   .sidebar-group {
     @apply w-full flex items-center px-2 py-2;
   }
+
+  .avatar-fallback-border::after {
+    border: none !important;
+  }
+
+  .avatar-fallback-border:has([data-slot="avatar-fallback"])::after {
+    border: 1px solid var(--color-border-territory-light-active) !important;
+  }
 }
 
