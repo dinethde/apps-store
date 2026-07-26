@@ -15,11 +15,12 @@
   }
 
   .sidebar-menu-button {
-    @apply !px-0 !h-auto w-full group-data-[collapsible=icon]:!w-full group-data-[collapsible=icon]:!size-auto group-data-[collapsible=icon]:justify-center;
+    @apply !cursor-pointer !px-0 !h-auto w-full group-data-[collapsible=icon]:!w-full group-data-[collapsible=icon]:!size-auto group-data-[collapsible=icon]:justify-center;
   }
   
   .sidebar-menu-item {
-    @apply group-data-[collapsible=icon]:!px-2;
+    @apply px-2;
+    @apply !cursor-pointer;
   }
   
   .sidebar-group {
