@@ -446,12 +446,12 @@
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{color pallete.neutral.200}"
+              "value": "{color pallete.neutral.100}"
             },
             "clicked": {
               "description": "",
               "type": "color",
-              "value": "{color pallete.neutral.800}"
+              "value": "{color pallete.neutral.1000}"
             },
             "dissabled": {
               "description": "",
@@ -564,88 +564,88 @@
           "active": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}"
+            "value": "{color pallete.neutral.1100}"
           },
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}"
+            "value": "{color pallete.neutral.1100}"
           },
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}"
+            "value": "{color pallete.neutral.1100}"
           },
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}"
+            "value": "{color pallete.neutral.1100}"
           }
         },
         "p2": {
           "active": {
+            "description": "",
             "type": "color",
-            "value": "#28333eff",
-            "blendMode": "normal"
+            "value": "{color pallete.neutral.900}"
           },
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.800}"
+            "value": "{color pallete.neutral.900}"
           },
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.800}"
+            "value": "{color pallete.neutral.900}"
           },
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.800}"
+            "value": "{color pallete.neutral.900}"
           }
         },
         "p3": {
           "active": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}"
+            "value": "{color pallete.neutral.700}"
           },
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}"
+            "value": "{color pallete.neutral.700}"
           },
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}"
+            "value": "{color pallete.neutral.700}"
           },
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}"
+            "value": "{color pallete.neutral.700}"
           }
         },
         "p4": {
           "active": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}"
+            "value": "{color pallete.neutral.500}"
           },
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}"
+            "value": "{color pallete.neutral.500}"
           },
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}"
+            "value": "{color pallete.neutral.500}"
           },
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}"
+            "value": "{color pallete.neutral.500}"
           }
         }
       },
@@ -817,37 +817,42 @@
       },
       "400": {
         "type": "color",
-        "value": "#a3b2c2ff",
+        "value": "#a2b2c3ff",
         "blendMode": "normal"
       },
       "500": {
         "type": "color",
-        "value": "#839aafff",
+        "value": "#92a6b9ff",
         "blendMode": "normal"
       },
       "600": {
         "type": "color",
-        "value": "#637e9cff",
+        "value": "#758ba3ff",
         "blendMode": "normal"
       },
       "700": {
         "type": "color",
-        "value": "#50657cff",
+        "value": "#647b96ff",
         "blendMode": "normal"
       },
       "800": {
         "type": "color",
-        "value": "#2c3844ff",
+        "value": "#485a70ff",
         "blendMode": "normal"
       },
       "900": {
         "type": "color",
-        "value": "#1e262fff",
+        "value": "#364659ff",
         "blendMode": "normal"
       },
       "1000": {
         "type": "color",
-        "value": "#101419ff",
+        "value": "#253241ff",
+        "blendMode": "normal"
+      },
+      "1100": {
+        "type": "color",
+        "value": "#151e28ff",
         "blendMode": "normal"
       },
       "00": {

@@ -91,14 +91,14 @@
     "h3": {
       "type": "custom-fontStyle",
       "value": {
-        "fontSize": 24,
+        "fontSize": 22,
         "textDecoration": "none",
         "fontFamily": "Inter",
         "fontWeight": 400,
         "fontStyle": "normal",
         "fontStretch": "normal",
         "letterSpacing": 0,
-        "lineHeight": 36,
+        "lineHeight": 33,
         "paragraphIndent": 0,
         "paragraphSpacing": 0,
         "textCase": "none"
@@ -113,14 +113,14 @@
     "h3-medium": {
       "type": "custom-fontStyle",
       "value": {
-        "fontSize": 24,
+        "fontSize": 22,
         "textDecoration": "none",
         "fontFamily": "Inter",
         "fontWeight": 500,
         "fontStyle": "normal",
         "fontStretch": "normal",
         "letterSpacing": 0,
-        "lineHeight": 36,
+        "lineHeight": 33,
         "paragraphIndent": 0,
         "paragraphSpacing": 0,
         "textCase": "none"
@@ -804,7 +804,7 @@
             "hover": {
               "description": "",
               "type": "color",
-              "value": "{color pallete.neutral.200}",
+              "value": "{color pallete.neutral.100}",
               "extensions": {
                 "org.lukasoppermann.figmaDesignTokens": {
                   "collection": "Color variables",
@@ -819,7 +819,7 @@
             "clicked": {
               "description": "",
               "type": "color",
-              "value": "{color pallete.neutral.800}",
+              "value": "{color pallete.neutral.1000}",
               "extensions": {
                 "org.lukasoppermann.figmaDesignTokens": {
                   "collection": "Color variables",
@@ -1112,7 +1112,7 @@
           "active": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}",
+            "value": "{color pallete.neutral.1100}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1127,7 +1127,7 @@
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}",
+            "value": "{color pallete.neutral.1100}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1142,7 +1142,7 @@
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}",
+            "value": "{color pallete.neutral.1100}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1157,7 +1157,7 @@
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.1000}",
+            "value": "{color pallete.neutral.1100}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1172,9 +1172,9 @@
         },
         "p2": {
           "active": {
+            "description": "",
             "type": "color",
-            "value": "#28333eff",
-            "blendMode": "normal",
+            "value": "{color pallete.neutral.900}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1189,7 +1189,7 @@
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.800}",
+            "value": "{color pallete.neutral.900}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1204,7 +1204,7 @@
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.800}",
+            "value": "{color pallete.neutral.900}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1219,7 +1219,7 @@
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.800}",
+            "value": "{color pallete.neutral.900}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1236,7 +1236,7 @@
           "active": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}",
+            "value": "{color pallete.neutral.700}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1251,7 +1251,7 @@
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}",
+            "value": "{color pallete.neutral.700}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1266,7 +1266,7 @@
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}",
+            "value": "{color pallete.neutral.700}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1281,7 +1281,7 @@
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.600}",
+            "value": "{color pallete.neutral.700}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1298,7 +1298,7 @@
           "active": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}",
+            "value": "{color pallete.neutral.500}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1313,7 +1313,7 @@
           "hover": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}",
+            "value": "{color pallete.neutral.500}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1328,7 +1328,7 @@
           "clicked": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}",
+            "value": "{color pallete.neutral.500}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1343,7 +1343,7 @@
           "dissabled": {
             "description": "",
             "type": "color",
-            "value": "{color pallete.neutral.400}",
+            "value": "{color pallete.neutral.500}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -1815,7 +1815,7 @@
       },
       "400": {
         "type": "color",
-        "value": "#a3b2c2ff",
+        "value": "#a2b2c3ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -1830,7 +1830,7 @@
       },
       "500": {
         "type": "color",
-        "value": "#839aafff",
+        "value": "#92a6b9ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -1845,7 +1845,7 @@
       },
       "600": {
         "type": "color",
-        "value": "#637e9cff",
+        "value": "#758ba3ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -1860,7 +1860,7 @@
       },
       "700": {
         "type": "color",
-        "value": "#50657cff",
+        "value": "#647b96ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -1875,7 +1875,7 @@
       },
       "800": {
         "type": "color",
-        "value": "#2c3844ff",
+        "value": "#485a70ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -1890,7 +1890,7 @@
       },
       "900": {
         "type": "color",
-        "value": "#1e262fff",
+        "value": "#364659ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
@@ -1905,7 +1905,22 @@
       },
       "1000": {
         "type": "color",
-        "value": "#101419ff",
+        "value": "#253241ff",
+        "blendMode": "normal",
+        "extensions": {
+          "org.lukasoppermann.figmaDesignTokens": {
+            "collection": "color pallete",
+            "scopes": [
+              "ALL_SCOPES"
+            ],
+            "variableId": "VariableID:401:749",
+            "exportKey": "variables"
+          }
+        }
+      },
+      "1100": {
+        "type": "color",
+        "value": "#151e28ff",
         "blendMode": "normal",
         "extensions": {
           "org.lukasoppermann.figmaDesignTokens": {
