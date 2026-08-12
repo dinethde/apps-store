@@ -934,7 +934,7 @@
           }
         }
       },
-      "border": {
+      "outline": {
         "brand": {
           "main": {
             "active": {
@@ -2209,7 +2209,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.active}",
+            "value": "{color variables.bg.outline.neutral.main.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2256,7 +2256,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.hover}",
+            "value": "{color variables.bg.outline.neutral.main.hover}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2303,7 +2303,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.secondary.main.active}",
+            "value": "{color variables.bg.outline.secondary.main.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2365,7 +2365,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.hover}",
+            "value": "{color variables.bg.outline.neutral.main.hover}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2412,7 +2412,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.error.main.active}",
+            "value": "{color variables.bg.outline.error.main.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2459,7 +2459,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.active}",
+            "value": "{color variables.bg.outline.neutral.main.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2621,7 +2621,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.brand.main.active}",
+                "value": "{color variables.bg.outline.brand.main.active}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2668,7 +2668,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.brand.main.hover}",
+                "value": "{color variables.bg.outline.brand.main.hover}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2715,7 +2715,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.brand.main.clicked}",
+                "value": "{color variables.bg.outline.brand.main.clicked}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2766,7 +2766,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.active}",
+                "value": "{color variables.bg.outline.neutral.main.active}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2813,7 +2813,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.hover}",
+                "value": "{color variables.bg.outline.neutral.main.hover}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2860,7 +2860,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.hover}",
+                "value": "{color variables.bg.outline.neutral.main.hover}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2909,7 +2909,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.active}",
+                "value": "{color variables.bg.outline.neutral.main.active}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2956,7 +2956,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.hover}",
+                "value": "{color variables.bg.outline.neutral.main.hover}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -3003,7 +3003,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.clicked}",
+                "value": "{color variables.bg.outline.neutral.main.clicked}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -3053,7 +3053,7 @@
     "border": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.neutral.main.active}",
+      "value": "{color variables.bg.outline.neutral.main.active}",
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
           "collection": "Color variables",
@@ -3068,7 +3068,7 @@
     "border-hover": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.neutral.main.hover}",
+      "value": "{color variables.bg.outline.neutral.main.hover}",
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
           "collection": "Color variables",
@@ -3083,7 +3083,7 @@
     "border-selected": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.neutral.main.hover}",
+      "value": "{color variables.bg.outline.neutral.main.hover}",
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
           "collection": "Color variables",
@@ -3098,7 +3098,7 @@
     "border-focussed": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.secondary.main.active}",
+      "value": "{color variables.bg.outline.secondary.main.active}",
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
           "collection": "Color variables",
