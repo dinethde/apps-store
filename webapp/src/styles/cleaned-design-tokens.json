@@ -496,7 +496,7 @@
           }
         }
       },
-      "border": {
+      "outline": {
         "brand": {
           "main": {
             "active": {
@@ -981,7 +981,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.active}"
+            "value": "{color variables.bg.outline.neutral.main.active}"
           }
         },
         "hover": {
@@ -998,7 +998,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.hover}"
+            "value": "{color variables.bg.outline.neutral.main.hover}"
           }
         },
         "focussed": {
@@ -1015,7 +1015,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.secondary.main.active}"
+            "value": "{color variables.bg.outline.secondary.main.active}"
           },
           "shadow": {
             "description": "",
@@ -1037,7 +1037,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.hover}"
+            "value": "{color variables.bg.outline.neutral.main.hover}"
           }
         },
         "error": {
@@ -1054,7 +1054,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.error.main.active}"
+            "value": "{color variables.bg.outline.error.main.active}"
           },
           "shadow": {
             "description": "",
@@ -1071,7 +1071,7 @@
           "border": {
             "description": "",
             "type": "color",
-            "value": "{color variables.bg.border.neutral.main.active}"
+            "value": "{color variables.bg.outline.neutral.main.active}"
           },
           "shadow": {
             "type": "color",
@@ -1133,7 +1133,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.brand.main.active}"
+                "value": "{color variables.bg.outline.brand.main.active}"
               }
             },
             "hover": {
@@ -1150,7 +1150,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.brand.main.hover}"
+                "value": "{color variables.bg.outline.brand.main.hover}"
               }
             },
             "active": {
@@ -1167,7 +1167,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.brand.main.clicked}"
+                "value": "{color variables.bg.outline.brand.main.clicked}"
               }
             }
           }
@@ -1188,7 +1188,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.active}"
+                "value": "{color variables.bg.outline.neutral.main.active}"
               }
             },
             "hover": {
@@ -1205,7 +1205,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.hover}"
+                "value": "{color variables.bg.outline.neutral.main.hover}"
               }
             },
             "active": {
@@ -1222,7 +1222,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.hover}"
+                "value": "{color variables.bg.outline.neutral.main.hover}"
               }
             }
           },
@@ -1241,7 +1241,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.active}"
+                "value": "{color variables.bg.outline.neutral.main.active}"
               }
             },
             "hover": {
@@ -1258,7 +1258,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.hover}"
+                "value": "{color variables.bg.outline.neutral.main.hover}"
               }
             },
             "active": {
@@ -1275,7 +1275,7 @@
               "border": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.bg.border.neutral.main.clicked}"
+                "value": "{color variables.bg.outline.neutral.main.clicked}"
               }
             }
           }
@@ -1295,22 +1295,22 @@
     "border": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.neutral.main.active}"
+      "value": "{color variables.bg.outline.neutral.main.active}"
     },
     "border-hover": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.neutral.main.hover}"
+      "value": "{color variables.bg.outline.neutral.main.hover}"
     },
     "border-selected": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.neutral.main.hover}"
+      "value": "{color variables.bg.outline.neutral.main.hover}"
     },
     "border-focussed": {
       "description": "",
       "type": "color",
-      "value": "{color variables.bg.border.secondary.main.active}"
+      "value": "{color variables.bg.outline.secondary.main.active}"
     },
     "shadow": {
       "description": "",
