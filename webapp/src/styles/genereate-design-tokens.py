@@ -73,7 +73,7 @@ def generate_semantic_color_vars(color_variables, palette):
     flatten_colors(bg, "--color")
 
     text = color_variables.get("text", {})
-    flatten_colors(text, "--color")
+    flatten_colors(text, "--color-txt")
 
     return "\n".join(lines)
 
