@@ -2584,7 +2584,7 @@
           }
         }
       },
-      "button": {
+      "btn": {
         "primary": {
           "filled": {
             "default": {
