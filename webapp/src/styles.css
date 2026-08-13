@@ -10,6 +10,11 @@
 
 
 @layer components {
+
+  .sidebar-menu {
+    @apply !flex !flex-col !gap-2 text-txt-neutral-p2-active; 
+  }
+
   .sidebar-link {
     @apply flex gap-2 items-center;
   }
@@ -33,6 +38,10 @@
 
   .avatar-fallback-border:has([data-slot="avatar-fallback"])::after {
     border: 1px solid var(--color-border-territory-light-active) !important;
+  }
+
+  .neutral-border-main {
+    @apply border-[1px] border-outline-neutral-main-active w-full;
   }
 }
 
