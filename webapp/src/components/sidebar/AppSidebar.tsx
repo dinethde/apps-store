@@ -2,13 +2,14 @@ import Logo from "@assets/logo.svg?react"
 import LogoCollapsed from "@assets/logo-collapsed.svg?react"
 import { SquareLibrary, ChevronsUpDown } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Link } from "@tanstack/react-router";
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, useSidebar, } from '@/components/ui/sidebar';
 import { SidebarToggle } from "./SidebarToggle";
 
 function SidebarLogo() {
   const { state } = useSidebar();
-  return state === 'collapsed' ? <LogoCollapsed className="w-8 h-8" /> : <Logo className="" />;
+  return state === 'collapsed' ? <LogoCollapsed className="w-8 h-8" /> : <Logo className=" " />;
 }
 
 export default function AppSidebar() {
@@ -32,31 +33,46 @@ export default function AppSidebar() {
           <SidebarGroup>
             <SidebarMenu className="sidebar-menu">
               <SidebarMenuItem className="sidebar-menu-item">
-                <SidebarMenuButton >
-                  <a href="/" className='sidebar-link'>
-                    <SquareLibrary />
-                    <p className='p-m-medium'>Store</p>
-                  </a>
-                </SidebarMenuButton>
+                <Link to="/" activeOptions={{ exact: true }}>
+                  {({ isActive }) => (
+                    <SidebarMenuButton isActive={isActive} className="!p-2 !cursor-pointer hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text h-fit">
+                      <div className='flex gap-2 items-center w-full'>
+                        <SquareLibrary />
+                        <p className='p-m-medium w-full'>Store</p>
+                        {isActive && <div className="w-1 h-5 bg-nav_item-focussed-text rounded-lg"></div>}
+                      </div>
+                    </SidebarMenuButton>
+                  )}
+                </Link>
+
               </SidebarMenuItem>
 
               <SidebarMenuItem className="sidebar-menu-item">
-                <SidebarMenuButton>
-                  <a href="/profile" className='sidebar-link'>
-                    <SquareLibrary />
-                    <p className='p-m-medium'>Profile</p>
-                  </a>
-                </SidebarMenuButton>
+                <Link to="/profile">
+                  {({ isActive }) => (
+                    <SidebarMenuButton isActive={isActive} className="!p-2 !cursor-pointer hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text h-fit">
+                      <div className='flex gap-2 items-center w-full'>
+                        <SquareLibrary />
+                        <p className='p-m-medium w-full'>Profile</p>
+                        {isActive && <div className="w-1 h-5 bg-nav_item-focussed-text rounded-lg"></div>}
+                      </div>
+                    </SidebarMenuButton>
+                  )}
+                </Link>
               </SidebarMenuItem>
 
-
               <SidebarMenuItem className="sidebar-menu-item">
-                <SidebarMenuButton>
-                  <a href="/admin" className='sidebar-link'>
-                    <SquareLibrary />
-                    <p className='p-m-medium'>Admin</p>
-                  </a>
-                </SidebarMenuButton>
+                <Link to="/admin">
+                  {({ isActive }) => (
+                    <SidebarMenuButton isActive={isActive} className="!p-2 !cursor-pointer hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text h-fit">
+                      <div className='flex gap-2 items-center w-full'>
+                        <SquareLibrary />
+                        <p className='p-m-medium w-full'>Admin</p>
+                        {isActive && <div className="w-1 h-5 bg-nav_item-focussed-text rounded-lg"></div>}
+                      </div>
+                    </SidebarMenuButton>
+                  )}
+                </Link>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroup>
@@ -71,10 +87,17 @@ export default function AppSidebar() {
               </SidebarMenuItem>
 
               <SidebarMenuItem className="sidebar-menu-item">
-                <SidebarMenuButton>
-                  <SquareLibrary />
-                  <p className='p-m-medium whitespace-nowrap'>Help & Support</p>
-                </SidebarMenuButton>
+                <Link to="/profile">
+                  {({ isActive }) => (
+                    <SidebarMenuButton isActive={isActive} className="!p-2 !cursor-pointer hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text h-fit">
+                      <div className='flex gap-2 items-center w-full'>
+                        <SquareLibrary />
+                        <p className='p-m-medium w-full'>Help & Support</p>
+                        {isActive && <div className="w-1 h-5 bg-nav_item-focussed-text rounded-lg"></div>}
+                      </div>
+                    </SidebarMenuButton>
+                  )}
+                </Link>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroup>
