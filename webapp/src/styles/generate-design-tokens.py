@@ -34,7 +34,8 @@ def build_reference_lookup(color_variables):
                     token_path = f"{{color variables.{json_path}{key}}}"
                     lookup[token_path] = f"var({css_prefix}-{key})"
                 else:
-                    flatten_to_lookup(value, f"{css_prefix}-{key}", f"{json_path}{key}.")
+                    flatten_to_lookup(
+                        value, f"{css_prefix}-{key}", f"{json_path}{key}.")
 
     bg = color_variables.get("bg", {})
     flatten_to_lookup(bg, "--color", "bg.")
@@ -70,7 +71,8 @@ def build_color_palette(source):
         for shade_name, shade_entry in shades.items():
             raw = shade_entry["value"]
             if raw.startswith("{"):
-                shade_map[shade_name] = normalize_hex(resolve_reference(raw, palette_data))
+                shade_map[shade_name] = normalize_hex(
+                    resolve_reference(raw, palette_data))
             else:
                 shade_map[shade_name] = normalize_hex(raw)
         resolved[palette_name] = shade_map
@@ -166,7 +168,8 @@ def generate_typography_theme_vars(fonts):
         lines.append(f"  --text-{name}: {v['fontSize']}px;")
         lines.append(f"  --text-{name}--line-height: {v['lineHeight']}px;")
         lines.append(f"  --text-{name}--font-weight: {v['fontWeight']};")
-        lines.append(f"  --text-{name}--letter-spacing: {v['letterSpacing']}px;")
+        lines.append(
+            f"  --text-{name}--letter-spacing: {v['letterSpacing']}px;")
     return "\n".join(lines)
 
 
@@ -208,7 +211,7 @@ def generate_component_vars(components):
                         resolved = resolve_reference_to_var(raw)
                     else:
                         resolved = normalize_hex(raw)
-                    var_name = f"--{prefix}{key}" if prefix else f"--{key}"
+                    var_name = f"--color-{prefix}{key}" if prefix else f"--{key}"
                     lines.append(f"  {var_name}: {resolved};")
                 else:
                     flatten_components(value, f"{prefix}{key}-")
