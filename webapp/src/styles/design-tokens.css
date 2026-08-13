@@ -270,7 +270,7 @@
   --color-sidebar-accent-foreground: var(--color-txt-brand-p1-active);
   --color-sidebar-border: var(--color-border-neutral-main-active);
   --color-nav_item-default-text: var(--color-txt-primary-p2-active);
-  --color-nav_item-hover-bg: var(--color-fill-neutral-light-hover);
+  --color-nav_item-hover-bg: var(--color-surface-neutral-main-active);
   --color-nav_item-hover-text: var(--color-txt-primary-p2-active);
   --color-nav_item-focussed-text: var(--color-txt-brand-p1-active);
   --color-nav_item-focussed-bg: var(--color-fill-neutral-light-active);
