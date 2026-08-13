@@ -1437,7 +1437,7 @@
       }
     },
     "text": {
-      "primary": {
+      "neutral": {
         "p1": {
           "active": {
             "description": "",
@@ -1915,7 +1915,7 @@
       },
       "description": "",
       "type": "color",
-      "value": "{color variables.text.primary.p3.active}",
+      "value": "{color variables.text.neutral.p3.active}",
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
           "collection": "Color variables",
@@ -2096,7 +2096,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p2.active}",
+            "value": "{color variables.text.neutral.p2.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2128,7 +2128,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p2.active}",
+            "value": "{color variables.text.neutral.p2.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2194,7 +2194,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p3.active}",
+            "value": "{color variables.text.neutral.p3.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2241,7 +2241,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p3.active}",
+            "value": "{color variables.text.neutral.p3.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2288,7 +2288,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p2.active}",
+            "value": "{color variables.text.neutral.p2.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2350,7 +2350,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p2.active}",
+            "value": "{color variables.text.neutral.p2.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2506,7 +2506,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p2.active}",
+            "value": "{color variables.text.neutral.p2.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2538,7 +2538,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p2.active}",
+            "value": "{color variables.text.neutral.p2.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2570,7 +2570,7 @@
           "text": {
             "description": "",
             "type": "color",
-            "value": "{color variables.text.primary.p2.active}",
+            "value": "{color variables.text.neutral.p2.active}",
             "extensions": {
               "org.lukasoppermann.figmaDesignTokens": {
                 "collection": "Color variables",
@@ -2751,7 +2751,7 @@
               "text": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.text.primary.p2.active}",
+                "value": "{color variables.text.neutral.p2.active}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2894,7 +2894,7 @@
               "text": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.text.primary.p2.active}",
+                "value": "{color variables.text.neutral.p2.active}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2941,7 +2941,7 @@
               "text": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.text.primary.p2.active}",
+                "value": "{color variables.text.neutral.p2.active}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -2988,7 +2988,7 @@
               "text": {
                 "description": "",
                 "type": "color",
-                "value": "{color variables.text.primary.p2.active}",
+                "value": "{color variables.text.neutral.p2.active}",
                 "extensions": {
                   "org.lukasoppermann.figmaDesignTokens": {
                     "collection": "Color variables",
@@ -3038,7 +3038,7 @@
     "focussed-text": {
       "description": "",
       "type": "color",
-      "value": "{color variables.text.primary.p2.active}",
+      "value": "{color variables.text.neutral.p2.active}",
       "extensions": {
         "org.lukasoppermann.figmaDesignTokens": {
           "collection": "Color variables",
