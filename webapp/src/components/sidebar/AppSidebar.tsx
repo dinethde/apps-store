@@ -1,111 +1,111 @@
 import Logo from "@assets/logo.svg?react"
-import { SquareLibrary } from 'lucide-react';
+import LogoCollapsed from "@assets/logo-collapsed.svg?react"
+import { SquareLibrary, ChevronsUpDown } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ChevronsUpDown } from 'lucide-react';
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, useSidebar, } from '@/components/ui/sidebar';
 import { SidebarToggle } from "./SidebarToggle";
+
+function SidebarLogo() {
+  const { state } = useSidebar();
+  return state === 'collapsed' ? <LogoCollapsed className="w-8 h-8" /> : <Logo className="" />;
+}
 
 export default function AppSidebar() {
   return (
-    <div>
-      <SidebarProvider>
-        <Sidebar className='bg-transparent border-none py-1' collapsible="icon">
-          <SidebarHeader>
-            <SidebarMenuItem className="flex gap-2 items-center">
-              <div className="">
-                <Logo className="!w-7 !h-7 group-data-[collapsible=icon]:!w-8" />
-              </div>
+    <SidebarProvider className="h-full">
+      <Sidebar className='flex flex-col gap-3 bg-transparent border-none py-4' collapsible="icon">
+        <SidebarHeader className="py-0">
+          <SidebarMenuItem className="flex gap-2 items-center">
+            <div className="w-full">
+              <SidebarLogo />
+            </div>
+            <SidebarToggle className="group-data-[collapsible=icon]:hidden" />
+          </SidebarMenuItem>
+        </SidebarHeader>
 
-              <p className="h4 w-full whitespace-nowrap group-data-[collapsible=icon]:hidden">App Name</p>
+        <SidebarGroup className="sidebar-group">
+          <hr className="neutral-border-main" />
+        </SidebarGroup>
 
-              <SidebarToggle className="group-data-[collapsible=icon]:hidden" />
-            </SidebarMenuItem>
-          </SidebarHeader>
-
-          <SidebarGroup className="sidebar-group">
-            <hr className="border-1 border-border-territory-light-active w-full" />
-          </SidebarGroup>
-
-          <SidebarContent className="flex flex-col justify-between h-full">
-            <SidebarGroup className="text-primary-p2-active">
-              <SidebarMenu>
-                <SidebarMenuItem className="sidebar-menu-item">
-                  <SidebarMenuButton >
-                    <a href="/" className='sidebar-link'>
-                      <SquareLibrary />
-                      <p className='p-m-medium'>Store</p>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-
-                <SidebarMenuItem className="sidebar-menu-item">
-                  <SidebarMenuButton>
-                    <a href="/" className='sidebar-link'>
-                      <SquareLibrary />
-                      <p className='p-m-medium'>Personal</p>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-
-
-                <SidebarMenuItem className="sidebar-menu-item">
-                  <SidebarMenuButton>
-                    <a href="/" className='sidebar-link'>
-                      <SquareLibrary />
-                      <p className='p-m-medium'>Admin</p>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroup>
-
-            <SidebarGroup>
-              <SidebarMenu className="text-primary-p2-active">
-                <SidebarMenuItem className="sidebar-menu-item bg-transparent cursor-pointer">
-                  <SidebarMenuButton>
-                    <SidebarToggle className="bg-transparent shadow-none p-0" />
-                    <p className="p-m-medium">Collapsed</p>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-
-                <SidebarMenuItem className="sidebar-menu-item">
-                  <SidebarMenuButton>
+        <SidebarContent className="flex flex-col justify-between h-full">
+          <SidebarGroup>
+            <SidebarMenu className="sidebar-menu">
+              <SidebarMenuItem className="sidebar-menu-item">
+                <SidebarMenuButton >
+                  <a href="/" className='sidebar-link'>
                     <SquareLibrary />
-                    <p className='p-m-medium whitespace-nowrap'>Help & Support</p>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroup>
-          </SidebarContent>
+                    <p className='p-m-medium'>Store</p>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
 
-          <SidebarGroup className="sidebar-group">
-            <hr className="border-1 border-border-territory-light-active w-full" />
+              <SidebarMenuItem className="sidebar-menu-item">
+                <SidebarMenuButton>
+                  <a href="/profile" className='sidebar-link'>
+                    <SquareLibrary />
+                    <p className='p-m-medium'>Profile</p>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+
+              <SidebarMenuItem className="sidebar-menu-item">
+                <SidebarMenuButton>
+                  <a href="/admin" className='sidebar-link'>
+                    <SquareLibrary />
+                    <p className='p-m-medium'>Admin</p>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
           </SidebarGroup>
 
-          <SidebarFooter>
-            <SidebarGroup>
-              <SidebarMenuItem>
-                <div className="flex gap-2 items-center justify-content ">
-                  <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
-
-                  <div className="w-full group-data-[collapsible=icon]:hidden">
-                    <p className="p-m-medium">Dineth</p>
-                    <p className="p-s-medium">dinethdsilva@gmail.com</p>
-                  </div>
-
-                  <button className="group-data-[collapsible=icon]:hidden">
-                    <ChevronsUpDown />
-                  </button>
-                </div>
+          <SidebarGroup>
+            <SidebarMenu className="sidebar-menu text-txt-primary-p2-active">
+              <SidebarMenuItem className="sidebar-menu-item bg-transparent cursor-pointer">
+                <SidebarMenuButton>
+                  <SidebarToggle className="bg-transparent shadow-none p-0" />
+                  <p className="p-m-medium">Collapsed</p>
+                </SidebarMenuButton>
               </SidebarMenuItem>
-            </SidebarGroup>
-          </SidebarFooter>
-        </Sidebar>
-      </SidebarProvider>
-    </div>
+
+              <SidebarMenuItem className="sidebar-menu-item">
+                <SidebarMenuButton>
+                  <SquareLibrary />
+                  <p className='p-m-medium whitespace-nowrap'>Help & Support</p>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroup>
+        </SidebarContent>
+
+        <SidebarGroup className="sidebar-group">
+          <hr className="neutral-border-main" />
+        </SidebarGroup>
+
+        <SidebarFooter className="py-0">
+          <SidebarGroup>
+            <SidebarMenuItem>
+              <div className="flex gap-2 items-center justify-content ">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+
+                <div className="w-full group-data-[collapsible=icon]:hidden">
+                  <p className="p-m-medium">Dineth</p>
+                  <p className="p-s-medium">dinethdsilva@gmail.com</p>
+                </div>
+
+                <button className="group-data-[collapsible=icon]:hidden">
+                  <ChevronsUpDown />
+                </button>
+              </div>
+            </SidebarMenuItem>
+          </SidebarGroup>
+        </SidebarFooter>
+      </Sidebar>
+    </SidebarProvider>
   )
 }
