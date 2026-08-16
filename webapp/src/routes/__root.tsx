@@ -68,7 +68,7 @@ function RootComponent() {
       </div>
 
       <div className="py-2 pr-2 w-full">
-        <div className="w-full bg-surface-brand-main-active rounded-[20px] overflow-hidden h-full border-1 border-border-secondary-light-active">
+        <div className="w-full bg-surface-neutral-main-active rounded-[20px] overflow-hidden h-full border-1 border-outline-neutral-light-active">
           <Header />
           <div className="p-4">
             <Outlet />
