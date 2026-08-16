@@ -25,7 +25,7 @@ export default function AppSidebar() {
           </SidebarMenuItem>
         </SidebarHeader>
 
-        <SidebarGroup className="sidebar-group">
+        <SidebarGroup className="p-2">
           <hr className="neutral-border-main" />
         </SidebarGroup>
 
@@ -103,7 +103,7 @@ export default function AppSidebar() {
           </SidebarGroup>
         </SidebarContent>
 
-        <SidebarGroup className="sidebar-group">
+        <SidebarGroup className="p-2">
           <hr className="neutral-border-main" />
         </SidebarGroup>
 
