@@ -6,9 +6,20 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import appCss from '../styles.css?url'
 import AppSidebar from '@/components/sidebar/AppSidebar'
 import Header from '@/components/header/Header'
+import { Toaster } from '@/components/ui/sonner'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 30_000,
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 export const Route = createRootRoute({
   head: () => ({
@@ -62,19 +73,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <div className="w-full h-full h-screen bg-surface-secondary-main-active flex flex-row gap-1">
-      <div className="flex flex-row gap-4 justify-start items-center">
-        <AppSidebar />
-      </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="w-full h-full h-screen bg-surface-secondary-main-active flex flex-row gap-1">
+        <div className="flex flex-row gap-4 justify-start items-center">
+          <AppSidebar />
+        </div>
 
-      <div className="py-2 pr-2 w-full">
-        <div className="w-full bg-surface-neutral-main-active rounded-[20px] overflow-hidden h-full border-1 border-outline-neutral-light-active">
-          <Header />
-          <div className="p-4">
-            <Outlet />
+        <div className="py-2 pr-2 w-full">
+          <div className="w-full bg-surface-neutral-main-active rounded-[20px] overflow-hidden h-full border-1 border-outline-neutral-light-active">
+            <Header />
+            <div className="p-4">
+              <Outlet />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Toaster position="top-right" />
+    </QueryClientProvider>
   )
 }
