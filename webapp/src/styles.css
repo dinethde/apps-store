@@ -12,7 +12,7 @@
 @layer components {
 
   .sidebar-menu {
-    @apply !flex !flex-col !gap-2 text-txt-primary-p2-active; 
+    @apply !flex !flex-col !gap-2 text-txt-neutral-p2-active; 
   }
 
   .sidebar-link {

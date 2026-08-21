@@ -78,7 +78,7 @@ export default function AppSidebar() {
           </SidebarGroup>
 
           <SidebarGroup>
-            <SidebarMenu className="sidebar-menu text-txt-primary-p2-active">
+            <SidebarMenu className="sidebar-menu text-txt-neutral-p2-active">
               <SidebarMenuItem className="sidebar-menu-item bg-transparent cursor-pointer">
                 <SidebarMenuButton>
                   <SidebarToggle className="bg-transparent shadow-none p-0" />
