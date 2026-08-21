@@ -3,6 +3,12 @@ import { Moon, BellCheck } from 'lucide-react';
 import { Typography } from "../ui/typography";
 
 export default function Header() {
+  const toggleTheme = () => {
+  }
+
+  const handleNotifications = () => {
+  }
+
   return (
     <div>
       <div className='flex justify-between items-center bg-surface-neutral-light-active p-4'>
@@ -18,13 +24,20 @@ export default function Header() {
 
         <div className='flex gap-4 justify-start items-center'>
           <div className='flex gap-4'>
-            <Moon className='text-txt-primary-p3-active' />
 
-            <BellCheck className='text-txt-primary-p3-active' />
+            <button onClick={toggleTheme} aria-label="Toggle dark mode">
+              <Moon size={20} className="text-txt-primary-p3-active" />
+            </button>
+
+
+            <button onClick={handleNotifications} aria-label="Handle nottifications">
+              <BellCheck size={20} className='text-txt-primary-p3-active' />
+            </button>
+
           </div>
 
 
-          <div className='h-10 border-1 border-border-secondary-light-active'></div>
+          <div className='neutral-border-main w-[1px] h-10' />
 
           <Avatar size='lg'>
             <AvatarImage src="https://github.com/shadcn.png" />
