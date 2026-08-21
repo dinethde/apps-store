@@ -1,18 +1,19 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Moon, BellCheck } from 'lucide-react';
+import { Typography } from "../ui/typography";
 
 export default function Header() {
   return (
     <div>
       <div className='flex justify-between items-center bg-surface-neutral-light-active p-4'>
         <div className='flex flex-col gap-1'>
-          <p className='text-txt-primary-p4-active p-s'>
-            Apps Store
-          </p>
+          <div className='text-txt-primary-p2-active'>
+            <Typography variant={"h4-medium"}> Apps Store</Typography>
+          </div>
 
-          <p className='h3 text-txt-primary-p1-active'>
-            Welcome back, Dineth
-          </p>
+          <div className='text-txt-primary-p3-active'>
+            <Typography variant={"p-s-medium"}>Store/</Typography>
+          </div>
         </div>
 
         <div className='flex gap-4 justify-start items-center'>
