@@ -5,8 +5,8 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import svgr from "vite-plugin-svgr"
-import path from "path"
+import svgr from 'vite-plugin-svgr'
+import path from 'node:path'
 
 const config = defineConfig({
   resolve: {
@@ -25,7 +25,7 @@ const config = defineConfig({
       '@types': path.resolve(__dirname, './src/types'),
       '@utils': path.resolve(__dirname, './src/utils'),
       '@views': path.resolve(__dirname, './src/views'),
-    }
+    },
   },
   plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact(), svgr()],
 })
