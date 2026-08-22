@@ -4,9 +4,11 @@ import { Typography } from "../ui/typography";
 
 export default function Header() {
   const toggleTheme = () => {
+    // TODO: implement dark mode
   }
 
   const handleNotifications = () => {
+    // TODO: implement notifications panel
   }
 
   return (
