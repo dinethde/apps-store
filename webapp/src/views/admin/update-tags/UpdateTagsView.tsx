@@ -1,16 +1,15 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
-import { updateTagFormSchema } from '@/lib/adminSchemas'
-import type { UpdateTagFormValues } from '@/lib/adminSchemas'
+import { updateTagFormSchema } from './updateTagSchema'
+import type { UpdateTagFormValues } from './updateTagSchema'
 import { useTag, useTags, useUpdateTag } from '@/hooks/useAdminQueries'
-import { useAdminStore } from '@/store/useAdminStore'
-import { TextField } from '../fields/TextField'
-import { ColorPickerField } from '../fields/ColorPickerField'
-import { SwitchField } from '../fields/SwitchField'
-import { SingleAutocompleteField } from '../fields/SingleAutocompleteField'
-import { ActionButtons } from '../ActionButtons'
+import { TextField } from '../components/fields/TextField'
+import { ColorPickerField } from '../components/fields/ColorPickerField'
+import { SwitchField } from '../components/fields/SwitchField'
+import { SingleAutocompleteField } from '../components/fields/SingleAutocompleteField'
+import { ActionButtons } from '../components/ActionButtons'
 
 const EMPTY_VALUES: UpdateTagFormValues = {
   tagId: '',
@@ -19,10 +18,9 @@ const EMPTY_VALUES: UpdateTagFormValues = {
   status: false,
 }
 
-export function UpdateTagForm() {
+export function UpdateTagsView() {
   const { data: tags = [], isLoading: tagsLoading } = useTags()
-  const selectedTagId = useAdminStore((s) => s.selectedTagId)
-  const setSelectedTagId = useAdminStore((s) => s.setSelectedTagId)
+  const [selectedTagId, setSelectedTagId] = useState<string | null>(null)
   const { data: selectedTag } = useTag(selectedTagId ?? undefined)
   const updateTag = useUpdateTag()
 

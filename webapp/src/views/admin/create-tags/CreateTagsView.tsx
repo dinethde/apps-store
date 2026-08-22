@@ -2,14 +2,14 @@ import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
-import { createTagFormSchema } from '@/lib/adminSchemas'
-import type { CreateTagFormValues } from '@/lib/adminSchemas'
+import { createTagFormSchema } from './createTagSchema'
+import type { CreateTagFormValues } from './createTagSchema'
 import { useCreateTag, useTags } from '@/hooks/useAdminQueries'
-import { TextField } from '../fields/TextField'
-import { ColorPickerField } from '../fields/ColorPickerField'
-import { SwitchField } from '../fields/SwitchField'
-import { ActionButtons } from '../ActionButtons'
-import { TagChip } from '../TagChip'
+import { TextField } from '../components/fields/TextField'
+import { ColorPickerField } from '../components/fields/ColorPickerField'
+import { SwitchField } from '../components/fields/SwitchField'
+import { ActionButtons } from '../components/ActionButtons'
+import { TagChip } from '../components/TagChip'
 import { Typography } from '@/components/ui/typography'
 
 const BLANK_VALUES: CreateTagFormValues = {
@@ -18,7 +18,7 @@ const BLANK_VALUES: CreateTagFormValues = {
   status: false,
 }
 
-export function CreateTagForm() {
+export function CreateTagsView() {
   const { data: tags = [] } = useTags()
   const createTag = useCreateTag()
 

@@ -2,20 +2,20 @@ import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
-import { createAppFormSchema } from '@/lib/adminSchemas'
-import type { CreateAppFormValues } from '@/lib/adminSchemas'
+import { createAppFormSchema } from './createAppSchema'
+import type { CreateAppFormValues } from './createAppSchema'
 import {
   useApps,
   useCreateApp,
   useTags,
   useUserGroups,
 } from '@/hooks/useAdminQueries'
-import { TextField } from '../fields/TextField'
-import { TextareaField } from '../fields/TextareaField'
-import { MultiAutocompleteField } from '../fields/MultiAutocompleteField'
-import { FileUploadField } from '../fields/FileUploadField'
-import { SwitchField } from '../fields/SwitchField'
-import { ActionButtons } from '../ActionButtons'
+import { TextField } from '../components/fields/TextField'
+import { TextareaField } from '../components/fields/TextareaField'
+import { MultiAutocompleteField } from '../components/fields/MultiAutocompleteField'
+import { FileUploadField } from '../components/fields/FileUploadField'
+import { SwitchField } from '../components/fields/SwitchField'
+import { ActionButtons } from '../components/ActionButtons'
 
 const BLANK_VALUES: CreateAppFormValues = {
   name: '',
@@ -29,7 +29,7 @@ const BLANK_VALUES: CreateAppFormValues = {
   status: false,
 }
 
-export function CreateAppForm() {
+export function CreateAppView() {
   const { data: apps = [] } = useApps()
   const { data: tags = [] } = useTags()
   const { data: userGroups = [] } = useUserGroups()

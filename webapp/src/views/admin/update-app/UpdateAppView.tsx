@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
-import { updateAppFormSchema } from '@/lib/adminSchemas'
-import type { UpdateAppFormValues } from '@/lib/adminSchemas'
+import { updateAppFormSchema } from './updateAppSchema'
+import type { UpdateAppFormValues } from './updateAppSchema'
 import {
   useApp,
   useApps,
@@ -11,15 +11,14 @@ import {
   useUpdateApp,
   useUserGroups,
 } from '@/hooks/useAdminQueries'
-import { useAdminStore } from '@/store/useAdminStore'
-import { TextField } from '../fields/TextField'
-import { TextareaField } from '../fields/TextareaField'
-import { MultiAutocompleteField } from '../fields/MultiAutocompleteField'
-import { FileUploadField } from '../fields/FileUploadField'
-import { SwitchField } from '../fields/SwitchField'
-import { SingleAutocompleteField } from '../fields/SingleAutocompleteField'
-import { ActionButtons } from '../ActionButtons'
-import { CompanyCard } from '../CompanyCard'
+import { TextField } from '../components/fields/TextField'
+import { TextareaField } from '../components/fields/TextareaField'
+import { MultiAutocompleteField } from '../components/fields/MultiAutocompleteField'
+import { FileUploadField } from '../components/fields/FileUploadField'
+import { SwitchField } from '../components/fields/SwitchField'
+import { SingleAutocompleteField } from '../components/fields/SingleAutocompleteField'
+import { ActionButtons } from '../components/ActionButtons'
+import { CompanyCard } from '../components/CompanyCard'
 
 const EMPTY_VALUES: UpdateAppFormValues = {
   appId: '',
@@ -34,12 +33,11 @@ const EMPTY_VALUES: UpdateAppFormValues = {
   status: false,
 }
 
-export function UpdateAppForm() {
+export function UpdateAppView() {
   const { data: apps = [], isLoading: appsLoading } = useApps()
   const { data: tags = [] } = useTags()
   const { data: userGroups = [] } = useUserGroups()
-  const selectedAppId = useAdminStore((s) => s.selectedAppId)
-  const setSelectedAppId = useAdminStore((s) => s.setSelectedAppId)
+  const [selectedAppId, setSelectedAppId] = useState<string | null>(null)
   const { data: selectedApp } = useApp(selectedAppId ?? undefined)
   const updateApp = useUpdateApp()
 
