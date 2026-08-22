@@ -10,15 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminUpdateTagsRouteImport } from './routes/admin/update-tags'
+import { Route as AdminUpdateAppRouteImport } from './routes/admin/update-app'
+import { Route as AdminCreateTagsRouteImport } from './routes/admin/create-tags'
+import { Route as AdminCreateAppRouteImport } from './routes/admin/create-app'
 
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
+const AdminRouteRoute = AdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
   getParentRoute: () => rootRouteImport,
@@ -28,34 +33,97 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminUpdateTagsRoute = AdminUpdateTagsRouteImport.update({
+  id: '/update-tags',
+  path: '/update-tags',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminUpdateAppRoute = AdminUpdateAppRouteImport.update({
+  id: '/update-app',
+  path: '/update-app',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminCreateTagsRoute = AdminCreateTagsRouteImport.update({
+  id: '/create-tags',
+  path: '/create-tags',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminCreateAppRoute = AdminCreateAppRouteImport.update({
+  id: '/create-app',
+  path: '/create-app',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/profile': typeof ProfileRoute
+  '/admin/create-app': typeof AdminCreateAppRoute
+  '/admin/create-tags': typeof AdminCreateTagsRoute
+  '/admin/update-app': typeof AdminUpdateAppRoute
+  '/admin/update-tags': typeof AdminUpdateTagsRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/profile': typeof ProfileRoute
+  '/admin/create-app': typeof AdminCreateAppRoute
+  '/admin/create-tags': typeof AdminCreateTagsRoute
+  '/admin/update-app': typeof AdminUpdateAppRoute
+  '/admin/update-tags': typeof AdminUpdateTagsRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/profile': typeof ProfileRoute
+  '/admin/create-app': typeof AdminCreateAppRoute
+  '/admin/create-tags': typeof AdminCreateTagsRoute
+  '/admin/update-app': typeof AdminUpdateAppRoute
+  '/admin/update-tags': typeof AdminUpdateTagsRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/profile'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/profile'
+    | '/admin/create-app'
+    | '/admin/create-tags'
+    | '/admin/update-app'
+    | '/admin/update-tags'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/profile'
-  id: '__root__' | '/' | '/admin' | '/profile'
+  to:
+    | '/'
+    | '/profile'
+    | '/admin/create-app'
+    | '/admin/create-tags'
+    | '/admin/update-app'
+    | '/admin/update-tags'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/profile'
+    | '/admin/create-app'
+    | '/admin/create-tags'
+    | '/admin/update-app'
+    | '/admin/update-tags'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
   ProfileRoute: typeof ProfileRoute
 }
 
@@ -72,7 +140,7 @@ declare module '@tanstack/react-router' {
       id: '/admin'
       path: '/admin'
       fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+      preLoaderRoute: typeof AdminRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -82,12 +150,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/update-tags': {
+      id: '/admin/update-tags'
+      path: '/update-tags'
+      fullPath: '/admin/update-tags'
+      preLoaderRoute: typeof AdminUpdateTagsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/update-app': {
+      id: '/admin/update-app'
+      path: '/update-app'
+      fullPath: '/admin/update-app'
+      preLoaderRoute: typeof AdminUpdateAppRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/create-tags': {
+      id: '/admin/create-tags'
+      path: '/create-tags'
+      fullPath: '/admin/create-tags'
+      preLoaderRoute: typeof AdminCreateTagsRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/admin/create-app': {
+      id: '/admin/create-app'
+      path: '/create-app'
+      fullPath: '/admin/create-app'
+      preLoaderRoute: typeof AdminCreateAppRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
   }
 }
 
+interface AdminRouteRouteChildren {
+  AdminCreateAppRoute: typeof AdminCreateAppRoute
+  AdminCreateTagsRoute: typeof AdminCreateTagsRoute
+  AdminUpdateAppRoute: typeof AdminUpdateAppRoute
+  AdminUpdateTagsRoute: typeof AdminUpdateTagsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminCreateAppRoute: AdminCreateAppRoute,
+  AdminCreateTagsRoute: AdminCreateTagsRoute,
+  AdminUpdateAppRoute: AdminUpdateAppRoute,
+  AdminUpdateTagsRoute: AdminUpdateTagsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
   ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport
