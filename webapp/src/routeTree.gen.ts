@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as HelpAndSupportRouteImport } from './routes/help-and-support'
 import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
@@ -21,6 +22,11 @@ import { Route as AdminCreateAppRouteImport } from './routes/admin/create-app'
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpAndSupportRoute = HelpAndSupportRouteImport.update({
+  id: '/help-and-support',
+  path: '/help-and-support',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRouteRoute = AdminRouteRouteImport.update({
@@ -62,6 +68,7 @@ const AdminCreateAppRoute = AdminCreateAppRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
+  '/help-and-support': typeof HelpAndSupportRoute
   '/profile': typeof ProfileRoute
   '/admin/create-app': typeof AdminCreateAppRoute
   '/admin/create-tags': typeof AdminCreateTagsRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/help-and-support': typeof HelpAndSupportRoute
   '/profile': typeof ProfileRoute
   '/admin/create-app': typeof AdminCreateAppRoute
   '/admin/create-tags': typeof AdminCreateTagsRoute
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteRouteWithChildren
+  '/help-and-support': typeof HelpAndSupportRoute
   '/profile': typeof ProfileRoute
   '/admin/create-app': typeof AdminCreateAppRoute
   '/admin/create-tags': typeof AdminCreateTagsRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/help-and-support'
     | '/profile'
     | '/admin/create-app'
     | '/admin/create-tags'
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/help-and-support'
     | '/profile'
     | '/admin/create-app'
     | '/admin/create-tags'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin'
+    | '/help-and-support'
     | '/profile'
     | '/admin/create-app'
     | '/admin/create-tags'
@@ -124,6 +136,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
+  HelpAndSupportRoute: typeof HelpAndSupportRoute
   ProfileRoute: typeof ProfileRoute
 }
 
@@ -134,6 +147,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help-and-support': {
+      id: '/help-and-support'
+      path: '/help-and-support'
+      fullPath: '/help-and-support'
+      preLoaderRoute: typeof HelpAndSupportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -211,6 +231,7 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRouteRoute: AdminRouteRouteWithChildren,
+  HelpAndSupportRoute: HelpAndSupportRoute,
   ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport

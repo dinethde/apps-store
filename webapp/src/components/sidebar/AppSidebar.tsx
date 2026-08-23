@@ -78,7 +78,7 @@ export default function AppSidebar() {
           </SidebarGroup>
 
           <SidebarGroup>
-            <SidebarMenu className="sidebar-menu text-txt-primary-p2-active">
+            <SidebarMenu className="sidebar-menu text-txt-neutral-p2-active">
               <SidebarMenuItem className="sidebar-menu-item bg-transparent cursor-pointer">
                 <SidebarMenuButton>
                   <SidebarToggle className="bg-transparent shadow-none p-0" />
@@ -87,7 +87,7 @@ export default function AppSidebar() {
               </SidebarMenuItem>
 
               <SidebarMenuItem className="sidebar-menu-item">
-                <Link to="/profile">
+                <Link to="/help-and-support">
                   {({ isActive }) => (
                     <SidebarMenuButton isActive={isActive} className="!p-2 !cursor-pointer hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text h-fit">
                       <div className='flex gap-2 items-center w-full'>
