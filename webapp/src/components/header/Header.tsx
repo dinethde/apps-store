@@ -30,7 +30,7 @@ export default function Header() {
             </button>
 
 
-            <button onClick={handleNotifications} aria-label="Handle nottifications">
+            <button onClick={handleNotifications} aria-label="Handle notifications">
               <BellCheck size={20} className='text-txt-neutral-p3-active' />
             </button>
 
