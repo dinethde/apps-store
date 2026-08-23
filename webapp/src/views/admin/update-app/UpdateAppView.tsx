@@ -18,7 +18,7 @@ import { FileUploadField } from '../components/fields/FileUploadField'
 import { SwitchField } from '../components/fields/SwitchField'
 import { SingleAutocompleteField } from '../components/fields/SingleAutocompleteField'
 import { ActionButtons } from '../components/ActionButtons'
-import { CompanyCard } from '../components/CompanyCard'
+import { CompanyCard } from '@views/home/CompanyCard'
 
 const EMPTY_VALUES: UpdateAppFormValues = {
   appId: '',

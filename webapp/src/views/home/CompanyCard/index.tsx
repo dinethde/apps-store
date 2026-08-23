@@ -1,6 +1,7 @@
 import { Heart } from 'lucide-react'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Typography } from '@/components/ui/typography'
-import { TagChip } from './TagChip'
+import { TagChip } from '@views/admin/components/TagChip'
 import type { Tag } from '@/types/admin'
 
 type CompanyCardProps = {
@@ -27,29 +28,33 @@ export function CompanyCard({
     <div className="flex w-full flex-col items-start gap-4 rounded-xl border border-outline-neutral-light-active bg-surface-neutral-light-active p-[17px]">
       <div className="flex w-full items-start justify-between">
         <div className="flex items-center gap-2">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-fill-secondary-main-active">
-            <Typography variant="p-m-medium" className="text-white">
-              {initials}
-            </Typography>
-          </div>
+          <Avatar className='size-[40px] rounded-lg after:rounded-[inherit] border-1 border-outline-neutral-main-active'>
+            <AvatarImage
+              src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png'
+              alt='Hallie Richards'
+              className='rounded-sm'
+            />
+            <AvatarFallback>HR</AvatarFallback>
+          </Avatar>
+
           <div className="flex flex-col gap-0.5">
             <Typography
               variant="p-medium"
-              className="text-txt-primary-p2-active"
+              className="text-txt-neutral-p2-active"
             >
               {name}
             </Typography>
-            <Typography variant="p-s" className="text-txt-primary-p3-active">
+            <Typography variant="p-s" className="text-txt-neutral-p3-active">
               {subtitle}
             </Typography>
           </div>
         </div>
-        <Heart className="size-[18px] shrink-0 text-txt-primary-p4-active" />
+        <Heart size={20} className="shrink-0 text-txt-neutral-p4-active" />
       </div>
 
       <div className="w-full border-t border-outline-neutral-light-active" />
 
-      <Typography variant="p-m" className="w-full text-txt-primary-p2-active">
+      <Typography variant="p-m" className="w-full text-txt-neutral-p2-active">
         {description}
       </Typography>
 
