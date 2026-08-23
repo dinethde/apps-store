@@ -111,9 +111,13 @@ export default function AppSidebar() {
           <SidebarGroup>
             <SidebarMenuItem>
               <div className="flex gap-2 items-center justify-content ">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
+                <Avatar className='size-10 rounded-sm after:rounded-[inherit] border-1 border-outline-neutral-main-active'>
+                  <AvatarImage
+                    src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png'
+                    alt='Hallie Richards'
+                    className='rounded-sm'
+                  />
+                  <AvatarFallback>HR</AvatarFallback>
                 </Avatar>
 
                 <div className="w-full group-data-[collapsible=icon]:hidden">
@@ -122,7 +126,7 @@ export default function AppSidebar() {
                 </div>
 
                 <button className="group-data-[collapsible=icon]:hidden">
-                  <ChevronsUpDown />
+                  <ChevronsUpDown size={16} />
                 </button>
               </div>
             </SidebarMenuItem>
