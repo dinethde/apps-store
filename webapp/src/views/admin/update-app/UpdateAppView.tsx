@@ -18,7 +18,7 @@ import { FileUploadField } from '../components/fields/FileUploadField'
 import { SwitchField } from '../components/fields/SwitchField'
 import { SingleAutocompleteField } from '../components/fields/SingleAutocompleteField'
 import { ActionButtons } from '../components/ActionButtons'
-import { CompanyCard } from '@views/home/CompanyCard'
+import { ApplicationCard } from '@views/home/ApplicationCard'
 
 const EMPTY_VALUES: UpdateAppFormValues = {
   appId: '',
@@ -109,13 +109,14 @@ export function UpdateAppView() {
         <SingleAutocompleteField
           control={form.control}
           name="appId"
+          placeholder='example app'
           label="Select an app"
           options={appOptions}
           isLoading={appsLoading}
           onSelect={(id) => setSelectedAppId(id)}
         />
         {selectedApp ? (
-          <CompanyCard
+          <ApplicationCard
             name={selectedApp.name}
             subtitle={selectedApp.tagline || selectedApp.description}
             description={selectedApp.description}
