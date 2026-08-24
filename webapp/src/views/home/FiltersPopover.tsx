@@ -31,15 +31,13 @@ function FilterOption({
       type="button"
       onClick={onToggle}
       aria-pressed={checked}
-      className={cn(
-        'flex w-full items-center gap-2 rounded-md px-1.5 py-1.5 text-left',
-        'hover:bg-surface-neutral-main-hover',
-      )}
+      className={`flex w-full items-center gap-2 rounded-md px-1.5 py-1.5
+        text-left hover:bg-surface-neutral-main-hover`}
     >
       <span
         className={cn(
-          'flex size-4 shrink-0 items-center justify-center',
-          'rounded-[4px] border',
+          `flex size-4 shrink-0 items-center justify-center rounded-[4px]
+          border`,
           checked
             ? 'border-brand-main bg-brand-main text-white'
             : 'border-outline-neutral-main-active',
@@ -77,20 +75,16 @@ export function FiltersPopover() {
             variant="outline"
             size="icon"
             aria-label="Filter apps"
-            className={cn(
-              'relative h-[33px] w-[33px] shrink-0',
-              'border-user_input-default-border bg-user_input-default-bg',
-              'hover:border-user_input-hover-border',
-            )}
+            className={`relative h-[33px] w-[33px] shrink-0
+            border-user_input-default-border bg-user_input-default-bg
+            hover:border-user_input-hover-border`}
           >
             <ListFilter className="size-4 text-user_input-default-text" />
             {activeCount ? (
               <span
-                className={cn(
-                  'absolute -top-1.5 -right-1.5 flex size-4',
-                  'items-center justify-center rounded-full',
-                  'bg-brand-main text-[10px] text-white',
-                )}
+                className={`absolute -top-1.5 -right-1.5 flex size-4
+                  items-center justify-center rounded-full bg-brand-main
+                  text-[10px] text-white`}
               >
                 {activeCount}
               </span>
@@ -113,30 +107,22 @@ export function FiltersPopover() {
           ) : null}
         </PopoverHeader>
 
-        <label
-          className={cn(
-            'flex cursor-pointer items-center justify-between py-1',
-          )}
-        >
+        <label className="flex cursor-pointer items-center justify-between py-1">
           <Typography variant="p-s" className="text-txt-neutral-p2-active">
             Liked by me
           </Typography>
           <Switch
             checked={filters.likedOnly}
             onCheckedChange={(checked) => setLikedOnly(Boolean(checked))}
-            className={cn(
-              'data-checked:bg-fill-success-main-active',
-              'data-unchecked:bg-fill-neutral-main-active',
-            )}
+            className={`data-checked:bg-fill-success-main-active
+              data-unchecked:bg-fill-neutral-main-active`}
           />
         </label>
 
         {userGroups.length ? (
           <div
-            className={cn(
-              'flex flex-col gap-1 pt-2',
-              'border-t border-outline-neutral-light-active',
-            )}
+            className={`flex flex-col gap-1 border-t
+              border-outline-neutral-light-active pt-2`}
           >
             <Typography
               variant="p-s"
@@ -159,10 +145,8 @@ export function FiltersPopover() {
 
         {tags.length ? (
           <div
-            className={cn(
-              'flex flex-col gap-1 pt-2',
-              'border-t border-outline-neutral-light-active',
-            )}
+            className={`flex flex-col gap-1 border-t
+              border-outline-neutral-light-active pt-2`}
           >
             <Typography
               variant="p-s"

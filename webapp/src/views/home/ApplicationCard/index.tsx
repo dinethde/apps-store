@@ -30,19 +30,15 @@ export function ApplicationCard({
 
   return (
     <div
-      className={cn(
-        'flex w-full flex-col items-start gap-4 p-[17px]',
-        'rounded-xl border border-outline-neutral-light-active',
-        'bg-surface-neutral-light-active',
-      )}
+      className={`flex w-full flex-col items-start gap-4 rounded-xl border
+        border-outline-neutral-light-active bg-surface-neutral-light-active
+        p-[17px]`}
     >
       <div className="flex w-full items-start justify-between">
         <div className="flex items-center gap-2">
           <Avatar
-            className={cn(
-              'size-[40px] rounded-lg after:rounded-[inherit]',
-              'border-1 border-outline-neutral-main-active',
-            )}
+            className={`size-[40px] rounded-lg border-1
+              border-outline-neutral-main-active after:rounded-[inherit]`}
           >
             <AvatarImage
               src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png"

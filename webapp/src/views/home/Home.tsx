@@ -3,7 +3,6 @@ import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography'
 import { useAppsStore } from '@/store/appsStore'
-import { cn } from '@/lib/utils'
 import { ApplicationCard } from './ApplicationCard'
 import { FiltersPopover } from './FiltersPopover'
 
@@ -45,10 +44,8 @@ export default function Home() {
       <div className="flex w-full items-center gap-2">
         <div className="relative w-full">
           <Search
-            className={cn(
-              'pointer-events-none absolute top-1/2 left-3 size-4',
-              '-translate-y-1/2 text-user_input-default-text',
-            )}
+            className={`pointer-events-none absolute top-1/2 left-3 size-4
+              -translate-y-1/2 text-user_input-default-text`}
           />
           <Input
             type="text"
@@ -56,16 +53,14 @@ export default function Home() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search apps..."
             aria-label="Search apps"
-            className={cn(
-              'h-[33px] pl-9 text-p-m',
-              'border-user_input-default-border bg-user_input-default-bg',
-              'text-user_input-default-text',
-              'placeholder:text-p-m placeholder:text-user_input-default-text',
-              'hover:border-user_input-hover-border',
-              'focus-visible:border-user_input-focussed-border',
-              'focus-visible:ring-3',
-              'focus-visible:ring-user_input-focussed-shadow',
-            )}
+            className={`h-[33px] border-user_input-default-border
+              bg-user_input-default-bg pl-9 text-p-m
+              text-user_input-default-text placeholder:text-p-m
+              placeholder:text-user_input-default-text
+              hover:border-user_input-hover-border
+              focus-visible:border-user_input-focussed-border
+              focus-visible:ring-3
+              focus-visible:ring-user_input-focussed-shadow`}
           />
         </div>
 
