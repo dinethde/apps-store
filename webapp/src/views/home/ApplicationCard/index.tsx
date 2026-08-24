@@ -3,23 +3,30 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Typography } from '@/components/ui/typography'
 import { HighlightText } from '@/components/ui/highlight-text'
 import { TagChip } from '@views/admin/components/TagChip'
+import { useAppsStore } from '@/store/appsStore'
+import { cn } from '@/lib/utils'
 import type { Tag } from '@/types/admin'
 
 type ApplicationCardProps = {
+  id: string
   name: string
   subtitle: string
   description: string
   tags: Array<Tag>
+  userGroupIds: Array<string>
   searchQuery?: string
 }
 
 export function ApplicationCard({
+  id,
   name,
   subtitle,
   description,
   tags,
   searchQuery = '',
 }: ApplicationCardProps) {
+  const liked = useAppsStore((state) => Boolean(state.likedAppIds[id]))
+  const toggleLiked = useAppsStore((state) => state.toggleLiked)
 
   return (
     <div className="flex w-full flex-col items-start gap-4 rounded-xl border border-outline-neutral-light-active bg-surface-neutral-light-active p-[17px]">
@@ -41,12 +48,30 @@ export function ApplicationCard({
             >
               <HighlightText text={name} query={searchQuery} />
             </Typography>
+
             <Typography variant="p-s" className="text-txt-neutral-p3-active">
               <HighlightText text={subtitle} query={searchQuery} />
             </Typography>
           </div>
         </div>
-        <Heart size={20} className="shrink-0 text-txt-neutral-p4-active" />
+
+        <button
+          type="button"
+          onClick={() => toggleLiked(id)}
+          aria-pressed={liked}
+          aria-label={liked ? `Unlike ${name}` : `Like ${name}`}
+          className="shrink-0"
+        >
+          <Heart
+            size={20}
+            className={cn(
+              'transition-colors',
+              liked
+                ? 'fill-txt-error-p1-active text-txt-error-p1-active'
+                : 'text-txt-neutral-p4-active',
+            )}
+          />
+        </button>
       </div>
 
       <div className="w-full border-t border-outline-neutral-light-active" />

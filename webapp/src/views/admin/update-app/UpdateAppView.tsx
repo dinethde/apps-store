@@ -117,10 +117,12 @@ export function UpdateAppView() {
         />
         {selectedApp ? (
           <ApplicationCard
+            id={selectedApp.id}
             name={selectedApp.name}
             subtitle={selectedApp.tagline || selectedApp.description}
             description={selectedApp.description}
             tags={appTags}
+            userGroupIds={selectedApp.userGroupIds}
           />
         ) : null}
       </div>
