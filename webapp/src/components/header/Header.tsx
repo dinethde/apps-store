@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Moon, BellCheck } from 'lucide-react';
-import { Typography } from "../ui/typography";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Moon, BellCheck } from 'lucide-react'
+import { Typography } from '../ui/typography'
 
 export default function Header() {
   const toggleTheme = () => {
@@ -13,35 +13,34 @@ export default function Header() {
 
   return (
     <div>
-      <div className='flex justify-between items-center bg-surface-neutral-light-active p-4'>
-        <div className='flex flex-col gap-1'>
-          <div className='text-txt-neutral-p2-active'>
-            <Typography variant={"h4-medium"}> Apps Store</Typography>
+      <div className="flex items-center justify-between bg-surface-neutral-light-active p-4">
+        <div className="flex flex-col gap-1">
+          <div className="text-txt-neutral-p2-active">
+            <Typography variant={'h4-medium'}> Apps Store</Typography>
           </div>
 
-          <div className='text-txt-neutral-p3-active'>
-            <Typography variant={"p-s-medium"}>Store/</Typography>
+          <div className="text-txt-neutral-p3-active">
+            <Typography variant={'p-s-medium'}>Store/</Typography>
           </div>
         </div>
 
-        <div className='flex gap-4 justify-start items-center'>
-          <div className='flex gap-4'>
-
+        <div className="flex items-center justify-start gap-4">
+          <div className="flex gap-4">
             <button onClick={toggleTheme} aria-label="Toggle dark mode">
               <Moon size={20} className="text-txt-neutral-p3-active" />
             </button>
 
-
-            <button onClick={handleNotifications} aria-label="Handle notifications">
-              <BellCheck size={20} className='text-txt-neutral-p3-active' />
+            <button
+              onClick={handleNotifications}
+              aria-label="Handle notifications"
+            >
+              <BellCheck size={20} className="text-txt-neutral-p3-active" />
             </button>
-
           </div>
 
+          <div className="neutral-border-main h-10 w-[1px]" />
 
-          <div className='neutral-border-main w-[1px] h-10' />
-
-          <Avatar size='lg'>
+          <Avatar size="lg">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>

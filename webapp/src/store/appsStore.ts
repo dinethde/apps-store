@@ -32,7 +32,8 @@ const initialApps: Array<HomeApplication> = [
     id: 'app-1',
     name: 'People App',
     subtitle: 'Technology',
-    description: 'Lorem ipsum dolor sit amet consectetur. Eu sit purus ac tempus',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. Eu sit purus ac tempus',
     tags: [{ id: 'tag-hr', name: 'HR', color: '#f97316', status: true }],
     userGroupIds: ['grp-hr', 'grp-ops'],
   },
@@ -42,7 +43,9 @@ const initialApps: Array<HomeApplication> = [
     subtitle: 'Finance',
     description:
       'Lorem ipsum dolor sit amet consectetur. Vulputate velit euismod sed adipiscing',
-    tags: [{ id: 'tag-finance', name: 'Finance', color: '#22c55e', status: true }],
+    tags: [
+      { id: 'tag-finance', name: 'Finance', color: '#22c55e', status: true },
+    ],
     userGroupIds: ['grp-finance'],
   },
   {
@@ -53,7 +56,12 @@ const initialApps: Array<HomeApplication> = [
       'Lorem ipsum dolor sit amet consectetur. Amet risus nullam eget felis eget nunc',
     tags: [
       { id: 'tag-design', name: 'Design', color: '#a855f7', status: true },
-      { id: 'tag-marketing', name: 'Marketing', color: '#3b82f6', status: true },
+      {
+        id: 'tag-marketing',
+        name: 'Marketing',
+        color: '#3b82f6',
+        status: true,
+      },
     ],
     userGroupIds: ['grp-dev', 'grp-ops'],
   },
@@ -63,7 +71,9 @@ const initialApps: Array<HomeApplication> = [
     subtitle: 'Productivity',
     description:
       'Lorem ipsum dolor sit amet consectetur. Faucibus in hac habitasse platea dictumst',
-    tags: [{ id: 'tag-ops', name: 'Operations', color: '#eab308', status: true }],
+    tags: [
+      { id: 'tag-ops', name: 'Operations', color: '#eab308', status: true },
+    ],
     userGroupIds: ['grp-ops'],
   },
 ]

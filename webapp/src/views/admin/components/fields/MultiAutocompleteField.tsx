@@ -63,7 +63,7 @@ export function MultiAutocompleteField<T extends FieldValues>({
                     : 'border-user_input-default-border bg-user_input-default-bg',
                   'has-[input:focus-visible]:border-user_input-focussed-border has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-user_input-focussed-shadow',
                   fieldState.error &&
-                  'border-user_input-error-border ring-3 ring-user_input-error-shadow',
+                    'border-user_input-error-border ring-3 ring-user_input-error-shadow',
                   disabled && 'pointer-events-none opacity-60',
                 )}
               >
@@ -89,7 +89,8 @@ export function MultiAutocompleteField<T extends FieldValues>({
                   ) : (
                     <ComboboxPrimitive.Chip
                       key={option.id}
-                      className="flex shrink-0 items-center gap-1 rounded-[4px] bg-surface-neutral-main-hover px-1.5 py-[3px] text-p-s-medium text-txt-neutral-p2-active" >
+                      className="flex shrink-0 items-center gap-1 rounded-[4px] bg-surface-neutral-main-hover px-1.5 py-[3px] text-p-s-medium text-txt-neutral-p2-active"
+                    >
                       {option.label}
                       <ComboboxPrimitive.ChipRemove
                         aria-label={`Remove ${option.label}`}

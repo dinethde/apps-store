@@ -1,38 +1,34 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-@import "tailwindcss";
-@import "./styles/design-tokens.css";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import './styles/design-tokens.css';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/geist';
 /*---break---*/
 @custom-variant dark (&:is(.dark *));
-@plugin "@tailwindcss/typography";
-
+@plugin '@tailwindcss/typography';
 
 @layer components {
-
   .sidebar-menu {
-    @apply !flex !flex-col !gap-2 text-txt-neutral-p2-active; 
+    @apply !flex !flex-col !gap-2 text-txt-neutral-p2-active;
   }
 
   .sidebar-link {
-    @apply flex gap-2 items-center cursor-pointer;
+    @apply flex cursor-pointer items-center gap-2;
     @apply hover:!bg-nav_item-hover-bg hover:!text-nav_item-hover-text;
     @apply data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text;
-
   }
- 
+
   .sidebar-menu-item {
     @apply px-2;
     @apply !cursor-pointer;
   }
-  
+
   .sidebar-group {
-    @apply w-full flex items-center px-2 py-2;
+    @apply flex w-full items-center px-2 py-2;
   }
 
   .neutral-border-main {
-    @apply border-[1px] border-outline-neutral-main-active w-full;
+    @apply w-full border-[1px] border-outline-neutral-main-active;
   }
 }
-

@@ -1,9 +1,9 @@
-import { ArrowLeftToLine } from 'lucide-react';
-import { useSidebar } from "@/components/ui/sidebar"
-import { cn } from "@/lib/utils"
+import { ArrowLeftToLine } from 'lucide-react'
+import { useSidebar } from '@/components/ui/sidebar'
+import { cn } from '@/lib/utils'
 
 interface SidebarToggleProps {
-  className?: string,
+  className?: string
 }
 
 export function SidebarToggle(props: SidebarToggleProps) {
@@ -17,10 +17,13 @@ export function SidebarToggle(props: SidebarToggleProps) {
   return (
     <button
       type="button"
-      className={cn('px-2 py-1 h-fit w-fit bg-surface-neutral-light-active rounded-sm shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)] cursor-pointer', className)}
+      className={cn(
+        'h-fit w-fit cursor-pointer rounded-sm bg-surface-neutral-light-active px-2 py-1 shadow-[0px_1px_4px_0px_rgba(0,0,0,0.08)]',
+        className,
+      )}
       onClick={handleClick}
     >
-      <ArrowLeftToLine className='w-4 h-4 group-data-[state=collapsed]:rotate-180' />
+      <ArrowLeftToLine className="h-4 w-4 group-data-[state=collapsed]:rotate-180" />
     </button>
   )
 }

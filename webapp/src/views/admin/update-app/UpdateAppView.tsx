@@ -109,7 +109,7 @@ export function UpdateAppView() {
         <SingleAutocompleteField
           control={form.control}
           name="appId"
-          placeholder='example app'
+          placeholder="example app"
           label="Select an app"
           options={appOptions}
           isLoading={appsLoading}

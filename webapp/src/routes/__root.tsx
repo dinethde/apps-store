@@ -74,13 +74,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="w-full h-full h-screen bg-surface-secondary-main-active flex flex-row gap-1">
-        <div className="flex flex-row gap-4 justify-start items-center">
+      <div className="flex h-full h-screen w-full flex-row gap-1 bg-surface-secondary-main-active">
+        <div className="flex flex-row items-center justify-start gap-4">
           <AppSidebar />
         </div>
 
-        <div className="py-2 pr-2 w-full">
-          <div className="w-full bg-surface-neutral-main-active rounded-[20px] overflow-hidden h-full border-1 border-outline-neutral-light-active">
+        <div className="w-full py-2 pr-2">
+          <div className="h-full w-full overflow-hidden rounded-[20px] border-1 border-outline-neutral-light-active bg-surface-neutral-main-active">
             <Header />
             <div className="p-4">
               <Outlet />
