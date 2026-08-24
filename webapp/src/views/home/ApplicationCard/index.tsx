@@ -1,6 +1,7 @@
 import { Heart } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Typography } from '@/components/ui/typography'
+import { HighlightText } from '@/components/ui/highlight-text'
 import { TagChip } from '@views/admin/components/TagChip'
 import type { Tag } from '@/types/admin'
 
@@ -9,6 +10,7 @@ type ApplicationCardProps = {
   subtitle: string
   description: string
   tags: Array<Tag>
+  searchQuery?: string
 }
 
 export function ApplicationCard({
@@ -16,6 +18,7 @@ export function ApplicationCard({
   subtitle,
   description,
   tags,
+  searchQuery = '',
 }: ApplicationCardProps) {
 
   return (
@@ -36,10 +39,10 @@ export function ApplicationCard({
               variant="p-medium"
               className="text-txt-neutral-p2-active"
             >
-              {name}
+              <HighlightText text={name} query={searchQuery} />
             </Typography>
             <Typography variant="p-s" className="text-txt-neutral-p3-active">
-              {subtitle}
+              <HighlightText text={subtitle} query={searchQuery} />
             </Typography>
           </div>
         </div>
@@ -49,7 +52,7 @@ export function ApplicationCard({
       <div className="w-full border-t border-outline-neutral-light-active" />
 
       <Typography variant="p-m" className="w-full text-txt-neutral-p2-active">
-        {description}
+        <HighlightText text={description} query={searchQuery} />
       </Typography>
 
       {tags.length ? (

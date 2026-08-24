@@ -72,7 +72,7 @@ export default function Home() {
 
       {visibleApps.length ? (
         visibleApps.map(({ id, ...app }) => (
-          <ApplicationCard key={id} {...app} />
+          <ApplicationCard key={id} {...app} searchQuery={query} />
         ))
       ) : (
         <Typography variant="p-m" className="text-txt-neutral-p3-active">
