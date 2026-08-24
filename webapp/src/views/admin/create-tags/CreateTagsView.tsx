@@ -71,7 +71,7 @@ export function CreateTagsView() {
       <div className="flex min-w-0 flex-1 flex-col items-start gap-3 pt-1">
         <Typography
           variant="p-m-medium"
-          className="text-txt-primary-p2-active underline"
+          className="text-txt-neutral-p2-active underline"
         >
           Existing Tags
         </Typography>
@@ -82,7 +82,7 @@ export function CreateTagsView() {
             ))}
           </div>
         ) : (
-          <Typography variant="p-s" className="text-txt-primary-p3-active">
+          <Typography variant="p-s" className="text-txt-neutral-p3-active">
             No tags created yet
           </Typography>
         )}

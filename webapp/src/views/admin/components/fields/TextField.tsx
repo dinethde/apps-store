@@ -38,7 +38,7 @@ export function TextField<T extends FieldValues>({
             disabled={disabled}
             aria-invalid={Boolean(fieldState.error)}
             aria-describedby={fieldState.error ? `${name}-error` : undefined}
-            className="h-[33px] rounded-lg border-user_input-default-border bg-user_input-default-bg px-2.5 py-2 text-p-m text-txt-primary-p2-active placeholder:text-user_input-default-text hover:border-user_input-hover-border focus-visible:border-user_input-focussed-border focus-visible:ring-3 focus-visible:ring-user_input-focussed-shadow aria-invalid:border-user_input-error-border aria-invalid:ring-3 aria-invalid:ring-user_input-error-shadow"
+            className="h-[33px] rounded-lg border-user_input-default-border bg-user_input-default-bg px-2.5 py-2 text-p-m text-txt-neutral-p2-active placeholder:text-user_input-default-text hover:border-user_input-hover-border focus-visible:border-user_input-focussed-border focus-visible:ring-3 focus-visible:ring-user_input-focussed-shadow aria-invalid:border-user_input-error-border aria-invalid:ring-3 aria-invalid:ring-user_input-error-shadow"
           />
         </FieldShell>
       )}

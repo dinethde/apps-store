@@ -45,7 +45,7 @@ export function PageTabs({ tabs, className }: PageTabsProps) {
                 className={
                   isActive
                     ? 'text-txt-brand-p1-active'
-                    : 'text-txt-primary-p3-active'
+                    : 'text-txt-neutral-p3-active'
                 }
               >
                 {tab.label}

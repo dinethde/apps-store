@@ -53,7 +53,7 @@ export function ColorPickerField<T extends FieldValues>({
                 'flex h-11 w-full items-center gap-2.5 rounded-lg border border-user_input-active-border px-2.5 py-2 transition-colors',
                 'has-[input:focus-visible]:border-outline-secondary-main-active has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-user_input-focussed-shadow',
                 fieldState.error &&
-                  'border-user_input-error-border ring-3 ring-user_input-error-shadow',
+                'border-user_input-error-border ring-3 ring-user_input-error-shadow',
                 disabled && 'pointer-events-none opacity-60',
               )}
             >
@@ -74,7 +74,7 @@ export function ColorPickerField<T extends FieldValues>({
                 disabled={disabled}
                 placeholder="#FFFFFF"
                 aria-invalid={Boolean(fieldState.error)}
-                className="w-full bg-transparent text-p-m text-txt-primary-p2-active outline-none placeholder:text-txt-primary-p3-active"
+                className="w-full bg-transparent text-p-m text-txt-neutral-p2-active outline-none placeholder:text-txt-neutral-p3-active"
               />
             </div>
           </FieldShell>

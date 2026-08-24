@@ -22,7 +22,7 @@ export function FieldShell({
         htmlFor={htmlFor}
         className="flex items-center justify-center px-0.5"
       >
-        <Typography variant="p-m" className="text-txt-primary-p2-active">
+        <Typography variant="p-m" className="text-txt-neutral-p2-active">
           {label}
         </Typography>
       </label>

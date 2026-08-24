@@ -26,7 +26,7 @@ export function SwitchField<T extends FieldValues>({
             htmlFor={name}
             className="flex items-center justify-center px-0.5"
           >
-            <Typography variant="p-m" className="text-txt-primary-p2-active">
+            <Typography variant="p-m" className="text-txt-neutral-p2-active">
               {label}
             </Typography>
           </label>
@@ -41,7 +41,7 @@ export function SwitchField<T extends FieldValues>({
               disabled={disabled}
               className="h-[17px] w-[34px] data-checked:bg-fill-success-main-active data-unchecked:bg-fill-neutral-main-active [&_[data-slot=switch-thumb]]:size-[15px] [&_[data-slot=switch-thumb]]:data-checked:translate-x-[17px]"
             />
-            <Typography variant="p-m" className="text-txt-primary-p3-active">
+            <Typography variant="p-m" className="text-txt-neutral-p3-active">
               {field.value ? 'Active' : 'Inactive'}
             </Typography>
           </label>
