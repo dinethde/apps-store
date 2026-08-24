@@ -4,25 +4,19 @@ import { Typography } from '@/components/ui/typography'
 import { TagChip } from '@views/admin/components/TagChip'
 import type { Tag } from '@/types/admin'
 
-type CompanyCardProps = {
+type ApplicationCardProps = {
   name: string
   subtitle: string
   description: string
   tags: Array<Tag>
 }
 
-export function CompanyCard({
+export function ApplicationCard({
   name,
   subtitle,
   description,
   tags,
-}: CompanyCardProps) {
-  const initials = name
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase()
+}: ApplicationCardProps) {
 
   return (
     <div className="flex w-full flex-col items-start gap-4 rounded-xl border border-outline-neutral-light-active bg-surface-neutral-light-active p-[17px]">

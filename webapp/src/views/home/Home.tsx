@@ -1,9 +1,9 @@
-import { CompanyCard } from "./CompanyCard";
+import { ApplicationCard } from "./ApplicationCard";
 
 export default function Home() {
   return (
     <div>
-      <CompanyCard
+      <ApplicationCard
         name="People App"
         subtitle="Technology"
         description="Lorem ipsum dolor sit amet consectetur. Eu sit purus ac tempus"
