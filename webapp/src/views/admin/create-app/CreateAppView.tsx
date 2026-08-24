@@ -115,7 +115,10 @@ export function CreateAppView() {
           />
         </div>
 
-        <div className="flex min-w-0 flex-1 flex-col items-start justify-between gap-5 self-stretch">
+        <div
+          className={`flex min-w-0 flex-1 flex-col items-start justify-between
+            gap-5 self-stretch`}
+        >
           <div className="flex w-full flex-col items-start gap-5">
             <TextField
               control={form.control}

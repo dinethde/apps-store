@@ -57,13 +57,19 @@ export function MultiAutocompleteField<T extends FieldValues>({
             >
               <ComboboxPrimitive.Chips
                 className={cn(
-                  'flex min-h-[33px] w-full flex-wrap items-center gap-2 overflow-hidden rounded-lg border px-1.5 py-2 transition-colors',
+                  `flex min-h-[33px] w-full flex-wrap items-center gap-2
+                  overflow-hidden rounded-lg border px-1.5 py-2
+                  transition-colors`,
                   selected.length
                     ? 'border-user_input-active-border bg-user_input-active-bg'
-                    : 'border-user_input-default-border bg-user_input-default-bg',
-                  'has-[input:focus-visible]:border-user_input-focussed-border has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-user_input-focussed-shadow',
+                    : `border-user_input-default-border
+                      bg-user_input-default-bg`,
+                  `has-[input:focus-visible]:border-user_input-focussed-border
+                  has-[input:focus-visible]:ring-3
+                  has-[input:focus-visible]:ring-user_input-focussed-shadow`,
                   fieldState.error &&
-                    'border-user_input-error-border ring-3 ring-user_input-error-shadow',
+                    `border-user_input-error-border ring-3
+                    ring-user_input-error-shadow`,
                   disabled && 'pointer-events-none opacity-60',
                 )}
               >
@@ -71,7 +77,8 @@ export function MultiAutocompleteField<T extends FieldValues>({
                   option.color ? (
                     <ComboboxPrimitive.Chip
                       key={option.id}
-                      className="flex shrink-0 items-center gap-1.5 rounded-[4px] border px-1.5 py-[3px] text-p-s-medium"
+                      className={`flex shrink-0 items-center gap-1.5
+                        rounded-[4px] border px-1.5 py-[3px] text-p-s-medium`}
                       style={{
                         backgroundColor: `color-mix(in srgb, ${option.color} 8%, white)`,
                         borderColor: `color-mix(in srgb, ${option.color} 45%, white)`,
@@ -81,7 +88,9 @@ export function MultiAutocompleteField<T extends FieldValues>({
                       {option.label}
                       <ComboboxPrimitive.ChipRemove
                         aria-label={`Remove ${option.label}`}
-                        className="rounded-xs opacity-70 outline-none hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring/50"
+                        className={`rounded-xs opacity-70 outline-none
+                          hover:opacity-100 focus-visible:ring-2
+                          focus-visible:ring-ring/50`}
                       >
                         <X className="size-2.5" />
                       </ComboboxPrimitive.ChipRemove>
@@ -89,12 +98,16 @@ export function MultiAutocompleteField<T extends FieldValues>({
                   ) : (
                     <ComboboxPrimitive.Chip
                       key={option.id}
-                      className="flex shrink-0 items-center gap-1 rounded-[4px] bg-surface-neutral-main-hover px-1.5 py-[3px] text-p-s-medium text-txt-neutral-p2-active"
+                      className={`flex shrink-0 items-center gap-1 rounded-[4px]
+                        bg-surface-neutral-main-hover px-1.5 py-[3px]
+                        text-p-s-medium text-txt-neutral-p2-active`}
                     >
                       {option.label}
                       <ComboboxPrimitive.ChipRemove
                         aria-label={`Remove ${option.label}`}
-                        className="rounded-xs opacity-70 outline-none hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring/50"
+                        className={`rounded-xs opacity-70 outline-none
+                          hover:opacity-100 focus-visible:ring-2
+                          focus-visible:ring-ring/50`}
                       >
                         <X className="size-2.5" />
                       </ComboboxPrimitive.ChipRemove>
@@ -106,7 +119,9 @@ export function MultiAutocompleteField<T extends FieldValues>({
                   onBlur={field.onBlur}
                   placeholder={selected.length ? '' : placeholder}
                   aria-invalid={Boolean(fieldState.error)}
-                  className="min-w-16 flex-1 bg-transparent text-p-m text-user_input-active-text outline-none placeholder:text-user_input-default-text"
+                  className={`min-w-16 flex-1 bg-transparent text-p-m
+                  text-user_input-active-text outline-none
+                  placeholder:text-user_input-default-text`}
                 />
               </ComboboxPrimitive.Chips>
 

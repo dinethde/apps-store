@@ -50,10 +50,14 @@ export function ColorPickerField<T extends FieldValues>({
           >
             <div
               className={cn(
-                'flex h-11 w-full items-center gap-2.5 rounded-lg border border-user_input-active-border px-2.5 py-2 transition-colors',
-                'has-[input:focus-visible]:border-outline-secondary-main-active has-[input:focus-visible]:ring-3 has-[input:focus-visible]:ring-user_input-focussed-shadow',
+                `flex h-11 w-full items-center gap-2.5 rounded-lg border
+                border-user_input-active-border px-2.5 py-2 transition-colors`,
+                `has-[input:focus-visible]:border-outline-secondary-main-active
+                has-[input:focus-visible]:ring-3
+                has-[input:focus-visible]:ring-user_input-focussed-shadow`,
                 fieldState.error &&
-                  'border-user_input-error-border ring-3 ring-user_input-error-shadow',
+                  `border-user_input-error-border ring-3
+                  ring-user_input-error-shadow`,
                 disabled && 'pointer-events-none opacity-60',
               )}
             >
@@ -62,7 +66,10 @@ export function ColorPickerField<T extends FieldValues>({
                 onClick={pickColor}
                 disabled={!hasEyeDropper || disabled}
                 aria-label="Pick color from screen"
-                className="flex shrink-0 items-center justify-center rounded-md bg-secondary-100 p-1.5 outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-60"
+                className={`flex shrink-0 items-center justify-center rounded-md
+                bg-secondary-100 p-1.5 outline-none focus-visible:ring-2
+                focus-visible:ring-ring/50 disabled:cursor-not-allowed
+                disabled:opacity-60`}
               >
                 <Pipette className="size-4 text-secondary-main" />
               </button>
@@ -74,7 +81,9 @@ export function ColorPickerField<T extends FieldValues>({
                 disabled={disabled}
                 placeholder="#FFFFFF"
                 aria-invalid={Boolean(fieldState.error)}
-                className="w-full bg-transparent text-p-m text-txt-neutral-p2-active outline-none placeholder:text-txt-neutral-p3-active"
+                className={`w-full bg-transparent text-p-m
+                text-txt-neutral-p2-active outline-none
+                placeholder:text-txt-neutral-p3-active`}
               />
             </div>
           </FieldShell>

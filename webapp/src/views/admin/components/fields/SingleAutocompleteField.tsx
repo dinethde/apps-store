@@ -63,7 +63,11 @@ export function SingleAutocompleteField<T extends FieldValues>({
             >
               <div className="relative w-full">
                 {startIcon ? (
-                  <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-user_input-default-text [&_svg]:size-4">
+                  <span
+                    className={`pointer-events-none absolute top-1/2 left-3
+                      -translate-y-1/2 text-user_input-default-text
+                      [&_svg]:size-4`}
+                  >
                     {startIcon}
                   </span>
                 ) : null}
@@ -75,14 +79,24 @@ export function SingleAutocompleteField<T extends FieldValues>({
                   onBlur={field.onBlur}
                   aria-invalid={Boolean(fieldState.error)}
                   className={cn(
-                    'flex h-[33px] w-full items-center overflow-hidden rounded-lg border px-3 py-2 text-p-m transition-colors outline-none',
+                    `flex h-[33px] w-full items-center overflow-hidden
+                    rounded-lg border px-3 py-2 text-p-m transition-colors
+                    outline-none`,
                     startIcon && 'pl-9',
                     selected
-                      ? 'border-user_input-active-border bg-user_input-active-bg text-user_input-active-text'
-                      : 'border-user_input-default-border bg-user_input-default-bg text-user_input-default-text',
-                    'placeholder:text-p-m placeholder:text-user_input-default-text hover:border-user_input-hover-border focus-visible:border-user_input-focussed-border focus-visible:ring-3 focus-visible:ring-user_input-focussed-shadow',
+                      ? `border-user_input-active-border bg-user_input-active-bg
+                        text-user_input-active-text`
+                      : `border-user_input-default-border
+                        bg-user_input-default-bg text-user_input-default-text`,
+                    `placeholder:text-p-m
+                    placeholder:text-user_input-default-text
+                    hover:border-user_input-hover-border
+                    focus-visible:border-user_input-focussed-border
+                    focus-visible:ring-3
+                    focus-visible:ring-user_input-focussed-shadow`,
                     fieldState.error &&
-                      'border-user_input-error-border text-user_input-error-text ring-3 ring-user_input-error-shadow',
+                      `border-user_input-error-border text-user_input-error-text
+                      ring-3 ring-user_input-error-shadow`,
                     disabled && 'pointer-events-none opacity-60',
                   )}
                 />

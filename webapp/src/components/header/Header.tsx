@@ -13,7 +13,10 @@ export default function Header() {
 
   return (
     <div>
-      <div className="flex items-center justify-between bg-surface-neutral-light-active p-4">
+      <div
+        className={`flex items-center justify-between
+          bg-surface-neutral-light-active p-4`}
+      >
         <div className="flex flex-col gap-1">
           <div className="text-txt-neutral-p2-active">
             <Typography variant={'h4-medium'}> Apps Store</Typography>

@@ -62,16 +62,22 @@ export function FileUploadField<T extends FieldValues>({
                 }}
                 aria-invalid={hasError}
                 className={cn(
-                  'flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-md border border-dashed border-user_input-default-border bg-user_input-default-bg p-3 transition-colors',
+                  `flex w-full cursor-pointer items-center justify-center gap-2
+                  overflow-hidden rounded-md border border-dashed
+                  border-user_input-default-border bg-user_input-default-bg p-3
+                  transition-colors`,
                   isDragOver && 'border-user_input-focussed-border',
                   hasError &&
-                    'border-user_input-error-border shadow-[0_0_1px_2px_var(--color-user_input-error-shadow)]',
+                    `border-user_input-error-border
+                    shadow-[0_0_1px_2px_var(--color-user_input-error-shadow)]`,
                   disabled && 'pointer-events-none opacity-60',
                 )}
               >
                 {hasError ? (
                   <>
-                    <TriangleAlert className="size-5 shrink-0 text-txt-error-p1-active" />
+                    <TriangleAlert
+                      className={'size-5 shrink-0 text-txt-error-p1-active'}
+                    />
                     <Typography
                       variant="p-m"
                       className="text-txt-error-p1-active"
@@ -81,7 +87,9 @@ export function FileUploadField<T extends FieldValues>({
                   </>
                 ) : (
                   <>
-                    <CloudUpload className="size-5 shrink-0 text-user_input-default-text" />
+                    <CloudUpload
+                      className={'size-5 shrink-0 text-user_input-default-text'}
+                    />
                     <Typography
                       variant="p-m"
                       className="text-user_input-default-text"
@@ -103,8 +111,14 @@ export function FileUploadField<T extends FieldValues>({
               </div>
 
               {file ? (
-                <div className="flex w-full items-start gap-2 rounded-md border border-user_input-menu-border bg-user_input-menu-bg p-2">
-                  <div className="size-9 shrink-0 rounded-xs bg-user_input-hover-bg" />
+                <div
+                  className={`flex w-full items-start gap-2 rounded-md border
+                    border-user_input-menu-border bg-user_input-menu-bg p-2`}
+                >
+                  <div
+                    className={`size-9 shrink-0 rounded-xs
+                      bg-user_input-hover-bg`}
+                  />
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
                     <Typography
                       variant="p-m"
@@ -123,7 +137,8 @@ export function FileUploadField<T extends FieldValues>({
                     type="button"
                     onClick={() => field.onChange(null)}
                     aria-label="Remove file"
-                    className="rounded-xs p-1 outline-none hover:opacity-70 focus-visible:ring-2 focus-visible:ring-ring/50"
+                    className={`rounded-xs p-1 outline-none hover:opacity-70
+                      focus-visible:ring-2 focus-visible:ring-ring/50`}
                   >
                     <X className="size-3 text-user_input-default-text" />
                   </button>

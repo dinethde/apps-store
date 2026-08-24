@@ -39,7 +39,11 @@ export function SwitchField<T extends FieldValues>({
               checked={Boolean(field.value)}
               onCheckedChange={(checked) => field.onChange(checked)}
               disabled={disabled}
-              className="h-[17px] w-[34px] data-checked:bg-fill-success-main-active data-unchecked:bg-fill-neutral-main-active [&_[data-slot=switch-thumb]]:size-[15px] [&_[data-slot=switch-thumb]]:data-checked:translate-x-[17px]"
+              className={`h-[17px] w-[34px]
+              data-checked:bg-fill-success-main-active
+              data-unchecked:bg-fill-neutral-main-active
+              [&_[data-slot=switch-thumb]]:size-[15px]
+              [&_[data-slot=switch-thumb]]:data-checked:translate-x-[17px]`}
             />
             <Typography variant="p-m" className="text-txt-neutral-p3-active">
               {field.value ? 'Active' : 'Inactive'}

@@ -21,7 +21,10 @@ export function ActionButtons({
       <Button
         type="submit"
         disabled={disabled || isSubmitting}
-        className="h-auto rounded-md bg-btn-primary-filled-default-bg px-5 py-2 text-p-m-medium text-btn-primary-filled-default-text hover:bg-btn-primary-filled-hover-bg active:bg-btn-primary-filled-active-bg"
+        className={`h-auto rounded-md bg-btn-primary-filled-default-bg px-5 py-2
+          text-p-m-medium text-btn-primary-filled-default-text
+          hover:bg-btn-primary-filled-hover-bg
+          active:bg-btn-primary-filled-active-bg`}
       >
         {isSubmitting ? 'Saving…' : submitLabel}
       </Button>
@@ -30,7 +33,11 @@ export function ActionButtons({
         variant="outline"
         onClick={onCancel}
         disabled={isSubmitting}
-        className="h-auto rounded-md border-btn-neutral-filled-default-border bg-btn-neutral-filled-default-bg px-5 py-2 text-p-m-medium text-btn-neutral-filled-default-text hover:bg-btn-neutral-filled-hover-bg hover:text-btn-neutral-filled-hover-text"
+        className={`h-auto rounded-md border-btn-neutral-filled-default-border
+          bg-btn-neutral-filled-default-bg px-5 py-2 text-p-m-medium
+          text-btn-neutral-filled-default-text
+          hover:bg-btn-neutral-filled-hover-bg
+          hover:text-btn-neutral-filled-hover-text`}
       >
         Cancel
       </Button>

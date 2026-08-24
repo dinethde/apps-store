@@ -23,7 +23,7 @@ function SidebarLogo() {
   return state === 'collapsed' ? (
     <LogoCollapsed className="h-8 w-8" />
   ) : (
-    <Logo className=" " />
+    <Logo className="" />
   )
 }
 
@@ -55,13 +55,19 @@ export default function AppSidebar() {
                   {({ isActive }) => (
                     <SidebarMenuButton
                       isActive={isActive}
-                      className="h-fit !cursor-pointer !p-2 hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text"
+                      className={`h-fit !cursor-pointer !p-2
+                      hover:!bg-nav_item-hover-bg
+                      data-active:!bg-nav_item-focussed-bg
+                      data-active:!text-nav_item-focussed-text`}
                     >
                       <div className="flex w-full items-center gap-2">
                         <SquareLibrary />
                         <p className="p-m-medium w-full">Store</p>
                         {isActive && (
-                          <div className="h-5 w-1 rounded-lg bg-nav_item-focussed-text"></div>
+                          <div
+                            className={`h-5 w-1 rounded-lg
+                            bg-nav_item-focussed-text`}
+                          ></div>
                         )}
                       </div>
                     </SidebarMenuButton>
@@ -74,13 +80,19 @@ export default function AppSidebar() {
                   {({ isActive }) => (
                     <SidebarMenuButton
                       isActive={isActive}
-                      className="h-fit !cursor-pointer !p-2 hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text"
+                      className={`h-fit !cursor-pointer !p-2
+                      hover:!bg-nav_item-hover-bg
+                      data-active:!bg-nav_item-focussed-bg
+                      data-active:!text-nav_item-focussed-text`}
                     >
                       <div className="flex w-full items-center gap-2">
                         <SquareLibrary />
                         <p className="p-m-medium w-full">Profile</p>
                         {isActive && (
-                          <div className="h-5 w-1 rounded-lg bg-nav_item-focussed-text"></div>
+                          <div
+                            className={`h-5 w-1 rounded-lg
+                            bg-nav_item-focussed-text`}
+                          ></div>
                         )}
                       </div>
                     </SidebarMenuButton>
@@ -93,13 +105,19 @@ export default function AppSidebar() {
                   {({ isActive }) => (
                     <SidebarMenuButton
                       isActive={isActive}
-                      className="h-fit !cursor-pointer !p-2 hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text"
+                      className={`h-fit !cursor-pointer !p-2
+                      hover:!bg-nav_item-hover-bg
+                      data-active:!bg-nav_item-focussed-bg
+                      data-active:!text-nav_item-focussed-text`}
                     >
                       <div className="flex w-full items-center gap-2">
                         <SquareLibrary />
                         <p className="p-m-medium w-full">Admin</p>
                         {isActive && (
-                          <div className="h-5 w-1 rounded-lg bg-nav_item-focussed-text"></div>
+                          <div
+                            className={`h-5 w-1 rounded-lg
+                            bg-nav_item-focussed-text`}
+                          ></div>
                         )}
                       </div>
                     </SidebarMenuButton>
@@ -111,7 +129,9 @@ export default function AppSidebar() {
 
           <SidebarGroup>
             <SidebarMenu className="sidebar-menu text-txt-neutral-p2-active">
-              <SidebarMenuItem className="sidebar-menu-item cursor-pointer bg-transparent">
+              <SidebarMenuItem
+                className={'sidebar-menu-item cursor-pointer bg-transparent'}
+              >
                 <SidebarMenuButton>
                   <SidebarToggle className="bg-transparent p-0 shadow-none" />
                   <p className="p-m-medium">Collapsed</p>
@@ -123,13 +143,19 @@ export default function AppSidebar() {
                   {({ isActive }) => (
                     <SidebarMenuButton
                       isActive={isActive}
-                      className="h-fit !cursor-pointer !p-2 hover:!bg-nav_item-hover-bg data-active:!bg-nav_item-focussed-bg data-active:!text-nav_item-focussed-text"
+                      className={`h-fit !cursor-pointer !p-2
+                      hover:!bg-nav_item-hover-bg
+                      data-active:!bg-nav_item-focussed-bg
+                      data-active:!text-nav_item-focussed-text`}
                     >
                       <div className="flex w-full items-center gap-2">
                         <SquareLibrary />
                         <p className="p-m-medium w-full">Help & Support</p>
                         {isActive && (
-                          <div className="h-5 w-1 rounded-lg bg-nav_item-focussed-text"></div>
+                          <div
+                            className={`h-5 w-1 rounded-lg
+                            bg-nav_item-focussed-text`}
+                          ></div>
                         )}
                       </div>
                     </SidebarMenuButton>
@@ -148,7 +174,10 @@ export default function AppSidebar() {
           <SidebarGroup>
             <SidebarMenuItem>
               <div className="justify-content flex items-center gap-2">
-                <Avatar className="size-10 rounded-sm border-1 border-outline-neutral-main-active after:rounded-[inherit]">
+                <Avatar
+                  className={`size-10 rounded-sm border-1
+                    border-outline-neutral-main-active after:rounded-[inherit]`}
+                >
                   <AvatarImage
                     src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png"
                     alt="Hallie Richards"

@@ -27,7 +27,10 @@ export function PageTabs({ tabs, className }: PageTabsProps) {
       value={activeTo ?? null}
       className={cn('flex w-fit flex-col', className)}
     >
-      <TabsList className="h-fit w-fit shrink-0 gap-2.5 self-start rounded-lg bg-surface-neutral-light-active p-1 shadow-sm">
+      <TabsList
+        className={`h-fit w-fit shrink-0 gap-2.5 self-start rounded-lg
+          bg-surface-neutral-light-active p-1 shadow-sm`}
+      >
         {tabs.map((tab) => {
           const isActive = tab.to === activeTo
           return (

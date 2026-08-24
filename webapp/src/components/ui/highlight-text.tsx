@@ -32,7 +32,8 @@ export function HighlightText({ text, query, className }: HighlightTextProps) {
           <mark
             key={index}
             className={cn(
-              'rounded-[2px] bg-surface-brand-main-active text-txt-brand-p1-active',
+              `rounded-[2px] bg-surface-brand-main-active
+                text-txt-brand-p1-active`,
               className,
             )}
           >
