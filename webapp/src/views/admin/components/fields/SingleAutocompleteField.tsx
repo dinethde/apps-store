@@ -88,7 +88,7 @@ export function SingleAutocompleteField<T extends FieldValues>({
                 />
               </div>
 
-              <ComboboxContent className="border-user_input-menu-border p-0 w-full">
+              <ComboboxContent className="border-user_input-menu-border p-0">
                 <ComboboxList>
                   {isLoading ? (
                     <div className="px-2 py-3">
