@@ -31,11 +31,15 @@ function FilterOption({
       type="button"
       onClick={onToggle}
       aria-pressed={checked}
-      className="flex w-full items-center gap-2 rounded-md px-1.5 py-1.5 text-left hover:bg-surface-neutral-main-hover"
+      className={cn(
+        'flex w-full items-center gap-2 rounded-md px-1.5 py-1.5 text-left',
+        'hover:bg-surface-neutral-main-hover',
+      )}
     >
       <span
         className={cn(
-          'flex size-4 shrink-0 items-center justify-center rounded-[4px] border',
+          'flex size-4 shrink-0 items-center justify-center',
+          'rounded-[4px] border',
           checked
             ? 'border-brand-main bg-brand-main text-white'
             : 'border-outline-neutral-main-active',
@@ -61,7 +65,9 @@ export function FiltersPopover() {
   const clearFilters = useAppsStore((state) => state.clearFilters)
 
   const activeCount =
-    filters.tagIds.length + filters.userGroupIds.length + (filters.likedOnly ? 1 : 0)
+    filters.tagIds.length +
+    filters.userGroupIds.length +
+    (filters.likedOnly ? 1 : 0)
 
   return (
     <Popover>
@@ -71,11 +77,21 @@ export function FiltersPopover() {
             variant="outline"
             size="icon"
             aria-label="Filter apps"
-            className="relative h-[33px] w-[33px] shrink-0 border-user_input-default-border bg-user_input-default-bg hover:border-user_input-hover-border"
+            className={cn(
+              'relative h-[33px] w-[33px] shrink-0',
+              'border-user_input-default-border bg-user_input-default-bg',
+              'hover:border-user_input-hover-border',
+            )}
           >
             <ListFilter className="size-4 text-user_input-default-text" />
             {activeCount ? (
-              <span className="absolute -right-1.5 -top-1.5 flex size-4 items-center justify-center rounded-full bg-brand-main text-[10px] text-white">
+              <span
+                className={cn(
+                  'absolute -top-1.5 -right-1.5 flex size-4',
+                  'items-center justify-center rounded-full',
+                  'bg-brand-main text-[10px] text-white',
+                )}
+              >
                 {activeCount}
               </span>
             ) : null}
@@ -97,20 +113,35 @@ export function FiltersPopover() {
           ) : null}
         </PopoverHeader>
 
-        <label className="flex cursor-pointer items-center justify-between py-1">
+        <label
+          className={cn(
+            'flex cursor-pointer items-center justify-between py-1',
+          )}
+        >
           <Typography variant="p-s" className="text-txt-neutral-p2-active">
             Liked by me
           </Typography>
           <Switch
             checked={filters.likedOnly}
             onCheckedChange={(checked) => setLikedOnly(Boolean(checked))}
-            className="data-checked:bg-fill-success-main-active data-unchecked:bg-fill-neutral-main-active"
+            className={cn(
+              'data-checked:bg-fill-success-main-active',
+              'data-unchecked:bg-fill-neutral-main-active',
+            )}
           />
         </label>
 
         {userGroups.length ? (
-          <div className="flex flex-col gap-1 border-t border-outline-neutral-light-active pt-2">
-            <Typography variant="p-s" className="px-1.5 text-txt-neutral-p3-active">
+          <div
+            className={cn(
+              'flex flex-col gap-1 pt-2',
+              'border-t border-outline-neutral-light-active',
+            )}
+          >
+            <Typography
+              variant="p-s"
+              className="px-1.5 text-txt-neutral-p3-active"
+            >
               User groups
             </Typography>
             {userGroups.map((group) => (
@@ -127,8 +158,16 @@ export function FiltersPopover() {
         ) : null}
 
         {tags.length ? (
-          <div className="flex flex-col gap-1 border-t border-outline-neutral-light-active pt-2">
-            <Typography variant="p-s" className="px-1.5 text-txt-neutral-p3-active">
+          <div
+            className={cn(
+              'flex flex-col gap-1 pt-2',
+              'border-t border-outline-neutral-light-active',
+            )}
+          >
+            <Typography
+              variant="p-s"
+              className="px-1.5 text-txt-neutral-p3-active"
+            >
               Tags
             </Typography>
             {tags.map((tag) => (

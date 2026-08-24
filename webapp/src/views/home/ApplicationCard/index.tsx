@@ -1,5 +1,5 @@
 import { Heart } from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Typography } from '@/components/ui/typography'
 import { HighlightText } from '@/components/ui/highlight-text'
 import { TagChip } from '@views/admin/components/TagChip'
@@ -29,14 +29,25 @@ export function ApplicationCard({
   const toggleLiked = useAppsStore((state) => state.toggleLiked)
 
   return (
-    <div className="flex w-full flex-col items-start gap-4 rounded-xl border border-outline-neutral-light-active bg-surface-neutral-light-active p-[17px]">
+    <div
+      className={cn(
+        'flex w-full flex-col items-start gap-4 p-[17px]',
+        'rounded-xl border border-outline-neutral-light-active',
+        'bg-surface-neutral-light-active',
+      )}
+    >
       <div className="flex w-full items-start justify-between">
         <div className="flex items-center gap-2">
-          <Avatar className='size-[40px] rounded-lg after:rounded-[inherit] border-1 border-outline-neutral-main-active'>
+          <Avatar
+            className={cn(
+              'size-[40px] rounded-lg after:rounded-[inherit]',
+              'border-1 border-outline-neutral-main-active',
+            )}
+          >
             <AvatarImage
-              src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png'
-              alt='Hallie Richards'
-              className='rounded-sm'
+              src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png"
+              alt="Hallie Richards"
+              className="rounded-sm"
             />
             <AvatarFallback>HR</AvatarFallback>
           </Avatar>
