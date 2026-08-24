@@ -80,7 +80,7 @@ export function SingleAutocompleteField<T extends FieldValues>({
                     selected
                       ? 'border-user_input-active-border bg-user_input-active-bg text-user_input-active-text'
                       : 'border-user_input-default-border bg-user_input-default-bg text-user_input-default-text',
-                    'placeholder:text-user_input-default-text placeholder:text-p-m placeholder:italic hover:border-user_input-hover-border focus-visible:border-user_input-focussed-border focus-visible:ring-3 focus-visible:ring-user_input-focussed-shadow',
+                    'placeholder:text-user_input-default-text placeholder:text-p-m hover:border-user_input-hover-border focus-visible:border-user_input-focussed-border focus-visible:ring-3 focus-visible:ring-user_input-focussed-shadow',
                     fieldState.error &&
                     'border-user_input-error-border text-user_input-error-text ring-3 ring-user_input-error-shadow',
                     disabled && 'pointer-events-none opacity-60',
