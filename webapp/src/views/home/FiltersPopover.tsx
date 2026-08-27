@@ -9,7 +9,8 @@ import {
 } from '@/components/ui/popover'
 import { Switch } from '@/components/ui/switch'
 import { Typography } from '@/components/ui/typography'
-import { useTags, useUserGroups } from '@/hooks/useAdminQueries'
+import { useTags } from '@/queries/tags'
+import { useUserGroups } from '@/queries/userGroups'
 import { useAppsStore } from '@/store/appsStore'
 import { cn } from '@/lib/utils'
 

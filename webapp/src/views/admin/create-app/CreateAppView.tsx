@@ -4,12 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { createAppFormSchema } from './createAppSchema'
 import type { CreateAppFormValues } from './createAppSchema'
-import {
-  useApps,
-  useCreateApp,
-  useTags,
-  useUserGroups,
-} from '@/hooks/useAdminQueries'
+import { useApps, useCreateApp } from '@/queries/apps'
+import { useTags } from '@/queries/tags'
+import { useUserGroups } from '@/queries/userGroups'
 import { TextField } from '../components/fields/TextField'
 import { TextareaField } from '../components/fields/TextareaField'
 import { MultiAutocompleteField } from '../components/fields/MultiAutocompleteField'
