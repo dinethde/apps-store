@@ -1,0 +1,186 @@
+{
+  "uuid": "e652f178-4b11-417b-b35a-e17348fb40de",
+  "lastMigration": 33,
+  "name": "Apps Store API",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "961dc331-4d14-4d7f-aa59-fc42f042f9d6",
+      "type": "crud",
+      "documentation": "GET/POST /apps, GET/PUT/DELETE /apps/:id",
+      "method": "",
+      "endpoint": "apps",
+      "responses": [
+        {
+          "uuid": "48a7bd11-7d58-4689-9a1f-1bdd57b56b38",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "CRUD operations on the apps data bucket",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "apps",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "127ba4dc-8d67-465b-a0ee-2cfb012ff420",
+      "type": "crud",
+      "documentation": "GET/POST /tags, GET/PUT/DELETE /tags/:id",
+      "method": "",
+      "endpoint": "tags",
+      "responses": [
+        {
+          "uuid": "7262d3ed-f4ab-426b-a944-74a0df0ec5d2",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "CRUD operations on the tags data bucket",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "tags",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "0122af51-ce69-4222-bf03-3469b746d9e3",
+      "type": "crud",
+      "documentation": "GET /user-groups",
+      "method": "",
+      "endpoint": "user-groups",
+      "responses": [
+        {
+          "uuid": "506672e7-81ec-4c21-bbea-0bcb554c7a23",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "CRUD operations on the usergroups data bucket",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "usergroups",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "961dc331-4d14-4d7f-aa59-fc42f042f9d6"
+    },
+    {
+      "type": "route",
+      "uuid": "127ba4dc-8d67-465b-a0ee-2cfb012ff420"
+    },
+    {
+      "type": "route",
+      "uuid": "0122af51-ce69-4222-bf03-3469b746d9e3"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "312cf887-4133-45c1-b3ba-f5dbc25fda1d",
+      "id": "apps",
+      "name": "Apps",
+      "documentation": "",
+      "value": "[\n  {\n    \"id\": \"app-people\",\n    \"name\": \"People App\",\n    \"url\": \"https://www.people-stg.wso2.com\",\n    \"version\": \"1.0.0\",\n    \"description\": \"Human Resources\",\n    \"tagline\": \"Human Resources\",\n    \"tagIds\": [\n      \"tag-hr\",\n      \"tag-ops\"\n    ],\n    \"userGroupIds\": [\n      \"grp-hr\",\n      \"grp-ops\",\n      \"grp-dev\"\n    ],\n    \"icon\": null,\n    \"status\": true\n  }\n]"
+    },
+    {
+      "uuid": "daf936c6-0ab7-43a4-81d8-425a269160bb",
+      "id": "tags",
+      "name": "Tags",
+      "documentation": "",
+      "value": "[\n  {\n    \"id\": \"tag-hr\",\n    \"name\": \"HR\",\n    \"color\": \"#f97316\",\n    \"status\": true\n  },\n  {\n    \"id\": \"tag-ops\",\n    \"name\": \"Ops\",\n    \"color\": \"#007aff\",\n    \"status\": true\n  },\n  {\n    \"id\": \"tag-dev\",\n    \"name\": \"DEV\",\n    \"color\": \"#22c55e\",\n    \"status\": true\n  }\n]"
+    },
+    {
+      "uuid": "12a8611d-fc5d-4498-91a8-3d1a7633c17e",
+      "id": "usergroups",
+      "name": "User groups",
+      "documentation": "",
+      "value": "[\n  {\n    \"id\": \"grp-hr\",\n    \"name\": \"HR\"\n  },\n  {\n    \"id\": \"grp-ops\",\n    \"name\": \"OPS\"\n  },\n  {\n    \"id\": \"grp-dev\",\n    \"name\": \"DEV\"\n  },\n  {\n    \"id\": \"grp-finance\",\n    \"name\": \"FINANCE\"\n  }\n]"
+    }
+  ],
+  "callbacks": []
+}

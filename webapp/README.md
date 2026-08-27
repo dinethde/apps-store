@@ -6,8 +6,13 @@ To run this application:
 
 ```bash
 npm install
-npm run dev
+npm run mock   # local Mockoon API on http://localhost:3001
+npm run dev    # app on http://localhost:3000
 ```
+
+The app reads and writes its data through the mock API, so run both. See
+[docs/state-management.md](../docs/state-management.md) for how the data flows
+from the API into the store.
 
 # Building For Production
 

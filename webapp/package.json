@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "vite dev --port 3000",
+    "mock": "mockoon-cli start --data ./mock/apps-store.json --port 3001",
     "generate-routes": "tsr generate",
     "build": "vite build",
     "preview": "vite preview",
@@ -45,6 +46,7 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@mockoon/cli": "^9.8.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/eslint-config": "latest",

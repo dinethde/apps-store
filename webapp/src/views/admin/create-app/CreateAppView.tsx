@@ -4,8 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { createAppFormSchema } from './createAppSchema'
 import type { CreateAppFormValues } from './createAppSchema'
-import { useCreateApp } from '@/queries/apps'
-import { useAppsStore } from '@/store/appsStore'
+import { useAppsQuery, useCreateApp } from '@/queries/apps'
+import { useTagsQuery } from '@/queries/tags'
+import { useUserGroupsQuery } from '@/queries/userGroups'
+import { useAppStore } from '@/store/appStore'
 import { TextField } from '../components/fields/TextField'
 import { TextareaField } from '../components/fields/TextareaField'
 import { MultiAutocompleteField } from '../components/fields/MultiAutocompleteField'
@@ -26,9 +28,13 @@ const BLANK_VALUES: CreateAppFormValues = {
 }
 
 export function CreateAppView() {
-  const apps = useAppsStore((state) => state.apps)
-  const tags = useAppsStore((state) => state.tags)
-  const userGroups = useAppsStore((state) => state.userGroups)
+  useAppsQuery()
+  useTagsQuery()
+  useUserGroupsQuery()
+
+  const apps = useAppStore((state) => state.apps)
+  const tags = useAppStore((state) => state.tags)
+  const userGroups = useAppStore((state) => state.userGroups)
   const createApp = useCreateApp()
 
   const schema = useMemo(

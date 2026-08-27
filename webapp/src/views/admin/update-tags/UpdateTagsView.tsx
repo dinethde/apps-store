@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { updateTagFormSchema } from './updateTagSchema'
 import type { UpdateTagFormValues } from './updateTagSchema'
-import { useUpdateTag } from '@/queries/tags'
-import { useAppsStore } from '@/store/appsStore'
+import { useTagsQuery, useUpdateTag } from '@/queries/tags'
+import { useAppStore } from '@/store/appStore'
 import { TextField } from '../components/fields/TextField'
 import { ColorPickerField } from '../components/fields/ColorPickerField'
 import { SwitchField } from '../components/fields/SwitchField'
@@ -20,8 +20,9 @@ const EMPTY_VALUES: UpdateTagFormValues = {
 }
 
 export function UpdateTagsView() {
-  const tags = useAppsStore((state) => state.tags)
-  const tagsLoading = useAppsStore((state) => state.isLoading)
+  const { isPending: tagsLoading } = useTagsQuery()
+
+  const tags = useAppStore((state) => state.tags)
   const [selectedTagId, setSelectedTagId] = useState<string | null>(null)
   const selectedTag = tags.find((tag) => tag.id === selectedTagId)
   const updateTag = useUpdateTag()

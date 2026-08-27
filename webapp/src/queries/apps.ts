@@ -1,44 +1,45 @@
-import { useMutation } from '@tanstack/react-query'
-import { delay, nextId } from './mockUtils'
-import { initialApps } from './mockData'
-import { useAppsStore } from '@/store/appsStore'
+import { useEffect } from 'react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { get, post, put } from './http'
+import { useAppStore } from '@/store/appStore'
 import type { App } from '@/types/admin'
 
-let apps: Array<App> = [...initialApps]
-
-export async function fetchApps(): Promise<Array<App>> {
-  return delay([...apps])
-}
+const appsKey = ['apps']
 
 export type CreateAppInput = Omit<App, 'id'>
-
-async function createApp(input: CreateAppInput): Promise<App> {
-  const app: App = { ...input, id: nextId('app') }
-  apps = [...apps, app]
-  return delay(app)
-}
-
 export type UpdateAppInput = App
 
-async function updateApp(input: UpdateAppInput): Promise<App> {
-  apps = apps.map((app) => (app.id === input.id ? input : app))
-  return delay(input)
+/**
+ * Fetches the apps and writes them into the store. Call it from any component
+ * that needs apps; React Query dedupes the request, and the component reads
+ * the list back out of the store.
+ */
+export function useAppsQuery() {
+  const query = useQuery({
+    queryKey: appsKey,
+    queryFn: () => get<Array<App>>('/apps'),
+  })
+  const setApps = useAppStore((state) => state.setApps)
+
+  useEffect(() => {
+    if (query.data) setApps(query.data)
+  }, [query.data, setApps])
+
+  return query
 }
 
 export function useCreateApp() {
+  const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (input: CreateAppInput) => createApp(input),
-    onSuccess: (app) => {
-      useAppsStore.getState().upsertApp(app)
-    },
+    mutationFn: (input: CreateAppInput) => post<App>('/apps', input),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: appsKey }),
   })
 }
 
 export function useUpdateApp() {
+  const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (input: UpdateAppInput) => updateApp(input),
-    onSuccess: (app) => {
-      useAppsStore.getState().upsertApp(app)
-    },
+    mutationFn: (input: UpdateAppInput) => put<App>(`/apps/${input.id}`, input),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: appsKey }),
   })
 }

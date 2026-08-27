@@ -9,7 +9,9 @@ import {
 } from '@/components/ui/popover'
 import { Switch } from '@/components/ui/switch'
 import { Typography } from '@/components/ui/typography'
-import { useAppsStore } from '@/store/appsStore'
+import { useTagsQuery } from '@/queries/tags'
+import { useUserGroupsQuery } from '@/queries/userGroups'
+import { useAppStore } from '@/store/appStore'
 import { cn } from '@/lib/utils'
 
 function toggleId(list: Array<string>, id: string) {
@@ -52,14 +54,17 @@ function FilterOption({
 }
 
 export function FiltersPopover() {
-  const tags = useAppsStore((state) => state.tags)
-  const userGroups = useAppsStore((state) => state.userGroups)
+  useTagsQuery()
+  useUserGroupsQuery()
 
-  const filters = useAppsStore((state) => state.filters)
-  const setTagFilter = useAppsStore((state) => state.setTagFilter)
-  const setUserGroupFilter = useAppsStore((state) => state.setUserGroupFilter)
-  const setLikedOnly = useAppsStore((state) => state.setLikedOnly)
-  const clearFilters = useAppsStore((state) => state.clearFilters)
+  const tags = useAppStore((state) => state.tags)
+  const userGroups = useAppStore((state) => state.userGroups)
+
+  const filters = useAppStore((state) => state.filters)
+  const setTagFilter = useAppStore((state) => state.setTagFilter)
+  const setUserGroupFilter = useAppStore((state) => state.setUserGroupFilter)
+  const setLikedOnly = useAppStore((state) => state.setLikedOnly)
+  const clearFilters = useAppStore((state) => state.clearFilters)
 
   const activeCount =
     filters.tagIds.length +

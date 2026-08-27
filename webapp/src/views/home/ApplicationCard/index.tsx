@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Typography } from '@/components/ui/typography'
 import { HighlightText } from '@/components/ui/highlight-text'
 import { TagChip } from '@views/admin/components/TagChip'
-import { useAppsStore } from '@/store/appsStore'
+import { useAppStore } from '@/store/appStore'
 import { cn } from '@/lib/utils'
 import type { Tag } from '@/types/admin'
 
@@ -25,8 +25,8 @@ export function ApplicationCard({
   tags,
   searchQuery = '',
 }: ApplicationCardProps) {
-  const liked = useAppsStore((state) => Boolean(state.likedAppIds[id]))
-  const toggleLiked = useAppsStore((state) => state.toggleLiked)
+  const liked = useAppStore((state) => Boolean(state.likedAppIds[id]))
+  const toggleLiked = useAppStore((state) => state.toggleLiked)
 
   return (
     <div

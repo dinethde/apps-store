@@ -2,17 +2,22 @@ import { useMemo, useState } from 'react'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography'
-import { selectAppTags, useAppsStore } from '@/store/appsStore'
+import { useAppsQuery } from '@/queries/apps'
+import { useTagsQuery } from '@/queries/tags'
+import { useAppStore } from '@/store/appStore'
 import { ApplicationCard } from './ApplicationCard'
 import { FiltersPopover } from './FiltersPopover'
 
 export default function Home() {
   const [query, setQuery] = useState('')
 
-  const apps = useAppsStore((state) => state.apps)
-  const tags = useAppsStore((state) => state.tags)
-  const filters = useAppsStore((state) => state.filters)
-  const likedAppIds = useAppsStore((state) => state.likedAppIds)
+  useAppsQuery()
+  useTagsQuery()
+
+  const apps = useAppStore((state) => state.apps)
+  const tags = useAppStore((state) => state.tags)
+  const filters = useAppStore((state) => state.filters)
+  const likedAppIds = useAppStore((state) => state.likedAppIds)
 
   // Derived state: filter apps by search text, tags, user groups, and
   // liked status on every change
@@ -76,7 +81,7 @@ export default function Home() {
             name={app.name}
             subtitle={app.tagline || app.description}
             description={app.description}
-            tags={selectAppTags(app, tags)}
+            tags={tags.filter((tag) => app.tagIds.includes(tag.id))}
             userGroupIds={app.userGroupIds}
             searchQuery={query}
           />
