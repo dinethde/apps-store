@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography'
-import { useAppsStore } from '@/store/appsStore'
+import { selectAppTags, useAppsStore } from '@/store/appsStore'
 import { ApplicationCard } from './ApplicationCard'
 import { FiltersPopover } from './FiltersPopover'
 
@@ -10,6 +10,7 @@ export default function Home() {
   const [query, setQuery] = useState('')
 
   const apps = useAppsStore((state) => state.apps)
+  const tags = useAppsStore((state) => state.tags)
   const filters = useAppsStore((state) => state.filters)
   const likedAppIds = useAppsStore((state) => state.likedAppIds)
 
@@ -21,13 +22,13 @@ export default function Home() {
     return apps.filter((app) => {
       const matchesQuery =
         !q ||
-        [app.name, app.subtitle, app.description].some((field) =>
+        [app.name, app.tagline, app.description].some((field) =>
           field.toLowerCase().includes(q),
         )
 
       const matchesTags =
         filters.tagIds.length === 0 ||
-        app.tags.some((tag) => filters.tagIds.includes(tag.id))
+        app.tagIds.some((id) => filters.tagIds.includes(id))
 
       const matchesUserGroups =
         filters.userGroupIds.length === 0 ||
@@ -69,7 +70,16 @@ export default function Home() {
 
       {visibleApps.length ? (
         visibleApps.map((app) => (
-          <ApplicationCard key={app.id} {...app} searchQuery={query} />
+          <ApplicationCard
+            key={app.id}
+            id={app.id}
+            name={app.name}
+            subtitle={app.tagline || app.description}
+            description={app.description}
+            tags={selectAppTags(app, tags)}
+            userGroupIds={app.userGroupIds}
+            searchQuery={query}
+          />
         ))
       ) : (
         <Typography variant="p-m" className="text-txt-neutral-p3-active">

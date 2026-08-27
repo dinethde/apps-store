@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   HeadContent,
   Outlet,
@@ -11,6 +12,7 @@ import appCss from '../styles.css?url'
 import AppSidebar from '@/components/sidebar/AppSidebar'
 import Header from '@/components/header/Header'
 import { Toaster } from '@/components/ui/sonner'
+import { useAppsStore } from '@/store/appsStore'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,6 +74,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  useEffect(() => {
+    useAppsStore.getState().init()
+  }, [])
+
   return (
     <QueryClientProvider client={queryClient}>
       <div

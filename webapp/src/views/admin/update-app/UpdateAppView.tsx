@@ -4,9 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { updateAppFormSchema } from './updateAppSchema'
 import type { UpdateAppFormValues } from './updateAppSchema'
-import { useApp, useApps, useUpdateApp } from '@/queries/apps'
-import { useTags } from '@/queries/tags'
-import { useUserGroups } from '@/queries/userGroups'
+import { useUpdateApp } from '@/queries/apps'
+import { selectAppTags, useAppsStore } from '@/store/appsStore'
 import { TextField } from '../components/fields/TextField'
 import { TextareaField } from '../components/fields/TextareaField'
 import { MultiAutocompleteField } from '../components/fields/MultiAutocompleteField'
@@ -30,11 +29,12 @@ const EMPTY_VALUES: UpdateAppFormValues = {
 }
 
 export function UpdateAppView() {
-  const { data: apps = [], isLoading: appsLoading } = useApps()
-  const { data: tags = [] } = useTags()
-  const { data: userGroups = [] } = useUserGroups()
+  const apps = useAppsStore((state) => state.apps)
+  const tags = useAppsStore((state) => state.tags)
+  const userGroups = useAppsStore((state) => state.userGroups)
+  const appsLoading = useAppsStore((state) => state.isLoading)
   const [selectedAppId, setSelectedAppId] = useState<string | null>(null)
-  const { data: selectedApp } = useApp(selectedAppId ?? undefined)
+  const selectedApp = apps.find((app) => app.id === selectedAppId)
   const updateApp = useUpdateApp()
 
   const schema = useMemo(
@@ -75,7 +75,7 @@ export function UpdateAppView() {
   }))
   const userGroupOptions = userGroups.map((g) => ({ id: g.id, label: g.name }))
   const appOptions = apps.map((a) => ({ id: a.id, label: a.name }))
-  const appTags = tags.filter((t) => selectedApp?.tagIds.includes(t.id))
+  const appTags = selectedApp ? selectAppTags(selectedApp, tags) : []
   const fieldsDisabled = !selectedApp
 
   const resetToEmpty = () => {

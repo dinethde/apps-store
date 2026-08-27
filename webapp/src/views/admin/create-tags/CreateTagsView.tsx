@@ -4,7 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { createTagFormSchema } from './createTagSchema'
 import type { CreateTagFormValues } from './createTagSchema'
-import { useCreateTag, useTags } from '@/queries/tags'
+import { useCreateTag } from '@/queries/tags'
+import { useAppsStore } from '@/store/appsStore'
 import { TextField } from '../components/fields/TextField'
 import { ColorPickerField } from '../components/fields/ColorPickerField'
 import { SwitchField } from '../components/fields/SwitchField'
@@ -19,7 +20,7 @@ const BLANK_VALUES: CreateTagFormValues = {
 }
 
 export function CreateTagsView() {
-  const { data: tags = [] } = useTags()
+  const tags = useAppsStore((state) => state.tags)
   const createTag = useCreateTag()
 
   const schema = useMemo(

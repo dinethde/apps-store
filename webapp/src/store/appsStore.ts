@@ -1,14 +1,8 @@
 import { create } from 'zustand'
-import type { Tag } from '@/types/admin'
-
-export type HomeApplication = {
-  id: string
-  name: string
-  subtitle: string
-  description: string
-  tags: Array<Tag>
-  userGroupIds: Array<string>
-}
+import { fetchApps } from '@/queries/apps'
+import { fetchTags } from '@/queries/tags'
+import { fetchUserGroups } from '@/queries/userGroups'
+import type { App, Tag, UserGroup } from '@/types/admin'
 
 type AppsFilters = {
   tagIds: Array<string>
@@ -17,7 +11,14 @@ type AppsFilters = {
 }
 
 type AppsStore = {
-  apps: Array<HomeApplication>
+  apps: Array<App>
+  tags: Array<Tag>
+  userGroups: Array<UserGroup>
+  isLoading: boolean
+  isInitialized: boolean
+  init: () => Promise<void>
+  upsertApp: (app: App) => void
+  upsertTag: (tag: Tag) => void
   likedAppIds: Record<string, boolean>
   toggleLiked: (id: string) => void
   filters: AppsFilters
@@ -27,65 +28,46 @@ type AppsStore = {
   clearFilters: () => void
 }
 
-const initialApps: Array<HomeApplication> = [
-  {
-    id: 'app-1',
-    name: 'People App',
-    subtitle: 'Technology',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Eu sit purus ac tempus',
-    tags: [{ id: 'tag-hr', name: 'HR', color: '#f97316', status: true }],
-    userGroupIds: ['grp-hr', 'grp-ops'],
-  },
-  {
-    id: 'app-2',
-    name: 'Finance Hub',
-    subtitle: 'Finance',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Vulputate velit euismod sed adipiscing',
-    tags: [
-      { id: 'tag-finance', name: 'Finance', color: '#22c55e', status: true },
-    ],
-    userGroupIds: ['grp-finance'],
-  },
-  {
-    id: 'app-3',
-    name: 'Design Studio',
-    subtitle: 'Creative',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Amet risus nullam eget felis eget nunc',
-    tags: [
-      { id: 'tag-design', name: 'Design', color: '#a855f7', status: true },
-      {
-        id: 'tag-marketing',
-        name: 'Marketing',
-        color: '#3b82f6',
-        status: true,
-      },
-    ],
-    userGroupIds: ['grp-dev', 'grp-ops'],
-  },
-  {
-    id: 'app-4',
-    name: 'Task Tracker',
-    subtitle: 'Productivity',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Faucibus in hac habitasse platea dictumst',
-    tags: [
-      { id: 'tag-ops', name: 'Operations', color: '#eab308', status: true },
-    ],
-    userGroupIds: ['grp-ops'],
-  },
-]
-
 const initialFilters: AppsFilters = {
   tagIds: [],
   userGroupIds: [],
   likedOnly: false,
 }
 
-export const useAppsStore = create<AppsStore>((set) => ({
-  apps: initialApps,
+export const useAppsStore = create<AppsStore>((set, get) => ({
+  apps: [],
+  tags: [],
+  userGroups: [],
+  isLoading: false,
+  isInitialized: false,
+  init: async () => {
+    if (get().isInitialized || get().isLoading) return
+    set({ isLoading: true })
+    const [apps, tags, userGroups] = await Promise.all([
+      fetchApps(),
+      fetchTags(),
+      fetchUserGroups(),
+    ])
+    set({ apps, tags, userGroups, isLoading: false, isInitialized: true })
+  },
+  upsertApp: (app) =>
+    set((state) => {
+      const exists = state.apps.some((a) => a.id === app.id)
+      return {
+        apps: exists
+          ? state.apps.map((a) => (a.id === app.id ? app : a))
+          : [...state.apps, app],
+      }
+    }),
+  upsertTag: (tag) =>
+    set((state) => {
+      const exists = state.tags.some((t) => t.id === tag.id)
+      return {
+        tags: exists
+          ? state.tags.map((t) => (t.id === tag.id ? tag : t))
+          : [...state.tags, tag],
+      }
+    }),
   likedAppIds: {},
   toggleLiked: (id) =>
     set((state) => ({
@@ -100,3 +82,7 @@ export const useAppsStore = create<AppsStore>((set) => ({
     set((state) => ({ filters: { ...state.filters, likedOnly } })),
   clearFilters: () => set({ filters: initialFilters }),
 }))
+
+export function selectAppTags(app: App, tags: Array<Tag>): Array<Tag> {
+  return tags.filter((tag) => app.tagIds.includes(tag.id))
+}

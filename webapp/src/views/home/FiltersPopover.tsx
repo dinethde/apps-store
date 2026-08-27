@@ -9,8 +9,6 @@ import {
 } from '@/components/ui/popover'
 import { Switch } from '@/components/ui/switch'
 import { Typography } from '@/components/ui/typography'
-import { useTags } from '@/queries/tags'
-import { useUserGroups } from '@/queries/userGroups'
 import { useAppsStore } from '@/store/appsStore'
 import { cn } from '@/lib/utils'
 
@@ -54,8 +52,8 @@ function FilterOption({
 }
 
 export function FiltersPopover() {
-  const { data: tags = [] } = useTags()
-  const { data: userGroups = [] } = useUserGroups()
+  const tags = useAppsStore((state) => state.tags)
+  const userGroups = useAppsStore((state) => state.userGroups)
 
   const filters = useAppsStore((state) => state.filters)
   const setTagFilter = useAppsStore((state) => state.setTagFilter)
