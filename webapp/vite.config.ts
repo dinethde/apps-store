@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import { devtools } from '@tanstack/devtools-vite'
 
@@ -28,6 +29,10 @@ const config = defineConfig({
     },
   },
   plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact(), svgr()],
+  test: {
+    // The suite in ./testing is driven by Playwright, not Vitest.
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+  },
 })
 
 export default config

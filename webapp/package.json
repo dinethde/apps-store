@@ -13,6 +13,8 @@
     "preview": "vite preview",
     "start": "vite preview",
     "test": "vitest run",
+    "test:e2e": "playwright test --config ./testing/playwright.config.ts",
+    "test:e2e:ui": "playwright test --config ./testing/playwright.config.ts --ui",
     "lint": "eslint",
     "format": "prettier --write . && eslint --fix",
     "check": "prettier --check ."
@@ -47,6 +49,7 @@
   },
   "devDependencies": {
     "@mockoon/cli": "^9.8.0",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/eslint-config": "latest",
