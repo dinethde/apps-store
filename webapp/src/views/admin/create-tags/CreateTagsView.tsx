@@ -10,7 +10,7 @@ import { TextField } from '../components/fields/TextField'
 import { ColorPickerField } from '../components/fields/ColorPickerField'
 import { SwitchField } from '../components/fields/SwitchField'
 import { ActionButtons } from '../components/ActionButtons'
-import { TagChip } from '../components/TagChip'
+import { TagChip } from '@/components/TagChip'
 import { Typography } from '@/components/ui/typography'
 
 const BLANK_VALUES: CreateTagFormValues = {
