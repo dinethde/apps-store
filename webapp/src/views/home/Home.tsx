@@ -6,7 +6,7 @@ import { useAppsQuery } from '@/queries/apps'
 import { useTagsQuery } from '@/queries/tags'
 import { useAppStore } from '@/store/appStore'
 import { ApplicationCard } from './ApplicationCard'
-import { FiltersPopover } from './FiltersPopover'
+import { FilterModal } from './FilterModal'
 
 export default function Home() {
   const [query, setQuery] = useState('')
@@ -70,7 +70,7 @@ export default function Home() {
           />
         </div>
 
-        <FiltersPopover />
+        <FilterModal />
       </div>
 
       {visibleApps.length ? (
