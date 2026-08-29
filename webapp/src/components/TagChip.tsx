@@ -36,7 +36,7 @@ export function TagChip({ label, color, onRemove, className }: TagChipProps) {
           className={`rounded-xs opacity-70 outline-none hover:opacity-100
             focus-visible:ring-2 focus-visible:ring-ring/50`}
         >
-          <X className="size-2.5" />
+          <X className="size-3" />
         </button>
       ) : null}
     </span>

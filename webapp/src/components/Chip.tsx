@@ -77,12 +77,10 @@ export function Chip({
           type="button"
           onClick={onRemove}
           aria-label={`Remove ${label}`}
-          // The cross is 6px in the design, so the negative margin buys back a
-          // usable hit area without changing the chip's measured size.
           className={`-m-1 cursor-pointer rounded-xs p-1 outline-none
             focus-visible:ring-2 focus-visible:ring-ring/50`}
         >
-          <X className="size-1.5" strokeWidth={4} />
+          <X className="size-3" />
         </button>
       ) : null}
     </span>
