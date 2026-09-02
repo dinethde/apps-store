@@ -11,15 +11,20 @@ The frontend is real and working. **Everything else is designed but not built.**
 | Part                               | State                                                     |
 | ---------------------------------- | --------------------------------------------------------- |
 | `webapp/`                          | Built. TanStack Start + React 19, runs against a mock API |
-| `api/`                             | **Does not exist yet.** NestJS, planned                   |
+| `backend/`                         | **Does not exist yet.** NestJS, planned                   |
 | PostgreSQL, Keycloak, Redis, MinIO | **Not set up.** Designed in `docs/architecture.md`        |
 | Auth                               | **Not implemented.** No login exists today                |
 
 Do not describe planned components as if they exist, and do not write code that
-imports from `api/`. If a task needs the backend, say so.
+imports from `backend/`. If a task needs the backend, say so.
 
 The data the UI reads today comes from **Mockoon**, not a database — see
 `webapp/mock/apps-store.json`.
+
+Backend code lives in `backend/` at the repo root, never inside `webapp/`. Do not
+let the word “api” mislead you: the NestJS **service** is named `api` (compose
+service and network hostname), it serves **`/api/v1`**, and the browser calls
+**`/api/*`** on webapp which proxies through. The **folder** is `backend/`.
 
 ## Documentation map
 

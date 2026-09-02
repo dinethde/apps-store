@@ -29,15 +29,15 @@ Five processes, all in one `docker compose`:
 | Process    | What it is                    | Port   |
 | ---------- | ----------------------------- | ------ |
 | `webapp`   | TanStack Start (React 19)     | `3000` |
-| `api`      | NestJS                        | `4000` |
+| `backend`  | NestJS                        | `4000` |
 | `postgres` | apps-store's database         | `5432` |
 | `keycloak` | The bundled identity provider | `8080` |
 | `redis`    | BFF session store             | `6379` |
 
 Keycloak keeps its own database. Do not point it at apps-store's.
 
-The repository is a monorepo: `webapp/` exists today, `api/` is added in the
-backend phase.
+The repository is a monorepo: `webapp/` exists today, `backend/` is added in
+the backend phase.
 
 ## 2. Decisions
 
@@ -53,8 +53,8 @@ recognises it. Its licence is permissive, which matters for a bundled
 dependency. Its vocabulary — realm, client, group, role — is the vocabulary
 every other provider copies, so nothing learned here is wasted.
 
-**Consequence — the escape hatch.** Bundling is not hardcoding. The API and the
-web server locate the provider through **one** environment variable:
+**Consequence — the escape hatch.** Bundling is not hardcoding. The backend
+and the web server locate the provider through **one** environment variable:
 
 ```
 AUTH_ISSUER_URL=http://keycloak:8080/realms/apps-store
@@ -80,8 +80,8 @@ frontend, so groups live in two systems and one of them has to be the truth.
   `user_groups` table, so that `app_user_groups` can be a real foreign key and
   the admin screens can offer a picker.
 
-Membership reaches the API in the token on every request. It is never read from
-the database.
+Membership reaches the backend in the token on every request. It is never
+read from the database.
 
 **Why.** HR moves an employee between departments in the corporate directory,
 not in an app catalog. Storing membership locally would guarantee it goes
@@ -99,7 +99,7 @@ The TanStack Start server acts as a **backend for frontend** (BFF).
 | --------------- | ------------------------------------------------------ |
 | Browser         | One opaque session cookie. Nothing else.               |
 | `webapp` server | Access + refresh tokens, in Redis, keyed by session id |
-| `api`           | Nothing. It verifies each request's token from scratch |
+| `backend`       | Nothing. It verifies each request's token from scratch |
 
 The browser never receives an access token, an ID token, or a refresh token,
 and nothing auth-related is written to `localStorage` or `sessionStorage`.
@@ -111,18 +111,18 @@ _confidential_ OAuth client — one that can hold a secret — which a pure
 single-page app cannot be.
 
 **Consequence.** All browser traffic goes through the web server. The browser
-never calls `api` directly, which also means CORS between them is not a thing
-we need.
+never calls `backend` directly, which also means CORS between them is not a
+thing we need.
 
 **Why Redis and not the cookie.** Sealing the tokens into the cookie itself
 would avoid a container, but a Keycloak token for a user in many groups can
 exceed the 4 KB cookie limit — and the failure is silent and confusing. Redis
 costs one compose service and removes the ceiling.
 
-### 2.4 Authorization is enforced in the API, in the query
+### 2.4 Authorization is enforced in the backend, in the query
 
-The frontend hides things. The API decides them. These are not the same job and
-the frontend's version is not security.
+The frontend hides things. The backend decides them. These are not the same
+job and the frontend's version is not security.
 
 1. Every endpoint states the role it requires, enforced by a guard.
 2. Every list endpoint filters rows by the caller's groups **in the database
@@ -140,7 +140,7 @@ presentation. Group filtering moves server-side.
 
 ## 3. Database design
 
-One PostgreSQL database, owned by `api`. Nothing else connects to it.
+One PostgreSQL database, owned by `backend`. Nothing else connects to it.
 
 ### 3.1 Conventions
 
@@ -223,8 +223,9 @@ A tag is on or off, so it stays a boolean. Only `apps` gets the enum.
 **`app_tags`** — join, `(app_id, tag_id)` composite PK.
 
 **`app_user_groups`** — join, `(app_id, user_group_id)` composite PK. This is
-what `App.userGroupIds` becomes, and what [2.4](#24-authorization-is-enforced-in-the-api-in-the-query)
-filters on. An app with **no** rows here is visible to every authenticated
+what `App.userGroupIds` becomes, and what
+[2.4](#24-authorization-is-enforced-in-the-backend-in-the-query) filters on.
+An app with **no** rows here is visible to every authenticated
 user — that is the "company-wide" case, and it must be deliberate.
 
 **`favorites`** — `(user_id, app_id)` composite PK, plus `created_at`. Replaces
@@ -272,7 +273,7 @@ generated client is fully typed. TypeORM is the other common NestJS choice and
 is a defensible swap, but its entity decorators scatter the schema across the
 codebase, which is the wrong trade while the model is still moving.
 
-`api/prisma/schema.prisma`:
+`backend/prisma/schema.prisma`:
 
 ```prisma
 generator client {
@@ -474,8 +475,8 @@ This table is the test plan for the roles guard. One test per row that matters.
 
 ### 5.4 From a Keycloak claim to an apps-store role
 
-The API never reads a role name from a literal in code. It reads two claims and
-applies a mapping from configuration.
+The backend never reads a role name from a literal in code. It reads two
+claims and applies a mapping from configuration.
 
 ```
 AUTH_ROLE_CLAIM=realm_access.roles
@@ -581,7 +582,7 @@ test can be written against them.
 ### 6.2 The login sequence
 
 ```
- browser            webapp (BFF)          keycloak              api
+ browser            webapp (BFF)          keycloak            backend
     │                    │                    │                  │
  1  ├── GET /auth/login ─▶                    │                  │
  2  │  ◀── 302 to /authorize (PKCE challenge, state, nonce)      │
@@ -627,8 +628,8 @@ cannot be set.
 
 ### 6.4 First login
 
-The first time the API sees an `idp_subject`, it creates the `users` row from
-the token's claims — just-in-time provisioning. There is no invite flow, no
+The first time the backend sees an `idp_subject`, it creates the `users` row
+from the token's claims — just-in-time provisioning. There is no invite flow, no
 registration screen, and no admin step. If Keycloak says you exist, you exist.
 
 On every subsequent login the row's `email`, `display_name` and `last_login_at`
@@ -658,9 +659,9 @@ Only one refresh runs at a time per session; concurrent requests wait on it.
 Two parallel refreshes with rotating refresh tokens will invalidate each other,
 and the symptom — random logouts under load — is miserable to debug later.
 
-### 6.7 Verification in the API
+### 6.7 Verification in the backend
 
-Every request to `api` is verified independently. Using `jose`:
+Every request to the backend is verified independently. Using `jose`:
 
 1. `createRemoteJWKSet(new URL(jwks_uri))` at boot, from the discovery document.
    It caches keys and refetches on an unknown `kid`.
@@ -681,7 +682,7 @@ escape hatch honest.
 
 ### 6.8 Group sync
 
-`user_groups` is refreshed by `GroupSyncService` in `api`, using the
+`user_groups` is refreshed by `GroupSyncService` in `backend`, using the
 `apps-store-api-sync` service account against Keycloak's Admin API:
 
 - on boot,
@@ -699,7 +700,7 @@ Login-time upsert alone leaves the picker empty on a fresh install.
 ### 6.9 Environment variables
 
 ```
-# api
+# backend
 DATABASE_URL=postgresql://appsstore:...@postgres:5432/appsstore
 AUTH_ISSUER_URL=http://keycloak:8080/realms/apps-store
 AUTH_API_AUDIENCE=apps-store-api
@@ -718,7 +719,7 @@ AUTH_CLIENT_SECRET=...
 AUTH_REDIRECT_URI=http://localhost:3000/api/auth/callback
 SESSION_SECRET=...
 REDIS_URL=redis://redis:6379
-API_BASE_URL=http://api:4000/api/v1
+API_BASE_URL=http://backend:4000/api/v1
 ```
 
 No secret has a default value in code. The app refuses to boot if one is
@@ -730,7 +731,7 @@ missing, rather than starting in a quietly insecure state.
 
 1. The Nest API is served under `/api/v1`. The version is in the path from day
    one; adding it later is the expensive kind of change.
-2. The browser never calls the API directly. It calls same-origin routes on
+2. The browser never calls the backend directly. It calls same-origin routes on
    `webapp`, which proxy 1:1 and attach the bearer token. Same-origin means no
    CORS configuration and no preflight.
 3. JSON is `camelCase`. Timestamps are ISO 8601 in UTC (`2026-08-29T09:14:00Z`).
@@ -742,8 +743,8 @@ missing, rather than starting in a quietly insecure state.
 
 ### 7.2 Endpoints
 
-Auth routes live on `webapp`, not the API, because they are about the browser
-session:
+Auth routes live on `webapp`, not the backend, because they are about the
+browser session:
 
 | Method | Path                   | Purpose                           |
 | ------ | ---------------------- | --------------------------------- |
@@ -752,7 +753,8 @@ session:
 | `POST` | `/api/auth/logout`     | App logout                        |
 | `GET`  | `/api/auth/logout/all` | Full logout via `end_session`     |
 
-The API. "Filtered" means [5.5](#55-the-visibility-rule) applies.
+The backend's endpoints. "Filtered" means [5.5](#55-the-visibility-rule)
+applies.
 
 | Method   | Path                          | Role   | Notes                         |
 | -------- | ----------------------------- | ------ | ----------------------------- |
@@ -912,5 +914,5 @@ Deliberately deferred, recorded so they are decisions and not oversights.
 ## Next
 
 - Diagrams (container, ERD, login sequence) as Mermaid, added to this file.
-- Then `api/` scaffolding with sample endpoints and **no auth**, so that any
+- Then `backend/` scaffolding with sample endpoints and **no auth**, so that any
   failure at that stage is plumbing rather than identity.
