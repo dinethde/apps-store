@@ -1,0 +1,129 @@
+// The schema is docs/architecture.md §4. Change the doc first, then this file.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AppStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model User {
+  id          String    @id @default(uuid())
+  idpSubject  String    @unique @map("idp_subject")
+  email       String
+  displayName String    @map("display_name")
+  lastLoginAt DateTime? @map("last_login_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  createdApps App[]      @relation("AppCreatedBy")
+  favorites   Favorite[]
+  auditEvents AuditLog[]
+
+  @@map("users")
+}
+
+model UserGroup {
+  id         String   @id @default(uuid())
+  idpGroupId String   @unique @map("idp_group_id")
+  name       String
+  path       String
+  syncedAt   DateTime @default(now()) @map("synced_at")
+
+  apps AppUserGroup[]
+
+  @@map("user_groups")
+}
+
+model App {
+  id            String    @id @default(uuid())
+  name          String
+  url           String
+  version       String
+  tagline       String
+  description   String
+  status        AppStatus @default(DRAFT)
+  iconName      String?   @map("icon_name")
+  iconSizeLabel String?   @map("icon_size_label")
+  iconUrl       String?   @map("icon_url")
+  createdById   String?   @map("created_by_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  createdBy  User?          @relation("AppCreatedBy", fields: [createdById], references: [id])
+  tags       AppTag[]
+  userGroups AppUserGroup[]
+  favorites  Favorite[]
+
+  @@index([status])
+  @@map("apps")
+}
+
+model Tag {
+  id       String  @id @default(uuid())
+  name     String  @unique
+  color    String
+  isActive Boolean @default(true) @map("is_active")
+
+  apps AppTag[]
+
+  @@map("tags")
+}
+
+model AppTag {
+  appId String @map("app_id")
+  tagId String @map("tag_id")
+
+  app App @relation(fields: [appId], references: [id], onDelete: Cascade)
+  tag Tag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([appId, tagId])
+  @@map("app_tags")
+}
+
+model AppUserGroup {
+  appId       String @map("app_id")
+  userGroupId String @map("user_group_id")
+
+  app       App       @relation(fields: [appId], references: [id], onDelete: Cascade)
+  userGroup UserGroup @relation(fields: [userGroupId], references: [id], onDelete: Cascade)
+
+  @@id([appId, userGroupId])
+  @@index([userGroupId])
+  @@map("app_user_groups")
+}
+
+model Favorite {
+  userId    String   @map("user_id")
+  appId     String   @map("app_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  app  App  @relation(fields: [appId], references: [id], onDelete: Cascade)
+
+  @@id([userId, appId])
+  @@map("favorites")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  actorId    String?  @map("actor_id")
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id")
+  changes    Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  actor User? @relation(fields: [actorId], references: [id])
+
+  @@index([entityType, entityId, createdAt(sort: Desc)])
+  @@map("audit_log")
+}

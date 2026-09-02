@@ -6,20 +6,23 @@ whole stack on its own infrastructure.
 
 ## Read this first — where the project actually is
 
-The frontend is real and working. **Everything else is designed but not built.**
+The frontend and the backend are real and working. **Auth is not.**
 
-| Part                               | State                                                     |
-| ---------------------------------- | --------------------------------------------------------- |
-| `webapp/`                          | Built. TanStack Start + React 19, runs against a mock API |
-| `backend/`                         | **Does not exist yet.** NestJS, planned                   |
-| PostgreSQL, Keycloak, Redis, MinIO | **Not set up.** Designed in `docs/architecture.md`        |
-| Auth                               | **Not implemented.** No login exists today                |
+| Part                   | State                                                              |
+| ---------------------- | ------------------------------------------------------------------ |
+| `webapp/`              | Built. TanStack Start + React 19                                   |
+| `backend/`             | Built. NestJS + Prisma, no auth — see `backend/README.md` and §7.7 |
+| PostgreSQL             | Running in `docker-compose.yml`; schema in committed migrations    |
+| Keycloak, Redis, MinIO | **Not set up.** Designed in `docs/architecture.md`                 |
+| Auth                   | **Not implemented.** No login, no guard, no visibility filter      |
 
-Do not describe planned components as if they exist, and do not write code that
-imports from `backend/`. If a task needs the backend, say so.
+Do not describe planned components as if they exist. Every caller is the seeded
+dev user, resolved in one place — `backend/src/common/current-user.service.ts`.
+Do not spread that assumption further.
 
-The data the UI reads today comes from **Mockoon**, not a database — see
-`webapp/mock/apps-store.json`.
+The UI reads either server: `bun run mock` (Mockoon, the default) or the backend
+via `VITE_API_URL`. Both are supported, so a change that only works against one
+of them is not done.
 
 Backend code lives in `backend/` at the repo root, never inside `webapp/`. Do not
 let the word “api” mislead you: the NestJS **service** is named `api` (compose
@@ -60,6 +63,8 @@ boards, including an auth-flow walkthrough not exported here).
 Run from `webapp/`. **The package manager is `bun`** (`bun.lock` is committed;
 ignore the `"packageManager": "npm"` left over in `.cta.json`).
 
+The backend has its own commands — see `backend/README.md`.
+
 ```bash
 bun run mock     # Mockoon API on :3001 — start this first
 bun run dev      # app on :3000
@@ -70,7 +75,8 @@ bun run format   # prettier --write + eslint --fix
 bun run check    # prettier --check
 ```
 
-`bun run dev` without `bun run mock` gives an app with no data. Both are needed.
+`bun run dev` without `bun run mock` gives an app with no data. Both are needed,
+unless `VITE_API_URL` points at the backend instead.
 
 ## Architecture invariants
 

@@ -1,7 +1,9 @@
 # Architecture
 
-Status: **proposed** — 2026-08-29. Everything here is a decision, not a
-suggestion. Change any of it, but change it _here_ first, then in code.
+Status: **proposed** — 2026-08-29; sections 3, 4 and 7 are **implemented** in
+`backend/` as of 2026-09-02, without the authentication of sections 5 and 6.
+Everything here is a decision, not a suggestion. Change any of it, but change it
+_here_ first, then in code.
 
 Scope: decisions, data model, roles, login flow, and the API contract.
 Diagrams and the implementation plan live elsewhere (see [Next](#next)).
@@ -198,15 +200,20 @@ Written only by the sync job.
 | `created_by_id`   | `uuid` null FK     | → `users.id`                       |
 | `created_at`      | `timestamptz`      |                                    |
 | `updated_at`      | `timestamptz`      |                                    |
-| `updated_by_id`   | `UUID`             | → `users.id`                       |
 | `deleted_at`      | `timestamptz` null | Soft delete                        |
+
+There is no `updated_by_id`. It was listed here once and never in the schema;
+the column waits for [6](#6-login-and-token-flow), because until a request
+carries an identity there is no actor to write into it.
 
 `status` is an enum, not the boolean the frontend has today.
 
-1. Draft
-2. Active
-3. Archive
-4. Delete
+1. `DRAFT`
+2. `PUBLISHED`
+3. `ARCHIVED`
+
+Deletion is not a status. `deleted_at` carries it, so a soft-deleted app keeps
+whichever of the three it had.
 
 [7.6](#76-what-changes-in-webapp) for the frontend impact.
 
@@ -288,9 +295,8 @@ datasource db {
 
 enum AppStatus {
   DRAFT
-  ACTIVE
+  PUBLISHED
   ARCHIVED
-  DELETED
 }
 
 model User {
@@ -411,11 +417,15 @@ model AuditLog {
 
 - `prisma migrate dev` in development, `prisma migrate deploy` in the container
   entrypoint. Migrations are committed; the database is never changed by hand.
-- `prisma/seed.ts` inserts the demo catalog: a dozen apps across `finance`,
-  `engineering` and one company-wide app with no group rows, plus the tag set.
-  It is idempotent, so re-running it is safe.
-- Seeded `user_groups` rows use the same `idp_group_id` values as the committed
-  Keycloak realm export, so the two seeds line up on a fresh `compose up`.
+- `prisma/seed.ts` mirrors `webapp/mock/apps-store.json` — the same app, tags
+  and groups the mock serves — so the UI looks identical against either. It is
+  idempotent, so re-running it is safe. The mock's ids are not UUIDs, so the
+  seed uses fixed UUIDs with the mock's content.
+- It also inserts the one `users` row that
+  [7.7](#77-what-is-built-today) resolves every caller to.
+- Seeded `user_groups` rows will need the same `idp_group_id` values as the
+  committed Keycloak realm export, so the two seeds line up on a fresh
+  `compose up`. Today they are derived from the group path.
 
 ## 5. Roles and permissions
 
@@ -703,6 +713,8 @@ Login-time upsert alone leaves the picker empty on a fresh install.
 ```
 # backend
 DATABASE_URL=postgresql://appsstore:...@postgres:5432/appsstore
+PORT=4000
+WEBAPP_ORIGIN=http://localhost:3000   # CORS; drop when the BFF proxies
 AUTH_ISSUER_URL=http://keycloak:8080/realms/apps-store
 AUTH_API_AUDIENCE=apps-store-api
 AUTH_ROLE_CLAIM=realm_access.roles
@@ -887,6 +899,10 @@ The differences, all small and all better found now:
    server-side.
 3. `App.status` becomes `'DRAFT' | 'PUBLISHED' | 'ARCHIVED'` instead of
    `boolean`. The admin toggle becomes a three-state control, or two buttons.
+   Until then the column is the enum and `backend/src/apps/app.mapper.ts` maps
+   it to a boolean at the edge — `PUBLISHED ⇄ true`, `DRAFT ⇄ false` — so the
+   frontend needs no change to read or write. Both halves of that mapping go
+   when this item is done.
 4. `likedAppIds` leaves the Zustand store's client state and becomes server
    data: `isFavorite` on the app, mutated through the favourite endpoints. The
    `likedOnly` filter stays client-side, reading the new field.
@@ -897,6 +913,33 @@ The differences, all small and all better found now:
 
 Everything else — the query-hook-writes-to-store pattern in
 [state-management.md](./state-management.md) — is unchanged.
+
+### 7.7 What is built today
+
+`backend/` implements sections 3, 4 and 7 and none of 5 or 6. There is no
+token, no guard and no group filter, deliberately: identity arrives in its own
+phase, so a failure in this one is plumbing.
+
+| Built                                                                | Waiting for auth                          |
+| -------------------------------------------------------------------- | ----------------------------------------- |
+| `GET /health`                                                        | `GET /me`                                 |
+| `GET /apps`, `GET /apps/:id`                                         | the visibility predicate inside them      |
+| `POST /apps`, `PATCH /apps/:id`                                      | their move to `/admin/apps` behind a role |
+| `GET /tags`, `POST /tags`, `PATCH /tags/:id`                         | the same move, and the active-only filter |
+| `GET /user-groups`                                                   | the sync job that fills it                |
+| the §7.3 error envelope, the §7.4 list envelope, the whole §4 schema | favourites, audit writes, icon uploads    |
+
+Two seams hold the shape of what is missing, and nothing else in the code
+assumes a caller:
+
+- `CurrentUserService.get()` resolves the caller. It returns the seeded dev
+  user; [6.7](#67-verification-in-the-backend) replaces the body.
+- `AppsRepository.visibleWhere()` narrows every read. It returns
+  `deleted_at IS NULL`; [5.5](#55-the-visibility-rule) replaces the body.
+
+While the browser calls the backend directly, the service allows CORS from
+`WEBAPP_ORIGIN`. That goes when the BFF proxies same-origin, per
+[2.3](#23-tokens-live-on-the-web-server-never-in-the-browser).
 
 ## 8. Known gaps
 
