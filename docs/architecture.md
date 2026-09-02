@@ -198,14 +198,15 @@ Written only by the sync job.
 | `created_by_id`   | `uuid` null FK     | → `users.id`                       |
 | `created_at`      | `timestamptz`      |                                    |
 | `updated_at`      | `timestamptz`      |                                    |
-| `updated_by_id`      | `UUID`      | → `users.id`                                   |
+| `updated_by_id`   | `UUID`             | → `users.id`                       |
 | `deleted_at`      | `timestamptz` null | Soft delete                        |
 
-`status` is an enum, not the boolean the frontend has today. 
-  1. Draft
-  2. Active
-  3. Archive 
-  4. Delete
+`status` is an enum, not the boolean the frontend has today.
+
+1. Draft
+2. Active
+3. Archive
+4. Delete
 
 [7.6](#76-what-changes-in-webapp) for the frontend impact.
 
@@ -900,16 +901,17 @@ Everything else — the query-hook-writes-to-store pattern in
 ## 8. Known gaps
 
 Deliberately deferred, recorded so they are decisions and not oversights.
-2. **Group-scoped editors.** An editor can edit any app, not only their own
+
+1. **Group-scoped editors.** An editor can edit any app, not only their own
    group's. The model supports narrowing it later; the matrix does not need it
    yet.
-3. **No SAML.** Bundled Keycloak speaks it upstream if an adopter needs it, so
+2. **No SAML.** Bundled Keycloak speaks it upstream if an adopter needs it, so
    apps-store never has to.
-4. **Revocation lag.** Disabling a user in Keycloak takes effect within one
+3. **Revocation lag.** Disabling a user in Keycloak takes effect within one
    access-token lifetime (10 minutes), not instantly. Acceptable; the
    alternative is token introspection on every request.
-5. **Single realm, single tenant.** No multi-tenancy. Out of scope.
-6. **Audit log has no retention policy.** It grows forever. Fine until it isn't.
+4. **Single realm, single tenant.** No multi-tenancy. Out of scope.
+5. **Audit log has no retention policy.** It grows forever. Fine until it isn't.
 
 ## Next
 
