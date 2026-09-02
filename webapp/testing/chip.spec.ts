@@ -5,10 +5,10 @@ import {
   HOVER_SPECS,
   REMOVE_ICON,
 } from './figma-chip-spec'
+import type { Locator } from '@playwright/test'
 
 /** Served by the Vite dev server, which transforms it on request. */
 const FIXTURE_MODULE = '/testing/fixtures/mount-chips.tsx'
-import type { Locator } from '@playwright/test'
 
 /**
  * Measures every Chip variant rendered by the /dev/chips gallery against the
