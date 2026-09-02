@@ -23,13 +23,10 @@ export function PageTabs({ tabs, className }: PageTabsProps) {
   const activeTo = tabs.find((tab) => matchRoute({ to: tab.to }))?.to
 
   return (
-    <Tabs
-      value={activeTo ?? null}
-      className={cn('flex w-fit flex-col', className)}
-    >
+    <Tabs value={activeTo ?? null} className={className}>
       <TabsList
-        className={`h-fit w-fit shrink-0 gap-2.5 self-start rounded-lg
-          bg-surface-neutral-light-active p-1 shadow-sm`}
+        className={`h-fit w-fit gap-2.5 self-start rounded-lg
+          bg-surface-neutral-light-active p-1 py-2 shadow-sm`}
       >
         {tabs.map((tab) => {
           const isActive = tab.to === activeTo
@@ -39,8 +36,8 @@ export function PageTabs({ tabs, className }: PageTabsProps) {
               value={tab.to}
               render={<Link to={tab.to} />}
               className={cn(
-                'h-fit shrink-0 rounded-md border-none px-2 py-1.5',
-                isActive && 'bg-brand-50 shadow-none',
+                'h-fit rounded-md border-none px-2 py-1',
+                isActive && '!bg-brand-50 !shadow-none',
               )}
             >
               <Typography
