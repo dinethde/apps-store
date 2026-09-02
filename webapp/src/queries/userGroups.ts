@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { get } from './http'
+import { getList } from './http'
 import { useAppStore } from '@/store/appStore'
 import type { UserGroup } from '@/types/admin'
 
@@ -8,7 +8,7 @@ import type { UserGroup } from '@/types/admin'
 export function useUserGroupsQuery() {
   const query = useQuery({
     queryKey: ['userGroups'],
-    queryFn: () => get<Array<UserGroup>>('/user-groups'),
+    queryFn: () => getList<UserGroup>('/user-groups'),
   })
   const setUserGroups = useAppStore((state) => state.setUserGroups)
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { get, post, put } from './http'
+import { getList, patch, post } from './http'
 import { useAppStore } from '@/store/appStore'
 import type { Tag } from '@/types/admin'
 
@@ -13,7 +13,7 @@ export type UpdateTagInput = Tag
 export function useTagsQuery() {
   const query = useQuery({
     queryKey: tagsKey,
-    queryFn: () => get<Array<Tag>>('/tags'),
+    queryFn: () => getList<Tag>('/tags'),
   })
   const setTags = useAppStore((state) => state.setTags)
 
@@ -35,7 +35,8 @@ export function useCreateTag() {
 export function useUpdateTag() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (input: UpdateTagInput) => put<Tag>(`/tags/${input.id}`, input),
+    mutationFn: ({ id, ...changes }: UpdateTagInput) =>
+      patch<Tag>(`/tags/${id}`, changes),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: tagsKey }),
   })
 }

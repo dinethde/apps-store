@@ -847,8 +847,9 @@ Query parameters: `page` (default 1), `pageSize` (default 24, max 100), `q`
 
 **Why an envelope, given the frontend expects bare arrays today.** Because
 `/apps` will need paging and `total`, and adding the envelope later means
-touching every call site plus `http.ts`. There are three call sites now. It is
-a ten-minute change today and an afternoon later.
+touching every call site plus `http.ts`. There were three call sites, and it
+was the ten-minute change it looked like — `getList` in `http.ts` unwraps
+`data` for all three.
 
 ### 7.5 Representative payloads
 
@@ -892,8 +893,11 @@ app.
 The contract above is close to what the frontend already sends and receives.
 The differences, all small and all better found now:
 
-1. `src/queries/http.ts` unwraps `data` from the list envelope, and gains
-   `patch` and `del` alongside `get`/`post`/`put`.
+1. **Done.** `src/queries/http.ts` unwraps `data` from the list envelope in
+   `getList`, and gained `patch`; `useUpdateApp` and `useUpdateTag` send
+   `PATCH` with the changed fields rather than `PUT` with the whole object.
+   `getList` still accepts a bare array, because Mockoon returns one and the
+   mock stays runnable.
 2. `BASE_URL` points at the same-origin proxy (`/api`), not `VITE_API_URL`, once
    auth is in — the browser must send the cookie, and the token must be attached
    server-side.

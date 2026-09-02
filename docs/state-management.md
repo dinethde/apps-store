@@ -21,7 +21,7 @@ same hook without extra requests.
 | File                        | Job                                                                                       |
 | --------------------------- | ----------------------------------------------------------------------------------------- |
 | `mock/apps-store.json`      | Mockoon environment: the local API.                                                       |
-| `src/queries/http.ts`       | `get` / `post` / `put` against `VITE_API_URL` (default `http://localhost:3001`).          |
+| `src/queries/http.ts`       | `getList` / `post` / `patch` against `VITE_API_URL` (default `http://localhost:3001`).    |
 | `src/queries/apps.ts`       | `useAppsQuery`, `useCreateApp`, `useUpdateApp`.                                           |
 | `src/queries/tags.ts`       | `useTagsQuery`, `useCreateTag`, `useUpdateTag`.                                           |
 | `src/queries/userGroups.ts` | `useUserGroupsQuery` (read-only).                                                         |
@@ -50,6 +50,21 @@ await createApp.mutateAsync(values);
 The hook invalidates `['apps']`, React Query refetches, the refetch calls
 `setApps`, and every component reading `apps` re-renders. No component patches
 the store by hand.
+
+## Two servers to point at
+
+`VITE_API_URL` decides which API the app talks to, and they are alternatives:
+
+```bash
+bun run mock   # Mockoon on :3001 — the default
+# or, from backend/ — see backend/README.md
+VITE_API_URL=http://localhost:4000/api/v1 bun run dev
+```
+
+The real backend wraps every collection in `{ data, meta }` (architecture §7.4)
+and Mockoon answers with a bare array, so `getList` accepts both and hands the
+hooks an array either way. Writes are `POST` and `PATCH`; Mockoon's CRUD routes
+understand both, so the admin screens work against either server.
 
 ## The mock server
 

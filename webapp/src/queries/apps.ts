@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { get, post, put } from './http'
+import { getList, patch, post } from './http'
 import { useAppStore } from '@/store/appStore'
 import type { App } from '@/types/admin'
 
@@ -17,7 +17,7 @@ export type UpdateAppInput = App
 export function useAppsQuery() {
   const query = useQuery({
     queryKey: appsKey,
-    queryFn: () => get<Array<App>>('/apps'),
+    queryFn: () => getList<App>('/apps'),
   })
   const setApps = useAppStore((state) => state.setApps)
 
@@ -39,7 +39,8 @@ export function useCreateApp() {
 export function useUpdateApp() {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: (input: UpdateAppInput) => put<App>(`/apps/${input.id}`, input),
+    mutationFn: ({ id, ...changes }: UpdateAppInput) =>
+      patch<App>(`/apps/${id}`, changes),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: appsKey }),
   })
 }
