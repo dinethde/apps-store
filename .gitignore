@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# graphify (local state and regenerable caches only)
+/graphify-out/manifest.json
+/graphify-out/cache/
+/graphify-out/.graphify_*
