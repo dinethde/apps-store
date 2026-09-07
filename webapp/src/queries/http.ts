@@ -1,12 +1,12 @@
 // Talks to the backend at VITE_API_URL (see backend/README.md), or to the
 // Mockoon mock server on :3001 by default (webapp/mock/apps-store.json).
-import { BASE_URL } from '@constants/index'
+import { BACKEND_URL } from '@constants/index'
 
 /** The list envelope every collection endpoint returns (architecture §7.4). */
 type ListEnvelope<T> = { data: Array<T>; meta: unknown }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${BASE_URL}${path}`, {
+  const response = await fetch(`${BACKEND_URL}${path}`, {
     headers: { 'Content-Type': 'application/json' },
     ...init,
   })
