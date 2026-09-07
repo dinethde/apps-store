@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import type { DefaultValues } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { updateAppFormSchema } from './updateAppSchema'
 import type { UpdateAppFormValues } from './updateAppSchema'
+import { createSampleAppIconFile } from './sampleAppIcon'
 import { useAppsQuery, useUpdateApp } from '@/queries/apps'
 import { useTagsQuery } from '@/queries/tags'
 import { useUserGroupsQuery } from '@/queries/userGroups'
@@ -17,7 +19,7 @@ import { SingleAutocompleteField } from '../components/fields/SingleAutocomplete
 import { ActionButtons } from '../components/ActionButtons'
 import { ApplicationCard } from '@views/home/ApplicationCard'
 
-const EMPTY_VALUES: UpdateAppFormValues = {
+const EMPTY_VALUES: DefaultValues<UpdateAppFormValues> = {
   appId: '',
   name: '',
   url: '',
@@ -26,7 +28,7 @@ const EMPTY_VALUES: UpdateAppFormValues = {
   tagline: '',
   tagIds: [],
   userGroupIds: [],
-  icon: null,
+  icon: undefined,
   status: false,
 }
 
@@ -68,7 +70,7 @@ export function UpdateAppView() {
       tagline: selectedApp.tagline,
       tagIds: selectedApp.tagIds,
       userGroupIds: selectedApp.userGroupIds,
-      icon: null,
+      icon: createSampleAppIconFile(),
       status: selectedApp.status,
     })
   }, [selectedApp, form])
@@ -100,7 +102,11 @@ export function UpdateAppView() {
       tagline: values.tagline ?? '',
       tagIds: values.tagIds,
       userGroupIds: values.userGroupIds,
-      icon: selectedApp?.icon ?? null,
+      icon: {
+        name: values.icon.name,
+        sizeLabel: `${(values.icon.size / 1024).toFixed(1)} KB`,
+        url: '',
+      },
       status: values.status,
     })
     toast.success(`"${values.name}" was updated successfully`)

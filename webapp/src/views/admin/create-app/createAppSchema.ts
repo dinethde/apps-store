@@ -1,9 +1,19 @@
 import { z } from 'zod'
 import {
-  appIconSchema,
   nameUniqueRefinement,
+  SVG_MIME,
+  MAX_ICON_BYTES,
   SEMVER,
 } from '../components/schemaUtils'
+
+const appIconSchema = z
+  .instanceof(File, { error: 'App Icon is required' })
+  .refine((file) => file.type === SVG_MIME || file.name.endsWith('.svg'), {
+    message: 'Only svgs are allowed',
+  })
+  .refine((file) => file.size <= MAX_ICON_BYTES, {
+    message: 'Max file size is 5mbs',
+  })
 
 export function createAppFormSchema(existingAppNames: Array<string>) {
   return z.object({
@@ -37,7 +47,7 @@ export function createAppFormSchema(existingAppNames: Array<string>) {
       .optional()
       .or(z.literal('')),
     tagIds: z.array(z.string()).min(1, 'Select at least one tag'),
-    userGroupIds: z.array(z.string()),
+    userGroupIds: z.array(z.string()).min(1, 'Select at least one user group'),
     icon: appIconSchema,
     status: z.boolean(),
   })

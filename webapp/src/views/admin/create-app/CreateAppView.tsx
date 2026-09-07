@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
+import type { DefaultValues } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { createAppFormSchema } from './createAppSchema'
@@ -15,7 +16,7 @@ import { FileUploadField } from '../components/fields/FileUploadField'
 import { SwitchField } from '../components/fields/SwitchField'
 import { ActionButtons } from '../components/ActionButtons'
 
-const BLANK_VALUES: CreateAppFormValues = {
+const BLANK_VALUES: DefaultValues<CreateAppFormValues> = {
   name: '',
   url: '',
   version: '',
@@ -23,7 +24,7 @@ const BLANK_VALUES: CreateAppFormValues = {
   tagline: '',
   tagIds: [],
   userGroupIds: [],
-  icon: null,
+  icon: undefined,
   status: false,
 }
 
@@ -64,13 +65,11 @@ export function CreateAppView() {
       tagline: values.tagline ?? '',
       tagIds: values.tagIds,
       userGroupIds: values.userGroupIds,
-      icon: values.icon
-        ? {
-            name: values.icon.name,
-            sizeLabel: `${(values.icon.size / 1024).toFixed(1)} KB`,
-            url: '',
-          }
-        : null,
+      icon: {
+        name: values.icon.name,
+        sizeLabel: `${(values.icon.size / 1024).toFixed(1)} KB`,
+        url: '',
+      },
       status: values.status,
     })
     toast.success(`"${values.name}" was created successfully`)
@@ -90,24 +89,28 @@ export function CreateAppView() {
             label="App Name"
             placeholder="placeholder"
           />
+
           <TextField
             control={form.control}
             name="url"
             label="App URL"
             placeholder="placeholder"
           />
+
           <TextField
             control={form.control}
             name="version"
             label="App Version"
             placeholder="placeholder"
           />
+
           <TextareaField
             control={form.control}
             name="description"
             label="App Description"
             placeholder="placeholder"
           />
+
           <MultiAutocompleteField
             control={form.control}
             name="tagIds"
@@ -128,6 +131,7 @@ export function CreateAppView() {
               label="Tagline"
               placeholder="placeholder"
             />
+
             <MultiAutocompleteField
               control={form.control}
               name="userGroupIds"
@@ -135,11 +139,13 @@ export function CreateAppView() {
               options={userGroupOptions}
               placeholder="Placeholder"
             />
+
             <FileUploadField
               control={form.control}
               name="icon"
               label="App Icon"
             />
+
             <SwitchField
               control={form.control}
               name="status"
@@ -149,6 +155,7 @@ export function CreateAppView() {
 
           <ActionButtons
             submitLabel="Confirm"
+            disabled={!form.formState.isDirty || !form.formState.isValid}
             onCancel={() => form.reset(BLANK_VALUES)}
             isSubmitting={form.formState.isSubmitting}
           />

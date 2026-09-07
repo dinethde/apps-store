@@ -1,17 +1,5 @@
-import { z } from 'zod'
-
-const SVG_MIME = 'image/svg+xml'
-const MAX_ICON_BYTES = 5 * 1024 * 1024
-
-export const appIconSchema = z
-  .instanceof(File)
-  .refine((file) => file.type === SVG_MIME || file.name.endsWith('.svg'), {
-    message: 'Only svgs are allowed',
-  })
-  .refine((file) => file.size <= MAX_ICON_BYTES, {
-    message: 'Max file size is 5mbs',
-  })
-  .nullable()
+export const SVG_MIME = 'image/svg+xml'
+export const MAX_ICON_BYTES = 5 * 1024 * 1024
 
 export const HEX_COLOR = /^#([0-9a-fA-F]{6})$/
 export const SEMVER = /^\d+\.\d+\.\d+$/
