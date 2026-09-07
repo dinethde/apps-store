@@ -37,7 +37,12 @@ export function SwitchField<T extends FieldValues>({
             <Switch
               id={name}
               checked={Boolean(field.value)}
-              onCheckedChange={(checked) => field.onChange(checked)}
+              onCheckedChange={(checked) => {
+                // A toggle commits on click; see FileUploadField for why the
+                // blur is announced here too.
+                field.onChange(checked)
+                field.onBlur()
+              }}
               disabled={disabled}
               className={`h-[17px] w-[34px]
               data-checked:bg-fill-success-main-active

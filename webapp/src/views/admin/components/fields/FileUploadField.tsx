@@ -34,9 +34,17 @@ export function FileUploadField<T extends FieldValues>({
         const file = (field.value ?? null) as File | null
         const hasError = Boolean(fieldState.error)
 
+        // A file picker commits its value the moment a file is chosen, so
+        // blur is announced alongside the change. Without it a form in
+        // `onBlur` mode never revalidates and `formState.isValid` goes stale.
+        const commit = (next: File | null) => {
+          field.onChange(next)
+          field.onBlur()
+        }
+
         const handleFiles = (files: FileList | null) => {
           const next = files?.[0]
-          if (next) field.onChange(next)
+          if (next) commit(next)
         }
 
         return (
@@ -135,7 +143,7 @@ export function FileUploadField<T extends FieldValues>({
                   </div>
                   <button
                     type="button"
-                    onClick={() => field.onChange(null)}
+                    onClick={() => commit(null)}
                     aria-label="Remove file"
                     className={`rounded-xs p-1 outline-none hover:opacity-70
                       focus-visible:ring-2 focus-visible:ring-ring/50`}
