@@ -62,10 +62,10 @@ export function FileUploadField<T extends FieldValues>({
                 }}
                 aria-invalid={hasError}
                 className={cn(
-                  `flex w-full cursor-pointer items-center justify-center gap-2
-                  overflow-hidden rounded-md border border-dashed
-                  border-user_input-default-border bg-user_input-default-bg p-3
-                  transition-colors`,
+                  `relative flex w-full cursor-pointer items-center
+                  justify-center gap-2 overflow-hidden rounded-md border
+                  border-dashed border-user_input-default-border
+                  bg-user_input-default-bg p-3 transition-colors`,
                   isDragOver && 'border-user_input-focussed-border',
                   hasError &&
                     `border-user_input-error-border

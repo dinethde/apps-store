@@ -107,7 +107,10 @@ export function UpdateAppView() {
   })
 
   return (
-    <form onSubmit={onSubmit} className="flex w-full items-start gap-5">
+    <form
+      onSubmit={onSubmit}
+      className="flex h-full min-h-0 w-full items-start gap-5"
+    >
       <div className="flex w-[388px] shrink-0 flex-col items-start gap-4">
         <SingleAutocompleteField
           control={form.control}
@@ -130,7 +133,10 @@ export function UpdateAppView() {
         ) : null}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col items-start gap-5">
+      <div
+        className={`scrollbar-slim flex h-full min-w-0 flex-1 flex-col
+          items-start gap-5 overflow-y-auto pr-2`}
+      >
         <TextField
           control={form.control}
           name="name"
@@ -138,6 +144,7 @@ export function UpdateAppView() {
           placeholder="placeholder"
           disabled={fieldsDisabled}
         />
+
         <TextField
           control={form.control}
           name="url"
@@ -145,6 +152,7 @@ export function UpdateAppView() {
           placeholder="placeholder"
           disabled={fieldsDisabled}
         />
+
         <TextField
           control={form.control}
           name="version"
@@ -152,6 +160,7 @@ export function UpdateAppView() {
           placeholder="placeholder"
           disabled={fieldsDisabled}
         />
+
         <TextareaField
           control={form.control}
           name="description"
@@ -159,6 +168,7 @@ export function UpdateAppView() {
           placeholder="placeholder"
           disabled={fieldsDisabled}
         />
+
         <TextField
           control={form.control}
           name="tagline"
@@ -166,6 +176,7 @@ export function UpdateAppView() {
           placeholder="placeholder"
           disabled={fieldsDisabled}
         />
+
         <MultiAutocompleteField
           control={form.control}
           name="tagIds"
@@ -173,6 +184,7 @@ export function UpdateAppView() {
           options={tagOptions}
           disabled={fieldsDisabled}
         />
+
         <MultiAutocompleteField
           control={form.control}
           name="userGroupIds"
@@ -180,12 +192,14 @@ export function UpdateAppView() {
           options={userGroupOptions}
           disabled={fieldsDisabled}
         />
+
         <FileUploadField
           control={form.control}
           name="icon"
           label="App Icon"
           disabled={fieldsDisabled}
         />
+
         <SwitchField
           control={form.control}
           name="status"

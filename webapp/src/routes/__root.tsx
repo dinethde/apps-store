@@ -75,7 +75,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div
-        className={`flex h-full h-screen w-full flex-row gap-1
+        className={`flex h-screen w-full flex-row gap-1
           bg-surface-secondary-main-active`}
       >
         <div className="flex flex-row items-center justify-start gap-4">
@@ -84,12 +84,12 @@ function RootComponent() {
 
         <div className="w-full py-2 pr-2">
           <div
-            className={`h-full w-full overflow-hidden rounded-[20px] border-1
-              border-outline-neutral-light-active
+            className={`flex h-full w-full flex-col overflow-hidden
+              rounded-[20px] border-1 border-outline-neutral-light-active
               bg-surface-neutral-main-active`}
           >
             <Header />
-            <div className="p-4">
+            <div className="min-h-0 flex-1 overflow-hidden p-4">
               <Outlet />
             </div>
           </div>

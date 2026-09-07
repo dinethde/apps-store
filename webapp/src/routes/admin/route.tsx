@@ -12,7 +12,7 @@ const ADMIN_TABS = [
 
 function AdminLayout() {
   return (
-    <div className="flex w-full flex-col gap-6">
+    <div className="flex h-full min-h-0 w-full flex-col gap-6">
       <PageTabs tabs={ADMIN_TABS} />
       <Outlet />
     </div>
