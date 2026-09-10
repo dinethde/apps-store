@@ -9,7 +9,7 @@ import {
 } from '@testing-library/react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FileUploadField } from './FileUploadField'
+import { FileUploadField } from '@/views/admin/components/fields/FileUploadField'
 import { createAppFormSchema } from '@/views/admin/create-app/createAppSchema'
 import type { CreateAppFormValues } from '@/views/admin/create-app/createAppSchema'
 

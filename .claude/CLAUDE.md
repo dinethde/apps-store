@@ -137,8 +137,13 @@ pipeline in `src/styles.css`. Use the token, not a raw hex or arbitrary value.
 
 ## Testing
 
-- **Vitest** for units, alongside the code.
-- **Playwright** in `webapp/testing/`, config at `testing/playwright.config.ts`.
+- Both suites live in `webapp/testing/`, split by filename suffix. Test files do
+  not sit beside the code they exercise — a test is not a component, so it does
+  not belong in a component folder.
+- **Vitest** for units, in `webapp/testing/unit/`, named `*.test.ts(x)`. The
+  `test.include` glob in `vite.config.ts` is what finds them.
+- **Playwright** in `webapp/testing/`, named `*.spec.ts`, config at
+  `testing/playwright.config.ts`.
   Specs drive the real Vite dev server so Tailwind's compiled theme is under
   test. Chip sizing is asserted to a tenth of a pixel and
   `deviceScaleFactor` is pinned — do not change it.

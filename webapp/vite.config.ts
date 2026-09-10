@@ -30,8 +30,11 @@ const config = defineConfig({
   },
   plugins: [devtools(), tailwindcss(), tanstackStart(), viteReact(), svgr()],
   test: {
-    // The suite in ./testing is driven by Playwright, not Vitest.
-    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    // Both suites live in ./testing, split by filename: Vitest owns
+    // testing/unit/*.test.*, Playwright owns testing/*.spec.ts. Keep the
+    // suffixes apart — Playwright's testMatch would otherwise claim a
+    // .spec.ts placed under unit/.
+    include: ['testing/unit/**/*.test.{ts,tsx}'],
   },
 })
 
